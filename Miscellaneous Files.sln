@@ -9,7 +9,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DetSkaeveRum", "http://loca
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "C:\Users\Kevin\Documents\GitHub\DetSkaeveRum\"
+		SlnRelativePath = "..\DetSkaeveRum\"
 	EndProjectSection
 EndProject
 Global
