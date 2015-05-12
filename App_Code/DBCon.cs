@@ -8,7 +8,7 @@ using System.Web;
 public class DBCon
 {
 
-    private static DBDataContext _db = new DBDataContext();
+    private static readonly DBDataContext _db = new DBDataContext();
     private static DBCon _instance;
 
 	private DBCon()
