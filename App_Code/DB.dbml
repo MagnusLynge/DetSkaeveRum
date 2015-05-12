@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dmaa0913_4Sem_Group4" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=kraka.ucn.dk;Initial Catalog=dmaa0913_4Sem_Group4;Persist Security Info=True;User ID=dmaa0913_4Sem_Group4" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="dmaa0913_4Sem_Group4ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Images" Member="Images">
+    <Type Name="Image">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Image_MtoMImg" Member="MtoMImgs" ThisKey="id" OtherKey="ImgId" Type="MtoMImg" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Words" Member="Words">
+    <Type Name="Word">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Word" Member="Word1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Word_MtoMWord" Member="MtoMWords" ThisKey="id" OtherKey="WordId" Type="MtoMWord" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MtoMImg" Member="MtoMImgs">
+    <Type Name="MtoMImg">
+      <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ImgId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Image_MtoMImg" Member="Image" ThisKey="ImgId" OtherKey="id" Type="Image" IsForeignKey="true" />
+      <Association Name="Session_MtoMImg" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MtoMRole" Member="MtoMRoles">
+    <Type Name="MtoMRole">
+      <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Role_MtoMRole" Member="Role" ThisKey="RoleId" OtherKey="id" Type="Role" IsForeignKey="true" />
+      <Association Name="Session_MtoMRole" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MtoMSession" Member="MtoMSessions">
+    <Type Name="MtoMSession">
+      <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StudentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Session_MtoMSession" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
+      <Association Name="Student_MtoMSession" Member="Student" ThisKey="StudentId" OtherKey="id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MtoMWord" Member="MtoMWords">
+    <Type Name="MtoMWord">
+      <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WordId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Word_MtoMWord" Member="Word" ThisKey="WordId" OtherKey="id" Type="Word" IsForeignKey="true" />
+      <Association Name="Session_MtoMWord" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roles" Member="Roles">
+    <Type Name="Role">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Role" Member="Role1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Role_MtoMRole" Member="MtoMRoles" ThisKey="id" OtherKey="RoleId" Type="MtoMRole" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Session" Member="Sessions">
+    <Type Name="Session">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TeacherId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Session_MtoMImg" Member="MtoMImgs" ThisKey="id" OtherKey="SessionId" Type="MtoMImg" />
+      <Association Name="Session_MtoMRole" Member="MtoMRoles" ThisKey="id" OtherKey="SessionId" Type="MtoMRole" />
+      <Association Name="Session_MtoMSession" Member="MtoMSessions" ThisKey="id" OtherKey="SessionId" Type="MtoMSession" />
+      <Association Name="Session_MtoMWord" Member="MtoMWords" ThisKey="id" OtherKey="SessionId" Type="MtoMWord" />
+      <Association Name="Teacher_Session" Member="Teacher" ThisKey="TeacherId" OtherKey="id" Type="Teacher" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Student" Member="Students">
+    <Type Name="Student">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Words" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Student_MtoMSession" Member="MtoMSessions" ThisKey="id" OtherKey="StudentId" Type="MtoMSession" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Teachers" Member="Teachers">
+    <Type Name="Teacher">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Teacher_Session" Member="Sessions" ThisKey="id" OtherKey="TeacherId" Type="Session" />
+    </Type>
+  </Table>
+</Database>
