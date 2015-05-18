@@ -11,8 +11,7 @@ public partial class WordPage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        WordGrid.DataSource = word.GetAllWords();
-        WordGrid.DataBind();
+
 
         RepeaterWord.DataSource = word.GetAllWords();
         RepeaterWord.DataBind();
@@ -21,11 +20,23 @@ public partial class WordPage : System.Web.UI.Page
     {
         var wordForSubmit = txtWord.Text;
         word.CreateWord(wordForSubmit);
-        WordGrid.DataSource = word.GetAllWords();
-        WordGrid.DataBind();
 
+        RepeaterWord.DataSource = word.GetAllWords();
+        RepeaterWord.DataBind();
+        txtWord.Text = String.Empty;
     }
 
-    
 
+
+    protected void btnDel_Click(object sender, EventArgs e)
+    {
+        var wordForDel = txtWord.Text;
+        word.DeleteWord(wordForDel);
+        RepeaterWord.DataSource = word.GetAllWords();
+        RepeaterWord.DataBind();
+
+        txtWord.Text = String.Empty;
+
+
+    }
 }
