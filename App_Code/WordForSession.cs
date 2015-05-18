@@ -47,10 +47,11 @@ public class WordForSession
         //_db.SubmitChanges();
     }
 
-    public List<Word> GetAllWords()
+    public List<WordForSession> GetAllWords()
     {
-        var query = _db.Words.Select(i => i);
-        return query.ToList();
+        //var query = _db.Words.Select(i => i);
+        //return query.ToList();
+        return null;
     }
 
     public List<Word> GetWord(string word)
