@@ -3,21 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-public interface IWords
-{
-    List<WordForSession> GetAllWords();
-    List<WordForSession> GetWord(string word);
-    void CreateWord(string word);
-    void UpdateWord(string word);
-    void DeleteWord(string word);
-
-}
-
 
 /// <summary>
 /// This is a class for words
 /// </summary>
-public abstract partial class WordForSession : IWords
+public class WordForSession
 {
     private DBDataContext _db = DBCon.GetDB();
 
@@ -52,26 +42,28 @@ public abstract partial class WordForSession : IWords
 
     public void CreateWord(string word)
     {
-        var query = new WordForSession { Word = word};
-        _db.Words.InsertOnSubmit(query);
-        _db.SubmitChanges();
+        //var query = new WordForSession { Word = word};
+        //_db.Words.InsertOnSubmit(query);
+        //_db.SubmitChanges();
     }
 
     public List<WordForSession> GetAllWords()
     {
-        var query = _db.Words.Select(i => i);
-        return query.ToList();
+        //var query = _db.Words.Select(i => i);
+        //return query.ToList();
+        return null;
     }
 
     public List<WordForSession> GetWord(string word)
     {
-        var query = _db.Words.Where(i => i == word).Select(i => i).ToList();
-        return query.ToList();
+        //var query = _db.Words.Where(i => i == word).Select(i => i).ToList();
+        //return query.ToList();
+        return null;
     }
 
     #region propeties
     public int Id { get; set; }
-    public abstract string Word { get; }
+    public string Word { get; set; }
     #endregion
 
 }
