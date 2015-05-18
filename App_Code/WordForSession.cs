@@ -52,7 +52,7 @@ public class WordForSession
 
         var check = _db.Words.Where(i => i.Word1 == word).Select(i => i).ToString();
 
-        if (word == check)
+        if (word.Equals(check))
         {
             return;
         }
