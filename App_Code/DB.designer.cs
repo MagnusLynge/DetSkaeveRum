@@ -291,7 +291,7 @@ public partial class Word : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Word", Storage="_Word1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Words", Storage="_Word1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 	public string Word1
 	{
 		get
