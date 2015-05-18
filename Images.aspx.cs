@@ -8,16 +8,13 @@ using System.IO;
 
 public partial class Images : System.Web.UI.Page
 {
-    ImagesForSession imgSession = new ImagesForSession();
     protected void Upload(object sender, EventArgs e)
     {
         if (FileUpload1.HasFile)
         {
             string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
             FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
-            imgSession.AddImage(fileName);
             Response.Redirect(Request.Url.AbsoluteUri);
-            
         }
     }
 
