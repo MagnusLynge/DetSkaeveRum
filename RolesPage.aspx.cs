@@ -7,32 +7,32 @@ using System.Web.UI.WebControls;
 
 public partial class RolesPage : System.Web.UI.Page
 {
-    Roles rpg;
+    RolesForSession rpg;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        rpg = new Roles();
+        rpg = new RolesForSession();
 
         CreateGrid();
     }
     protected void idCreateBtn_Click(object sender, EventArgs e)
     {
-        rpg.CreateRole(idStringTextbox.Text);
+        rpg.CreateRole(idTextbox.Text);
         CreateGrid();
     }
     protected void idUpdateBtn_Click(object sender, EventArgs e)
     {
-        rpg.UpdateRole(Int32.Parse(idTextbox.Text), idStringTextbox.Text);
+        rpg.UpdateRole(idTextbox.Text, idStringTextbox.Text);
         CreateGrid();
     }
     protected void idDeleteBtn_Click(object sender, EventArgs e)
     {
-        rpg.DeleteRole(Int32.Parse(idTextbox.Text));
+        rpg.DeleteRole(idTextbox.Text);
         CreateGrid();
     }
     protected void idGetSingleBtn_Click(object sender, EventArgs e)
     {
-        var tempObj = rpg.GetRole(Int32.Parse(idTextbox.Text));
+        var tempObj = rpg.GetRole(idTextbox.Text);
         idStringTextbox.Text = tempObj[0].Role1;
     }
 

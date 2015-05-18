@@ -3,43 +3,60 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-public class Roles
+public class RolesForSession
 {
     private DBDataContext _db = DBCon.GetDB();
 
     public int Id;
     public string Role;
 
-    public Roles(int id, string role)
+    public RolesForSession(int id, string role)
 	{
         Id = id;
         Role = role;
 	}
 
-    public Roles()
+    public RolesForSession()
     {
 
     }
 
-    public void DeleteRole(int id)
-    {
-        var deleteObj = GetRole(id);
+    public void DeleteRole(string role)
+    {        
+        var deleteObj = GetRole(role);
+
+        if (deleteObj[0] == null) return;
+
+
         _db.Roles.DeleteOnSubmit(deleteObj[0]);
         _db.SubmitChanges();
     }
 
-    public void UpdateRole(int id, string role)
+    public void UpdateRole(string role, string roleUpd)
     {
-        var updateObj = GetRole(id);
-        updateObj[0].Role1 = role;
+        var updateObj = GetRole(role);
+
+        if (updateObj[0] == null) return;
+
+        updateObj[0].Role1 = roleUpd;
         _db.SubmitChanges();
     }
 
     public void CreateRole(string role)
     {
         var query = new Role { Role1 = role };
-        _db.Roles.InsertOnSubmit(query);
-        _db.SubmitChanges();
+        var check = _db.Roles.Where(i => i.Role1 == role).Select(i => i).ToList<Role>();
+
+        if (role.Equals(check[0].Role1))
+        {
+            return;
+        }
+        else
+        {
+            _db.Roles.InsertOnSubmit(query);
+            _db.SubmitChanges();
+        }
+
     }
 
     public List<Role> GetAllRoles()
