@@ -16,14 +16,23 @@ public class Roles
         Role = role;
 	}
 
-    public void DeleteRole(string role)
+    public Roles()
     {
 
     }
 
-    public void UpdateRole(string role)
+    public void DeleteRole(int id)
     {
+        var deleteObj = GetRole(id);
+        _db.Roles.DeleteOnSubmit(deleteObj[0]);
+        _db.SubmitChanges();
+    }
 
+    public void UpdateRole(int id, string role)
+    {
+        var updateObj = GetRole(id);
+        updateObj[0].Role1 = role;
+        _db.SubmitChanges();
     }
 
     public void CreateRole(string role)
@@ -42,6 +51,12 @@ public class Roles
     public List<Role> GetRole(string role)
     {
         var query = _db.Roles.Where(i => i.Role1 == role).Select(i => i);
+        return query.ToList();
+    }
+
+    public List<Role> GetRole(int id)
+    {
+        var query = _db.Roles.Where(i => i.id == id).Select(i => i);
         return query.ToList();
     }
 
