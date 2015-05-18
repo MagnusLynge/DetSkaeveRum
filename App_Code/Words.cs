@@ -5,8 +5,8 @@ using System.Web;
 
 public interface IWords
 {
-    List<Word> GetAllWords();
-    List<Word> GetWord(string word);
+    List<WordForSession> GetAllWords();
+    List<WordForSession> GetWord(string word);
     void CreateWord(string word);
     void UpdateWord(string word);
     void DeleteWord(string word);
@@ -17,20 +17,23 @@ public interface IWords
 /// <summary>
 /// This is a class for words
 /// </summary>
-public class Words : IWords
+public partial class WordForSession : IWords
 {
     private DBDataContext _db = DBCon.GetDB();
 
-    public Words()
+    #region Counstructers
+   
+    public WordForSession(string word)
     {
-        
+        Word = word;
     }
 
-	public Words(int id, string word)
+	public WordForSession(int id, string word)
 	{
 	    Id = id;
 	    Word = word;
 	}
+    #endregion
 
     public void DeleteWord(string word)
     {
@@ -44,20 +47,20 @@ public class Words : IWords
 
     public void CreateWord(string word)
     {
-        var query = new Word { Word1 = word};
-        _db.Words.InsertOnSubmit(query);
+        var query = new WordForSession { Word = word};
+        _db.Wordss.InsertOnSubmit(query);
         _db.SubmitChanges();
     }
 
-    public List<Word> GetAllWords()
+    public List<WordForSession> GetAllWords()
     {
-        var query = _db.Words.Select(i => i);
+        var query = _db.Wordss.Select(i => i);
         return query.ToList();
     }
 
-    public List<Word> GetWord(string word)
+    public List<WordForSession> GetWord(string word)
     {
-        var query = _db.Words.Where(i => i.Word1 == word).Select(i => i);
+        var query = _db.Wordss.Where(i => i.Word == word).Select(i => i).ToList();
         return query.ToList();
     }
 
