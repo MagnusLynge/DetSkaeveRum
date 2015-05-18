@@ -17,7 +17,7 @@ public interface IWords
 /// <summary>
 /// This is a class for words
 /// </summary>
-public partial class WordForSession : IWords
+public abstract partial class WordForSession : IWords
 {
     private DBDataContext _db = DBCon.GetDB();
 
@@ -65,13 +65,13 @@ public partial class WordForSession : IWords
 
     public List<WordForSession> GetWord(string word)
     {
-        var query = _db.Words.Where(i => i.Word == word).Select(i => i).ToList();
+        var query = _db.Words.Where(i => i == word).Select(i => i).ToList();
         return query.ToList();
     }
 
     #region propeties
     public int Id { get; set; }
-    public string Word { get; set; }
+    public abstract string Word { get; }
     #endregion
 
 }
