@@ -32,32 +32,38 @@ public class WordForSession
 
     public void DeleteWord(string word)
     {
-        
+        Word delWrd = _db.Words.Where(i => i.Word1 == word).Select(i => i).FirstOrDefault();
+        if (delWrd != null)
+        {
+            _db.Words.DeleteOnSubmit(delWrd);
+            _db.SubmitChanges();
+        }
     }
 
     public void UpdateWord(string word)
     {
-        
+        Word updWrd = _db.Words.Where(i => i.Word1 == word).Select(i => i).Single();
+        updWrd.Word1 = word;
+        _db.SubmitChanges();
     }
 
     public void CreateWord(string word)
     {
-        //var query = new WordForSession { Word = word};
-        //_db.Words.InsertOnSubmit(query);
-        //_db.SubmitChanges();
+        var query = new Word { Word1 = word};
+        _db.Words.InsertOnSubmit(query);
+        _db.SubmitChanges();
     }
 
     public List<Word> GetAllWords()
     {
-        var query = _db.Words.Select(i => i);
+        var query = _db.Words.OrderBy(i => i.Word1).Select(i => i);
         return query.ToList();
     }
 
     public List<Word> GetWord(string word)
     {
-        //var query = _db.Words.Where(i => i == word).Select(i => i).ToList();
-        //return query.ToList();
-        return null;
+        var query = _db.Words.Where(i => i.Word1 == word).OrderBy(i => i.Word1).Select(i => i);
+        return query.ToList();
     }
 
     #region propeties
