@@ -33,16 +33,15 @@ public class WordForSession
     public void DeleteWord(string word)
     {
         Word delWrd = _db.Words.Where(i => i.Word1 == word).Select(i => i).FirstOrDefault();
-        if (delWrd != null)
-        {
-            _db.Words.DeleteOnSubmit(delWrd);
-            _db.SubmitChanges();
-        }
+        if (delWrd == null) return;
+        _db.Words.DeleteOnSubmit(delWrd);
+        _db.SubmitChanges();
     }
 
     public void UpdateWord(string word)
     {
         Word updWrd = _db.Words.Where(i => i.Word1 == word).Select(i => i).Single();
+        if (updWrd == null) return;
         updWrd.Word1 = word;
         _db.SubmitChanges();
     }
@@ -50,8 +49,18 @@ public class WordForSession
     public void CreateWord(string word)
     {
         var query = new Word { Word1 = word};
-        _db.Words.InsertOnSubmit(query);
-        _db.SubmitChanges();
+
+        var check = _db.Words.Where(i => i.Word1 == word).Select(i => i).ToString();
+
+        if (word == check)
+        {
+            return;
+        }
+        else
+        {
+            _db.Words.InsertOnSubmit(query);
+            _db.SubmitChanges(); 
+        }        
     }
 
     public List<Word> GetAllWords()
