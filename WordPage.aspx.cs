@@ -18,7 +18,7 @@ public partial class WordPage : System.Web.UI.Page
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        var wordForSubmit = txtWord.Text;
+        var wordForSubmit = txtWord.Text.ToUpper();
         word.CreateWord(wordForSubmit);
 
         RepeaterWord.DataSource = word.GetAllWords();
@@ -30,7 +30,7 @@ public partial class WordPage : System.Web.UI.Page
 
     protected void btnDel_Click(object sender, EventArgs e)
     {
-        var wordForDel = txtWord.Text;
+        var wordForDel = txtWord.Text.ToUpper();
         word.DeleteWord(wordForDel);
         RepeaterWord.DataSource = word.GetAllWords();
         RepeaterWord.DataBind();

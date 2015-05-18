@@ -7,10 +7,11 @@
         <asp:FileUpload ID="FileUpload1" runat="server" />
 <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="Upload" />
 <hr />
-<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" ShowHeader="false">
+<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" ShowHeader="False" OnRowDeleting="OnRowDataBound">
     <Columns>
         <asp:BoundField DataField="Text" />
         <asp:ImageField DataImageUrlField="Value" ControlStyle-Height="100" ControlStyle-Width="100" />
+        <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
     </Columns>
 </asp:GridView>
      </div>   

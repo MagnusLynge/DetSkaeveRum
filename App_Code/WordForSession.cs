@@ -50,7 +50,7 @@ public class WordForSession
     {
         var query = _db.Words.Where(i => i.Word1 == word).Select(i => i).ToString();
 
-        if (!query.Contains(word))
+        if (!query.Equals(word))
         {
             return null;
         }
@@ -62,17 +62,16 @@ public class WordForSession
     {
         var query = new Word { Word1 = word};
 
-        var check = _db.Words.Where(i => i.Word1 == word).Select(i => i).ToString();
+        var check = _db.Words.Where(i => i.Word1 == word).Select(i => i).Count();
 
-        if (word.Contains(word))
+        if (check > 0 )
         {
             return;
         }
-        else
-        {
+        
             _db.Words.InsertOnSubmit(query);
             _db.SubmitChanges(); 
-        }        
+           
     }
 
     public List<Word> GetAllWords()
