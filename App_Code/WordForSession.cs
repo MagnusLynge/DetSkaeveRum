@@ -53,7 +53,7 @@ public class WordForSession
         return query.ToList();
     }
 
-    public List<WordForSession> GetWord(string word)
+    public List<Word> GetWord(string word)
     {
         //var query = _db.Words.Where(i => i == word).Select(i => i).ToList();
         //return query.ToList();
