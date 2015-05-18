@@ -11,10 +11,10 @@ public class RolesForSession
     public string Role;
 
     public RolesForSession(int id, string role)
-	{
+    {
         Id = id;
         Role = role;
-	}
+    }
 
     public RolesForSession()
     {
@@ -22,24 +22,25 @@ public class RolesForSession
     }
 
     public void DeleteRole(string role)
-    {        
+    {
         var deleteObj = GetRole(role);
 
-        if (deleteObj[0] == null) return;
-
-
+        if (deleteObj == null) return;
+        
         _db.Roles.DeleteOnSubmit(deleteObj[0]);
         _db.SubmitChanges();
+
     }
 
     public void UpdateRole(string role, string roleUpd)
     {
         var updateObj = GetRole(role);
 
-        if (updateObj[0] == null) return;
-
-        updateObj[0].Role1 = roleUpd;
-        _db.SubmitChanges();
+        if (updateObj != null)
+        {
+            updateObj[0].Role1 = roleUpd;
+            _db.SubmitChanges();
+        }
     }
 
     public void CreateRole(string role)
@@ -47,15 +48,15 @@ public class RolesForSession
         var query = new Role { Role1 = role };
         var check = _db.Roles.Where(i => i.Role1 == role).Select(i => i).ToList<Role>();
 
-        if (role.Equals(check[0].Role1))
+
+        if (check.Count > 0 && role.Equals(check[0].Role1))
         {
             return;
         }
-        else
-        {
-            _db.Roles.InsertOnSubmit(query);
-            _db.SubmitChanges();
-        }
+        _db.Roles.InsertOnSubmit(query);
+        _db.SubmitChanges();
+
+
 
     }
 
@@ -68,6 +69,12 @@ public class RolesForSession
     public List<Role> GetRole(string role)
     {
         var query = _db.Roles.Where(i => i.Role1 == role).Select(i => i);
+
+        if (query.ToList().Count == 0)
+        {
+            return null;
+        }
+
         return query.ToList();
     }
 

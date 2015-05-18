@@ -33,7 +33,12 @@ public partial class RolesPage : System.Web.UI.Page
     protected void idGetSingleBtn_Click(object sender, EventArgs e)
     {
         var tempObj = rpg.GetRole(idTextbox.Text);
-        idStringTextbox.Text = tempObj[0].Role1;
+
+        if(tempObj != null)
+        {
+            idStringTextbox.Text = tempObj[0].Role1;
+
+        }
     }
 
     void CreateGrid()
