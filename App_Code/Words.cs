@@ -5,9 +5,11 @@ using System.Web;
 
 public interface IWords
 {
-    List<Word> GetAll();
+    List<Word> GetAllWords();
     List<Word> GetWord(string word);
     void CreateWord(string word);
+    void UpdateWord(string word);
+    void DeleteWord(string word);
 
 }
 
@@ -15,7 +17,7 @@ public interface IWords
 /// <summary>
 /// This is a class for words
 /// </summary>
-public class Words
+public class Words : IWords
 {
     private DBDataContext _db = DBCon.GetDB();
 
@@ -25,6 +27,16 @@ public class Words
 	    Word = word;
 	}
 
+    public void DeleteWord(string word)
+    {
+        
+    }
+
+    public void UpdateWord(string word)
+    {
+        
+    }
+
     public void CreateWord(string word)
     {
         var query = new Word { Word1 = word};
@@ -32,7 +44,7 @@ public class Words
         _db.SubmitChanges();
     }
 
-    public List<Word> GetAllWord()
+    public List<Word> GetAllWords()
     {
         var query = _db.Words.Select(i => i);
         return query.ToList();
