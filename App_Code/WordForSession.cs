@@ -50,7 +50,7 @@ public class WordForSession
     {
         var query = _db.Words.Where(i => i.Word1 == word).Select(i => i).ToString();
 
-        if (!query.Equals(word))
+        if (!query.Contains(word))
         {
             return null;
         }
