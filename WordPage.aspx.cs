@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 public partial class WordPage : System.Web.UI.Page
 {
@@ -24,6 +23,24 @@ public partial class WordPage : System.Web.UI.Page
         WordGrid.DataSource = word.GetAllWords();
         WordGrid.DataBind();
 
+    }
+
+    public static void ClearBoxes(Control control)
+    {
+        foreach (Control c in control.Controls)
+        {
+            var textBox = c as TextBox;
+            var comboBox = c as ComboBox;
+
+            if (textBox != null)
+                (textBox).Clear();
+
+            if (comboBox != null)
+                comboBox.SelectedIndex = -1;
+
+            if (c.HasChildren)
+                ClearBoxes(c);
+        }
     }
 
     
