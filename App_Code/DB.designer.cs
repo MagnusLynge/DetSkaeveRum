@@ -32,9 +32,15 @@ public partial class DBDataContext : System.Data.Linq.DataContext
   partial void InsertImage(Image instance);
   partial void UpdateImage(Image instance);
   partial void DeleteImage(Image instance);
+<<<<<<< HEAD
   partial void InsertWords(Words instance);
   partial void UpdateWords(Words instance);
   partial void DeleteWords(Words instance);
+=======
+  partial void InsertWords(WordForSession instance);
+  partial void UpdateWords(WordForSession instance);
+  partial void DeleteWords(WordForSession instance);
+>>>>>>> origin/master
   partial void InsertRole(Role instance);
   partial void UpdateRole(Role instance);
   partial void DeleteRole(Role instance);
@@ -87,11 +93,19 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
+<<<<<<< HEAD
 	public System.Data.Linq.Table<Words> Wordss
 	{
 		get
 		{
 			return this.GetTable<Words>();
+=======
+	public System.Data.Linq.Table<WordForSession> Wordss
+	{
+		get
+		{
+			return this.GetTable<WordForSession>();
+>>>>>>> origin/master
 		}
 	}
 	
@@ -247,7 +261,11 @@ public partial class Image : INotifyPropertyChanging, INotifyPropertyChanged
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Wordss")]
+<<<<<<< HEAD
 public partial class Words : INotifyPropertyChanging, INotifyPropertyChanged
+=======
+public partial class WordForSession : INotifyPropertyChanging, INotifyPropertyChanged
+>>>>>>> origin/master
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -266,7 +284,11 @@ public partial class Words : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnWords1Changed();
     #endregion
 	
+<<<<<<< HEAD
 	public Words()
+=======
+	public WordForSession()
+>>>>>>> origin/master
 	{
 		OnCreated();
 	}
