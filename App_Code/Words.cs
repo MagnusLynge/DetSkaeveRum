@@ -21,6 +21,11 @@ public class Words : IWords
 {
     private DBDataContext _db = DBCon.GetDB();
 
+    public Words()
+    {
+        
+    }
+
 	public Words(int id, string word)
 	{
 	    Id = id;
