@@ -32,9 +32,9 @@ public partial class DBDataContext : System.Data.Linq.DataContext
   partial void InsertImage(Image instance);
   partial void UpdateImage(Image instance);
   partial void DeleteImage(Image instance);
-  partial void InsertWords(WordForSession instance);
-  partial void UpdateWords(WordForSession instance);
-  partial void DeleteWords(WordForSession instance);
+  partial void InsertWord(Word instance);
+  partial void UpdateWord(Word instance);
+  partial void DeleteWord(Word instance);
   partial void InsertRole(Role instance);
   partial void UpdateRole(Role instance);
   partial void DeleteRole(Role instance);
@@ -87,11 +87,11 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<WordForSession> Wordss
+	public System.Data.Linq.Table<Word> Words
 	{
 		get
 		{
-			return this.GetTable<WordForSession>();
+			return this.GetTable<Word>();
 		}
 	}
 	
@@ -119,11 +119,11 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<MtoMWords> MtoMWordss
+	public System.Data.Linq.Table<MtoMWord> MtoMWords
 	{
 		get
 		{
-			return this.GetTable<MtoMWords>();
+			return this.GetTable<MtoMWord>();
 		}
 	}
 	
@@ -246,15 +246,15 @@ public partial class Image : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Wordss")]
-public partial class WordForSession : INotifyPropertyChanging, INotifyPropertyChanged
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Words")]
+public partial class Word : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
 	private int _id;
 	
-	private string _Words1;
+	private string _Word1;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -262,11 +262,11 @@ public partial class WordForSession : INotifyPropertyChanging, INotifyPropertyCh
     partial void OnCreated();
     partial void OnidChanging(int value);
     partial void OnidChanged();
-    partial void OnWords1Changing(string value);
-    partial void OnWords1Changed();
+    partial void OnWord1Changing(string value);
+    partial void OnWord1Changed();
     #endregion
 	
-	public WordForSession()
+	public Word()
 	{
 		OnCreated();
 	}
@@ -291,22 +291,22 @@ public partial class WordForSession : INotifyPropertyChanging, INotifyPropertyCh
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Words", Storage="_Words1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string Words1
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Word", Storage="_Word1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string Word1
 	{
 		get
 		{
-			return this._Words1;
+			return this._Word1;
 		}
 		set
 		{
-			if ((this._Words1 != value))
+			if ((this._Word1 != value))
 			{
-				this.OnWords1Changing(value);
+				this.OnWord1Changing(value);
 				this.SendPropertyChanging();
-				this._Words1 = value;
-				this.SendPropertyChanged("Words1");
-				this.OnWords1Changed();
+				this._Word1 = value;
+				this.SendPropertyChanged("Word1");
+				this.OnWord1Changed();
 			}
 		}
 	}
@@ -467,15 +467,15 @@ public partial class MtoMSession
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MtoMWords")]
-public partial class MtoMWords
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MtoMWord")]
+public partial class MtoMWord
 {
 	
 	private int _SessionId;
 	
-	private int _WordsId;
+	private int _WordId;
 	
-	public MtoMWords()
+	public MtoMWord()
 	{
 	}
 	
@@ -495,18 +495,18 @@ public partial class MtoMWords
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WordsId", DbType="Int NOT NULL")]
-	public int WordsId
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WordId", DbType="Int NOT NULL")]
+	public int WordId
 	{
 		get
 		{
-			return this._WordsId;
+			return this._WordId;
 		}
 		set
 		{
-			if ((this._WordsId != value))
+			if ((this._WordId != value))
 			{
-				this._WordsId = value;
+				this._WordId = value;
 			}
 		}
 	}
@@ -759,7 +759,7 @@ public partial class Student : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _Name;
 	
-	private string _Wordss;
+	private string _Words;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -769,8 +769,8 @@ public partial class Student : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnidChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
-    partial void OnWordssChanging(string value);
-    partial void OnWordssChanged();
+    partial void OnWordsChanging(string value);
+    partial void OnWordsChanged();
     #endregion
 	
 	public Student()
@@ -818,22 +818,22 @@ public partial class Student : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Wordss", DbType="VarChar(50)")]
-	public string Wordss
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Words", DbType="VarChar(50)")]
+	public string Words
 	{
 		get
 		{
-			return this._Wordss;
+			return this._Words;
 		}
 		set
 		{
-			if ((this._Wordss != value))
+			if ((this._Words != value))
 			{
-				this.OnWordssChanging(value);
+				this.OnWordsChanging(value);
 				this.SendPropertyChanging();
-				this._Wordss = value;
-				this.SendPropertyChanged("Wordss");
-				this.OnWordssChanged();
+				this._Words = value;
+				this.SendPropertyChanged("Words");
+				this.OnWordsChanged();
 			}
 		}
 	}

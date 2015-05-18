@@ -7,11 +7,11 @@
       <Association Name="Image_MtoMImg" Member="MtoMImgs" ThisKey="id" OtherKey="ImgId" Type="MtoMImg" />
     </Type>
   </Table>
-  <Table Name="dbo.Wordss" Member="Wordss">
-    <Type Name="Words">
+  <Table Name="dbo.Words" Member="Words">
+    <Type Name="Word">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Words" Member="Words1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Words_MtoMWords" Member="MtoMWordss" ThisKey="id" OtherKey="WordsId" Type="MtoMWords" />
+      <Column Name="Word" Member="Word1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Word_MtoMWord" Member="MtoMWords" ThisKey="id" OtherKey="WordId" Type="MtoMWord" />
     </Type>
   </Table>
   <Table Name="dbo.MtoMImg" Member="MtoMImgs">
@@ -38,12 +38,12 @@
       <Association Name="Student_MtoMSession" Member="Student" ThisKey="StudentId" OtherKey="id" Type="Student" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.MtoMWords" Member="MtoMWordss">
-    <Type Name="MtoMWords">
+  <Table Name="dbo.MtoMWord" Member="MtoMWords">
+    <Type Name="MtoMWord">
       <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="WordsId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Words_MtoMWords" Member="Words" ThisKey="WordsId" OtherKey="id" Type="Words" IsForeignKey="true" />
-      <Association Name="Session_MtoMWords" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
+      <Column Name="WordId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Word_MtoMWord" Member="Word" ThisKey="WordId" OtherKey="id" Type="Word" IsForeignKey="true" />
+      <Association Name="Session_MtoMWord" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Roles" Member="Roles">
@@ -61,7 +61,7 @@
       <Association Name="Session_MtoMImg" Member="MtoMImgs" ThisKey="id" OtherKey="SessionId" Type="MtoMImg" />
       <Association Name="Session_MtoMRole" Member="MtoMRoles" ThisKey="id" OtherKey="SessionId" Type="MtoMRole" />
       <Association Name="Session_MtoMSession" Member="MtoMSessions" ThisKey="id" OtherKey="SessionId" Type="MtoMSession" />
-      <Association Name="Session_MtoMWords" Member="MtoMWordss" ThisKey="id" OtherKey="SessionId" Type="MtoMWords" />
+      <Association Name="Session_MtoMWord" Member="MtoMWords" ThisKey="id" OtherKey="SessionId" Type="MtoMWord" />
       <Association Name="Teacher_Session" Member="Teacher" ThisKey="TeacherId" OtherKey="id" Type="Teacher" IsForeignKey="true" />
     </Type>
   </Table>
@@ -69,7 +69,7 @@
     <Type Name="Student">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Wordss" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Words" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Student_MtoMSession" Member="MtoMSessions" ThisKey="id" OtherKey="StudentId" Type="MtoMSession" />
     </Type>
   </Table>
