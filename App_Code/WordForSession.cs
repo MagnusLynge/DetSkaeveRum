@@ -74,6 +74,14 @@ public class WordForSession
            
     }
 
+    public int CountAllWords()
+    {
+        var query = _db.Words.Select(i => i);
+        var result = query.Count();
+
+        return result;
+    }
+
     public List<Word> GetAllWords()
     {
         var query = _db.Words.OrderBy(i => i.Word1).Select(i => i);

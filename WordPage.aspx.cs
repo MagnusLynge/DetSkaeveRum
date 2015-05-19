@@ -12,9 +12,9 @@ public partial class WordPage : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-
         RepeaterWord.DataSource = word.GetAllWords();
         RepeaterWord.DataBind();
+        lblAmountWordsCount.Text = word.CountAllWords().ToString();
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
@@ -24,6 +24,7 @@ public partial class WordPage : System.Web.UI.Page
         RepeaterWord.DataSource = word.GetAllWords();
         RepeaterWord.DataBind();
         txtWord.Text = String.Empty;
+        lblAmountWordsCount.Text = word.CountAllWords().ToString();
     }
 
 
@@ -34,8 +35,8 @@ public partial class WordPage : System.Web.UI.Page
         word.DeleteWord(wordForDel);
         RepeaterWord.DataSource = word.GetAllWords();
         RepeaterWord.DataBind();
-
         txtWord.Text = String.Empty;
+        lblAmountWordsCount.Text = word.CountAllWords().ToString();
 
 
     }
