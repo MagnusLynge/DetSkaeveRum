@@ -8,45 +8,64 @@ using System.Windows.Forms.VisualStyles;
 
 public partial class RolesPage : System.Web.UI.Page
 {
-    RolesForSession rpg;
+    RolesForSession rpg = new RolesForSession();
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        rpg = new RolesForSession();
 
         CreateGrid();
-        RepeaterRoles.DataSource = rpg.GetAllRoles();
-        RepeaterRoles.DataBind();
+
+        
     }
     protected void idCreateBtn_Click(object sender, EventArgs e)
     {
-        rpg.CreateRole(idTextbox.Text);
-        CreateGrid();
-    }
-    protected void idUpdateBtn_Click(object sender, EventArgs e)
-    {
-        rpg.UpdateRole(idTextbox.Text, idStringTextbox.Text);
-        CreateGrid();
-    }
-    protected void idDeleteBtn_Click(object sender, EventArgs e)
-    {
-        rpg.DeleteRole(idTextbox.Text);
-        CreateGrid();
-    }
-    protected void idGetSingleBtn_Click(object sender, EventArgs e)
-    {
-        var tempObj = rpg.GetRole(idTextbox.Text);
+        
 
-        if(tempObj != null)
+        string roleToCheck = idTextbox.Text.ToUpper();
+
+        if (!rpg.CheckIfRoleExists(roleToCheck))
         {
-            idStringTextbox.Text = tempObj[0].Role1;
+            lblRoleInputConfirm.Text = "Ordet " + roleToCheck + " blev tilføjet!";
+            lblRoleInputConfirm.ForeColor = System.Drawing.Color.Green;
 
+            rpg.CreateRole(roleToCheck);
+            CreateGrid();
+
+            idTextbox.Text = "";
+        }
+        else
+        {
+            lblRoleInputConfirm.Text = "Ordet " + roleToCheck + " eksisterer allerede";
+            lblRoleInputConfirm.ForeColor = System.Drawing.Color.Red;
         }
     }
+ 
+    protected void idDeleteBtn_Click(object sender, EventArgs e)
+    {
+        string roleToCheck = idTextbox.Text.ToUpper();
+
+        if (rpg.CheckIfRoleExists(roleToCheck))
+        {
+            lblRoleInputConfirm.Text = "Ordet " + roleToCheck + " blev slettet!";
+            lblRoleInputConfirm.ForeColor = System.Drawing.Color.Green;
+
+            rpg.DeleteRole(roleToCheck);
+            CreateGrid();
+
+            idTextbox.Text = "";
+        }
+        else
+        {
+            lblRoleInputConfirm.Text = "Ordet " + roleToCheck + " kunne ikke findes";
+            lblRoleInputConfirm.ForeColor = System.Drawing.Color.Red;
+        }
+    }
+  
 
     void CreateGrid()
     {
-        GridView1.DataSource = rpg.GetAllRoles();
-        GridView1.DataBind();
+        RepeaterRoles.DataSource = rpg.GetAllRoles();
+        RepeaterRoles.DataBind();
+        lblAmountRolesCount.Text = rpg.CountAllRoles().ToString();
     }
 }
