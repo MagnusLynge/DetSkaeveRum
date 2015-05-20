@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Web;
 
 /// <summary>
@@ -36,5 +37,11 @@ public class ImagesForSession
         var query = _db.Images.Where(i => i.FileName == fileName).Select(i => i).First();
 
         return query.id;
+    }
+
+    public List<Image> GetAllImages()
+    {
+        var query = _db.Images.OrderBy(i => i.id).Select(i => i);
+        return query.ToList();
     }
 }
