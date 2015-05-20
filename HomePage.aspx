@@ -43,7 +43,7 @@
 
                             <div class="row" style="margin-top: 10px;">
                                 <div class="col-sm-12 col-xs-12">
-                                    <p id="frontPageInfoParagarph1" runat="server" style=" font-weight: bold">Hvis du er elev og vil bruge det skæve rum online. Skal du enten gå ind på en session for at se de samme billeder som dine klassekammerater.</p><br/>
+                                    <p id="frontPageInfoParagarph1" runat="server" style=" font-weight: bold">Hvis du er elev og vil bruge det skæve rum online. Skal du gå ind på en session for at se de samme billeder som dine klassekammerater.</p><br/>
                                     <p id="frontPageInfoParagarph2" runat="server" style=" font-weight: bold">Hvis du er lærer og ønsker at oprette en session. Eller tilføje nye ord, eller billeder, skal du blot logge ind med dit brugernavn og password.</p>
                                 </div>
                             </div>
