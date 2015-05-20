@@ -46,16 +46,16 @@ public class WordForSession
         _db.SubmitChanges();
     }
 
-    public string CheckIfWordExists(string word)
+    public bool CheckIfWordExists(string word)
     {
-        var query = _db.Words.Where(i => i.Word1 == word).Select(i => i).ToString();
+        var check = _db.Words.Where(i => i.Word1 == word).Select(i => i).Count();
 
-        if (!query.Equals(word))
+        if (check > 0)
         {
-            return null;
+            return true;
         }
 
-        return query;
+        return false;
     }
 
     public void CreateWord(string word)
