@@ -20,7 +20,6 @@ public partial class WordPage : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         var wordForSubmit = txtWord.Text.ToUpper();
-        word.CreateWord(wordForSubmit);
 
         if (word.CheckIfWordExists(txtWord.Text.ToUpper()) == false)
         {
@@ -28,6 +27,8 @@ public partial class WordPage : System.Web.UI.Page
             
             lblWordAddedSuccess.Visible = true;
             lblWordAllreadyExists.Visible = false;
+
+            word.CreateWord(wordForSubmit);
         }
         else
         {
