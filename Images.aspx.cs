@@ -66,12 +66,9 @@ public partial class Images : System.Web.UI.Page
         ViewState["dt"] = dt;
     }
 
-
-    protected string Repeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    protected void DeleteImage(object sender, EventArgs e)
     {
-        Button btnDelete = (Button)e.Item.FindControl("btnDelete");
-        string btnId = btnDelete.CommandArgument;
-
-        return btnId;
+        
     }
+
 }
