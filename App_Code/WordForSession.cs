@@ -50,12 +50,12 @@ public class WordForSession
     {
         var check = _db.Words.Where(i => i.Word1 == word).Select(i => i).Count();
 
-        if (check > 0)
+        if (check <= 0)
         {
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     public void CreateWord(string word)

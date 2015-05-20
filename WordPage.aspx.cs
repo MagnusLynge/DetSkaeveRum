@@ -29,7 +29,7 @@ public partial class WordPage : System.Web.UI.Page
             lblWordAddedSuccess.Visible = true;
             lblWordAllreadyExists.Visible = false;
         }
-        else if (word.CheckIfWordExists(txtWord.Text.ToUpper()) == true)
+        else
         {
             lblWordAllreadyExists.Text = txtWord.Text.ToUpper() + " eksistere allerede!";
             
