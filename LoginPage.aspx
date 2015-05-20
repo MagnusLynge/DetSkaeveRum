@@ -6,7 +6,7 @@
 
     <div class="container" style="padding-top: 200px;">
         <div class="row" style="padding-top: 15px;">
-            <div class="col-lg-offset-3 col-lg-6" style="padding-bottom: 30px;">
+            <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6" style="padding-bottom: 30px;">
                 <div class="row">
                     <div class="col-md-12">
                         <div style="padding-left: 10px; padding-top: 6px; background-color: #000000; min-height: 30px; max-width: 100%; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px;">
