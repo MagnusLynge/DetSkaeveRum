@@ -36,6 +36,10 @@ public class ImagesForSession
     {
         var query = _db.Images.Where(i => i.FileName == fileName).Select(i => i).First();
 
+        if (query.id == null) {
+            return 0;
+        }
+
         return query.id;
     }
 
