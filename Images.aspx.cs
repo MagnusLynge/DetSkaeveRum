@@ -10,6 +10,7 @@ using System.Data;
 public partial class Images : System.Web.UI.Page
 {
     ImagesForSession imgSession = new ImagesForSession();
+
     protected void Upload(object sender, EventArgs e)
     {
         if (FileUpload1.HasFile)
@@ -24,26 +25,28 @@ public partial class Images : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
+        //if (!IsPostBack)
+        //{
 
-            string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/"));
-            List<ListItem> files = new List<ListItem>();
-            foreach (string filePath in filePaths)
-            {
-                string fileName = Path.GetFileName(filePath);
-                String imageid = Convert.ToString(imgSession.GetImageId(fileName));
-                files.Add(new ListItem("ID: " + imageid + " - " + fileName, "~/Images/" + fileName));
-                
-            }
-            GridView1.DataSource = files;
-            GridView1.DataBind();
-        }
+        //    string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/"));
+        //    List<ListItem> files = new List<ListItem>();
+        //    foreach (string filePath in filePaths)
+        //    {
+        //        string fileName = Path.GetFileName(filePath);
+        //        String imageid = Convert.ToString(imgSession.GetImageId(fileName));
+        //        files.Add(new ListItem(imageid, "~/Images/" + fileName));
+
+        //    }
+        //    GridView1.DataSource = files;
+        //    GridView1.DataBind();
+        //    GridView1.Columns[0].Visible = false;
+        //}
 
         RepeaterIMG.DataSource = imgSession.GetAllImages();
         RepeaterIMG.DataBind();
     }
 
+    /*
     protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
@@ -58,11 +61,38 @@ public partial class Images : System.Web.UI.Page
             }
         }
     }
+    */
+
     protected void OnRowDataBound(object sender, GridViewDeleteEventArgs e)
     {
         int index = Convert.ToInt32(e.RowIndex);
         DataTable dt = ViewState["dt"] as DataTable;
         dt.Rows[index].Delete();
         ViewState["dt"] = dt;
+    }
+
+    protected void OnRowDataBound2(object sender, GridViewDeleteEventArgs e)
+    {
+        /*
+        int index = Convert.ToInt32(e.RowIndex);
+        DataTable dt = ViewState["dt"] as DataTable;
+        dt.Rows[index].Delete();
+        ViewState["dt"] = dt;
+        */
+
+        int index = Convert.ToInt32(e.RowIndex);
+
+        string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/"));
+        List<ListItem> files = new List<ListItem>();
+
+        foreach (string filePath in filePaths)
+        {
+            string fileName = Path.GetFileName(filePath);
+            int imageid = imgSession.GetImageId(fileName);
+        }
+
+
+        DataTable dt = ViewState["dt"] as DataTable;
+
     }
 }
