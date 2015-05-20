@@ -62,7 +62,7 @@ public class RolesForSession
 
     public List<Role> GetAllRoles()
     {
-        var query = _db.Roles.Select(i => i);
+        var query = _db.Roles.OrderBy(i => i.Role1).Select(i => i);
         return query.ToList();
     }
 
@@ -90,6 +90,18 @@ public class RolesForSession
         var result = query.Count();
 
         return result;
+    }
+
+    public bool CheckIfRoleExists(string role)
+    {
+        var check = _db.Roles.Where(i => i.Role1 == role).Select(i => i).Count();
+
+        if (check <= 0)
+        {
+            return false;
+        }
+
+        return true;
     }
 
 }

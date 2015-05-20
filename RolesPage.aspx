@@ -31,8 +31,7 @@
                         <div class="col-md-6" style="padding-top: 15px;">
                             <asp:Button ID="idCreateBtn" CssClass="btn btn-default" runat="server" Text="Indsæt" OnClick="idCreateBtn_Click" />
                             <asp:Button ID="idDeleteBtn" CssClass="btn btn-default" runat="server" Text="Slet" OnClick="idDeleteBtn_Click" />
-                            <asp:Label ID="lblRoleAddedSuccess" runat="server" Visible="False" ForeColor="Green" Font-Bold="True" Text=""></asp:Label>
-                            <asp:Label ID="lblRoledAllreadyExists" runat="server" Visible="False" ForeColor="Red" Font-Bold="True" Text=""></asp:Label>
+                            <asp:Label ID="lblRoleInputConfirm" runat="server" Font-Bold="True" Text=""></asp:Label>
                         </div>
                     </div>
                    

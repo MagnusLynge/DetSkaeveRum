@@ -19,14 +19,46 @@ public partial class RolesPage : System.Web.UI.Page
     }
     protected void idCreateBtn_Click(object sender, EventArgs e)
     {
-        rpg.CreateRole(idTextbox.Text);
-        CreateGrid();
+        
+
+        string roleToCheck = idTextbox.Text.ToUpper();
+
+        if (!rpg.CheckIfRoleExists(roleToCheck))
+        {
+            lblRoleInputConfirm.Text = "Ordet " + roleToCheck + " blev tilføjet!";
+            lblRoleInputConfirm.ForeColor = System.Drawing.Color.Green;
+
+            rpg.CreateRole(roleToCheck);
+            CreateGrid();
+
+            idTextbox.Text = "";
+        }
+        else
+        {
+            lblRoleInputConfirm.Text = "Ordet " + roleToCheck + " eksisterer allerede";
+            lblRoleInputConfirm.ForeColor = System.Drawing.Color.Red;
+        }
     }
  
     protected void idDeleteBtn_Click(object sender, EventArgs e)
     {
-        rpg.DeleteRole(idTextbox.Text);
-        CreateGrid();
+        string roleToCheck = idTextbox.Text.ToUpper();
+
+        if (rpg.CheckIfRoleExists(roleToCheck))
+        {
+            lblRoleInputConfirm.Text = "Ordet " + roleToCheck + " blev slettet!";
+            lblRoleInputConfirm.ForeColor = System.Drawing.Color.Green;
+
+            rpg.DeleteRole(roleToCheck);
+            CreateGrid();
+
+            idTextbox.Text = "";
+        }
+        else
+        {
+            lblRoleInputConfirm.Text = "Ordet " + roleToCheck + " kunne ikke findes";
+            lblRoleInputConfirm.ForeColor = System.Drawing.Color.Red;
+        }
     }
   
 
