@@ -30,9 +30,9 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li id="navhomelink" runat="server"><a href="HomePage.aspx">Home</a></li>
-                        <li id="navaboutlink" runat="server"><a href="About.aspx">About</a></li>
-                        <li id="navcontactlink" runat="server"><a href="#contact">Contact</a></li>
+                        <li id="navhomelink" runat="server"><a href="HomePage.aspx">Hjem</a></li>
+                        <li id="navaboutlink" runat="server"><a href="About.aspx">Session</a></li>
+                        <li id="navcontactlink" runat="server"><a href="#contact">Login</a></li>
                     </ul>
                 </div>
                 <!-- /.nav-collapse -->
