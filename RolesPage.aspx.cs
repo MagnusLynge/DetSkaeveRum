@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms.VisualStyles;
 
 public partial class RolesPage : System.Web.UI.Page
 {
@@ -14,6 +15,8 @@ public partial class RolesPage : System.Web.UI.Page
         rpg = new RolesForSession();
 
         CreateGrid();
+        RepeaterRoles.DataSource = rpg.GetAllRoles();
+        RepeaterRoles.DataBind();
     }
     protected void idCreateBtn_Click(object sender, EventArgs e)
     {

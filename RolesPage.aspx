@@ -17,5 +17,26 @@
     <div class="container" style="padding-top: 60px;">
         <asp:GridView ID="GridView1" runat="server"></asp:GridView>
     </div>
+
+    <div class="row" style="padding-top: 15px;">
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="padding-left: 10px; padding-top: 6px; background-color: #000000; min-height: 30px; max-width: 100%; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px;">
+                            <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="White" Text="Label">Alle Roller</asp:Label>
+                        </div>
+                    </div>
+                </div>
+                <div class="well-lg" style="width: 100%; text-align: center; -webkit-box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75); -moz-box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75); box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75);">
+                    <asp:Repeater ID="RepeaterRoles" runat="server">
+                        <ItemTemplate>
+                            <asp:Label ID="lblAmountOfRoles" runat="server" Text="Antal roller: "></asp:Label><asp:Label ID="lblAmountOfWordsCount" runat="server" Text=""></asp:Label>
+                            <hr />
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+            </div>
+        </div>
 </asp:Content>
 

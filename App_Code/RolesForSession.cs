@@ -84,4 +84,12 @@ public class RolesForSession
         return query.ToList();
     }
 
+    public int CountAllRoles()
+    {
+        var query = _db.Roles.Select(i => i);
+        var result = query.Count();
+
+        return result;
+    }
+
 }
