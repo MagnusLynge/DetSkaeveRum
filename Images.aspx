@@ -14,6 +14,14 @@
         <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
     </Columns>
 </asp:GridView>
+        
+        <asp:Repeater ID="RepeaterIMG" runat="server">
+            <ItemTemplate>
+                <asp:Image ID="Image1" CssClass="img-responsive" runat="server" ImageUrl='<%# string.Format("~/Images/{0}", Eval("FileName")) %>' Height="150px" />
+
+            </ItemTemplate>
+
+        </asp:Repeater>
      </div>   
 </asp:Content>
 

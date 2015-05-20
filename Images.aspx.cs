@@ -18,7 +18,7 @@ public partial class Images : System.Web.UI.Page
             FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
             imgSession.AddImage(fileName);
             Response.Redirect(Request.Url.AbsoluteUri);
-            
+
         }
     }
 
@@ -39,6 +39,9 @@ public partial class Images : System.Web.UI.Page
             GridView1.DataSource = files;
             GridView1.DataBind();
         }
+
+        RepeaterIMG.DataSource = imgSession.GetAllImages();
+        RepeaterIMG.DataBind();
     }
 
     protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
