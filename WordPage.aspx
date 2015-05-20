@@ -44,7 +44,7 @@
 
         <div class="row" style="padding-top: 15px;">
 
-            <div class="col-md-12">
+            <div class="col-md-12" style="padding-bottom: 30px;">
                 <div class="row">
                     <div class="col-md-12">
                         <div style="padding-left: 10px; padding-top: 6px; background-color: #000000; min-height: 30px; max-width: 100%; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px;">
