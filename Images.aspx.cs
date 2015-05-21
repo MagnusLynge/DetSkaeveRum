@@ -14,9 +14,12 @@ public partial class Images : System.Web.UI.Page
     {
         if (FileUpload1.HasFile)
         {
-            string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
-            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
-            imgSession.AddImage(fileName);
+            foreach (var file in FileUpload1.PostedFiles)
+            {
+                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Images/") + file.FileName);
+                imgSession.AddImage(file.FileName);
+            }
+
             Response.Redirect(Request.Url.AbsoluteUri);
 
         }

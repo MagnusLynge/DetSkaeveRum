@@ -6,7 +6,7 @@
     <div class="container" style="padding-top: 60px;">
         <div class="panel panel-default">
           <div class="panel-body">
-            <asp:FileUpload ID="FileUpload1" style="padding-top: 5px;float:left;" runat="server" />
+            <asp:FileUpload AllowMultiple="true" ID="FileUpload1" style="padding-top: 5px;float:left;" runat="server" />
             <asp:Button ID="btnUpload" CssClass="btn btn-success" style="float: right;" runat="server" Text="Upload billedet" OnClick="Upload" />
           </div>
         </div>
