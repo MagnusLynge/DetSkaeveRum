@@ -23,11 +23,13 @@ public partial class Admin_Register : System.Web.UI.Page
         var user = new IdentityUser() { UserName = UserName.Text };
         IdentityResult result = manager.Create(user, Password.Text);
 
+
+
         if (result.Succeeded)
         {
             lblRegisterError.Visible = false;
             lblRegisterSuccess.Visible = true;
-            lblRegisterSuccess.Text = string.Format("User {0} was created successfully!", user.UserName);
+            lblRegisterSuccess.Text = string.Format("User {0} Blev oprettet!", user.UserName);
         }
         else
         {

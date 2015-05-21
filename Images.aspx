@@ -23,8 +23,6 @@
                     <span class="badge">ID: <%# Eval("id") %></span>
                     <asp:Image ID="Image1" CssClass="img-responsive" runat="server" ImageUrl='<%# string.Format("~/Images/{0}", Eval("FileName")) %>' Height="150px" />
                   </li>
-        
-                
             </ItemTemplate>
              
         </asp:Repeater>
