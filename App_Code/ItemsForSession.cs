@@ -16,7 +16,7 @@ public class ItemsForSession
 		
 	}
 
-
+    #region Images
     public void ChooseImgsForSession(int sesId, int imgId)
     {
         var query = new MtoMImg { SessionId = sesId, ImgId = imgId };
@@ -25,12 +25,69 @@ public class ItemsForSession
         _db.SubmitChanges();
 
     }
-
+    
     public List<MtoMImg> ImagesOnSessionId(int sesId)
     {
         var query = _db.MtoMImgs.Where(i => i.SessionId == sesId).Select(i => i);
         return query.ToList();
     }
+
+    public void DeleteImagesOnSessionId(int sesId)
+    {
+        var query = _db.MtoMImgs.Where(i => i.SessionId == sesId).Select(i => i).FirstOrDefault();
+
+        _db.MtoMImgs.DeleteOnSubmit(query);
+        _db.SubmitChanges();
+    }
+    #endregion
+
+    #region Words
+    public void ChooseWordsForSession(int sesId, int wrdId)
+    {
+        var query = new MtoMWord {SessionId = sesId, WordId = wrdId};
+        
+        _db.MtoMWords.InsertOnSubmit(query);
+        _db.SubmitChanges();
+    }
+
+    public List<MtoMWord> WordsOnSessionId(int sesId)
+    {
+        var query = _db.MtoMWords.Where(i => i.SessionId == sesId).Select(i => i);
+        return query.ToList();
+    }
+
+    public void DeleteWordsOnSessionId(int sesId)
+    {
+        var query = _db.MtoMWords.Where(i => i.SessionId == sesId).Select(i => i).FirstOrDefault();
+
+        _db.MtoMWords.DeleteOnSubmit(query);
+        _db.SubmitChanges();
+    }
+    #endregion
+
+    #region Roles
+    public void ChooseRolesForSession(int sesId, int rolId)
+    {
+        var query = new MtoMRole {SessionId = sesId, RoleId = rolId};
+
+        _db.MtoMRoles.InsertOnSubmit(query);
+        _db.SubmitChanges();
+    }
+
+    public List<MtoMRole> RolesOnSessionId(int sesId)
+    {
+        var query = _db.MtoMRoles.Where(i => i.SessionId == sesId).Select(i => i);
+        return query.ToList();
+    }
+
+    public void DeleteRolesOnSessionId(int sesId)
+    {
+        var query = _db.MtoMRoles.Where(i => i.SessionId == sesId).Select(i => i).FirstOrDefault();
+
+        _db.MtoMRoles.DeleteOnSubmit(query);
+        _db.SubmitChanges();
+    }
+    #endregion
 
 
 
