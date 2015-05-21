@@ -24,21 +24,6 @@ public partial class Images : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
-
-            string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/"));
-            List<ListItem> files = new List<ListItem>();
-            foreach (string filePath in filePaths)
-            {
-                string fileName = Path.GetFileName(filePath);
-                String imageid = Convert.ToString(imgSession.GetImageId(fileName));
-                files.Add(new ListItem("ID: " + imageid + " - " + fileName, "~/Images/" + fileName));
-                
-            }
-            
-        }
-
         RepeaterIMG.DataSource = imgSession.GetAllImages();
         RepeaterIMG.DataBind();
     }
