@@ -18,10 +18,9 @@ public partial class Images : System.Web.UI.Page
             {
                 file.SaveAs(Server.MapPath("~/Images/") + file.FileName);
                 imgSession.AddImage(file.FileName);
-                
             }
-            Response.Redirect(Request.Url.AbsoluteUri);
 
+            Response.Redirect(Request.Url.AbsoluteUri);
         }
     }
 
@@ -29,14 +28,6 @@ public partial class Images : System.Web.UI.Page
     {
         RepeaterIMG.DataSource = imgSession.GetAllImages();
         RepeaterIMG.DataBind();
-    }
-
-    protected void OnRowDataBound(object sender, GridViewDeleteEventArgs e)
-    {
-        int index = Convert.ToInt32(e.RowIndex);
-        DataTable dt = ViewState["dt"] as DataTable;
-        dt.Rows[index].Delete();
-        ViewState["dt"] = dt;
     }
 
     protected void DeleteImage(object sender, EventArgs e)
