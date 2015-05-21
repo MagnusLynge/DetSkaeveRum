@@ -36,8 +36,7 @@ public partial class Images : System.Web.UI.Page
                 files.Add(new ListItem("ID: " + imageid + " - " + fileName, "~/Images/" + fileName));
                 
             }
-            GridView1.DataSource = files;
-            GridView1.DataBind();
+            
         }
 
         RepeaterIMG.DataSource = imgSession.GetAllImages();
