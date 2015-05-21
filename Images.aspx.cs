@@ -16,10 +16,10 @@ public partial class Images : System.Web.UI.Page
         {
             foreach (var file in FileUpload1.PostedFiles)
             {
-                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Images/") + file.FileName);
+                file.SaveAs(Server.MapPath("~/Images/") + file.FileName);
                 imgSession.AddImage(file.FileName);
+                
             }
-
             Response.Redirect(Request.Url.AbsoluteUri);
 
         }
