@@ -42,15 +42,14 @@ public class ImagesForSession
         return query.ToList();
     }
 
-    public Boolean DeleteImage(int id)
+    public void DeleteImage(int id)
     {
         var query = _db.Images.Where(i => i.id == id).Select(i => i).First();
 
         Image delImg = _db.Images.Where(i => i.id == id).Select(i => i).FirstOrDefault();
         _db.Images.DeleteOnSubmit(delImg);
         _db.SubmitChanges();
-        File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/Images/") + query.FileName);
 
-        return true;
+        File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/Images/") + query.FileName);
     }
 }
