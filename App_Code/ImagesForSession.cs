@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Web;
+
 
 /// <summary>
 /// Summary description for ImagesForSession
@@ -16,15 +18,6 @@ public class ImagesForSession
 		// TODO: Add constructor logic here
 		//
 	}
-
-    public void DeleteImage(int id)
-    {
-        Image delImg = _db.Images.Where(i => i.id == id).Select(i => i).FirstOrDefault();
-        if (delImg == null) return;
-        _db.Images.DeleteOnSubmit(delImg);
-        _db.SubmitChanges();
-    }
-
     public void AddImage(string fileName) 
     {
         var query = new Image { FileName = fileName };
@@ -47,5 +40,17 @@ public class ImagesForSession
     {
         var query = _db.Images.OrderBy(i => i.id).Select(i => i);
         return query.ToList();
+    }
+
+    public Boolean DeleteImage(int id)
+    {
+        var query = _db.Images.Where(i => i.id == id).Select(i => i).First();
+
+        Image delImg = _db.Images.Where(i => i.id == id).Select(i => i).FirstOrDefault();
+        _db.Images.DeleteOnSubmit(delImg);
+        _db.SubmitChanges();
+        File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/Images/") + query.FileName);
+
+        return true;
     }
 }

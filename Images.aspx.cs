@@ -43,20 +43,6 @@ public partial class Images : System.Web.UI.Page
         RepeaterIMG.DataBind();
     }
 
-    protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            string item = e.Row.Cells[0].Text;
-            foreach (Button button in e.Row.Cells[2].Controls.OfType<Button>())
-            {
-                if (button.CommandName == "Delete")
-                {
-                    button.Attributes["onclick"] = "if(!confirm('Do you want to delete " + item + "?')){ return false; };";
-                }
-            }
-        }
-    }
     protected void OnRowDataBound(object sender, GridViewDeleteEventArgs e)
     {
         int index = Convert.ToInt32(e.RowIndex);
@@ -67,7 +53,11 @@ public partial class Images : System.Web.UI.Page
 
     protected void DeleteImage(object sender, EventArgs e)
     {
-        
+        LinkButton btnDelete = (LinkButton)(sender);
+        string btnId = btnDelete.CommandArgument;
+        int imgId = Convert.ToInt32(btnId);
+        imgSession.DeleteImage(imgId);
+        Response.Redirect(Request.RawUrl);
     }
 
 }
