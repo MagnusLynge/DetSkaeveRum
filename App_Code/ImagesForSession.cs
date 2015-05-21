@@ -38,7 +38,7 @@ public class ImagesForSession
 
     public List<Image> GetAllImages()
     {
-        var query = _db.Images.OrderBy(i => i.id).Select(i => i);
+        var query = _db.Images.OrderByDescending(i => i.id).Select(i => i);
         return query.ToList();
     }
 

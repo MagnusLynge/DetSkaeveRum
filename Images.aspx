@@ -4,8 +4,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container" style="padding-top: 60px;">
-        <asp:FileUpload ID="FileUpload1" runat="server" />
-<asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="Upload" />
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <asp:FileUpload ID="FileUpload1" style="padding-top: 5px;float:left;" runat="server" />
+            <asp:Button ID="btnUpload" CssClass="btn btn-success" style="float: right;" runat="server" Text="Upload billedet" OnClick="Upload" />
+          </div>
+        </div>
+        
 <hr />
 
         <ul class="list-group">
