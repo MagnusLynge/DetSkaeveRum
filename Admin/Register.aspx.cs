@@ -25,11 +25,15 @@ public partial class Admin_Register : System.Web.UI.Page
 
         if (result.Succeeded)
         {
-            StatusMessage.Text = string.Format("User {0} was created successfully!", user.UserName);
+            lblRegisterError.Visible = false;
+            lblRegisterSuccess.Visible = true;
+            lblRegisterSuccess.Text = string.Format("User {0} was created successfully!", user.UserName);
         }
         else
         {
-            StatusMessage.Text = result.Errors.FirstOrDefault();
+            lblRegisterSuccess.Visible = false;
+            lblRegisterError.Visible = true;
+            lblRegisterError.Text = result.Errors.FirstOrDefault();
         }
     }
 }
