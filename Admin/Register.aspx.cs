@@ -30,18 +30,14 @@ public partial class Admin_Register : System.Web.UI.Page
 
         if (result.Succeeded)
         {
-<<<<<<< HEAD
-            StatusMessage.Text = string.Format("User {0} was created successfully!", user.UserName);
-            //var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-            //var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-            //authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
-            //Response.Redirect("~/Login.aspx");
 
-=======
+
+
+
             lblRegisterError.Visible = false;
             lblRegisterSuccess.Visible = true;
             lblRegisterSuccess.Text = string.Format("User {0} Blev oprettet!", user.UserName);
->>>>>>> origin/login
+
         }
         else
         {
