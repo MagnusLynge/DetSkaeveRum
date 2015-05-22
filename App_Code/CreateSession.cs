@@ -22,7 +22,6 @@ public class CreateSession
 	}
     #endregion
 
-
     public List<Session> AllActiveSessions()
     {
         var query = _db.Sessions.Where(i => i.Active == true).Select(i => i);
@@ -68,10 +67,6 @@ public class CreateSession
         _db.SubmitChanges();
 
     }
-
-
-
-
 
     #region Propeties
     public int Id { get; set; }
