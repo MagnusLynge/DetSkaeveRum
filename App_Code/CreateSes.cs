@@ -4,18 +4,18 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// CreateSession is for createing a session
+/// CreateNewSession is for createing a session
 /// </summary>
-public class CreateSession
+public class CreateSes
 {
     private DBDataContext _db = DBCon.GetDB();
 
     #region Constructor
-    public CreateSession()
+    public CreateSes()
     {
         
     }
-    public CreateSession(int teacherID, bool active)
+    public CreateSes(int teacherID, bool active)
 	{
 	    TeacherID = teacherID;
 	    Active = active;
@@ -34,13 +34,13 @@ public class CreateSession
         return query.ToList();
     }
 
-    public List<Session> GetSessionOnTeacherId(int id)
+    public List<Session> GetSessionOnTeacherId(string id)
     {
         var query = _db.Sessions.Where(i => i.TeacherId == id).Select(i => i);
         return query.ToList();
     }
 
-    public void CreateNewSession(int teacherId, bool active)
+    public void CreateNewSession(string teacherId, bool active)
     {
         var query = new Session {TeacherId = teacherId, Active = active};
 
