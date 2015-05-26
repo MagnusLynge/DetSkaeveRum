@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dmaa0913_4Sem_Group4" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=kraka.ucn.dk;Initial Catalog=dmaa0913_4Sem_Group4;Persist Security Info=True;User ID=dmaa0913_4Sem_Group4" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="dmaa0913_4Sem_Group4ConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Words" Member="Words">
-    <Type Name="Word">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Word" Member="Word1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Word_MtoMWord" Member="MtoMWords" ThisKey="id" OtherKey="WordId" Type="MtoMWord" />
-    </Type>
-  </Table>
+  <Connection Mode="WebSettings" ConnectionString="Data Source=kraka.ucn.dk;Initial Catalog=dmaa0913_4Sem_Group4;Persist Security Info=True;User ID=dmaa0913_4Sem_Group4" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="dmaa0913_4Sem_Group4ConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.[__MigrationHistory]" Member="__MigrationHistories">
     <Type Name="__MigrationHistory">
       <Column Name="MigrationId" Type="System.String" DbType="NVarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -117,8 +110,8 @@
     <Type Name="MtoMWord">
       <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="WordId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Word_MtoMWord" Member="Word" ThisKey="WordId" OtherKey="id" Type="Word" IsForeignKey="true" />
       <Association Name="Session_MtoMWord" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
+      <Association Name="Word_MtoMWord" Member="Word" ThisKey="WordId" OtherKey="id" Type="Word" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Roles" Member="Roles">
@@ -148,6 +141,13 @@
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Words" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Student_MtoMSession" Member="MtoMSessions" ThisKey="id" OtherKey="StudentId" Type="MtoMSession" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Words" Member="Words">
+    <Type Name="Word">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Word" Member="Word1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Word_MtoMWord" Member="MtoMWords" ThisKey="id" OtherKey="WordId" Type="MtoMWord" />
     </Type>
   </Table>
 </Database>
