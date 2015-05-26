@@ -10,6 +10,11 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-12" style="padding-top: 15px;">
+                <asp:TextBox ID="txtSesName" CssClass="input-sm" Placeholder="Sessions Navn" runat="server" Width="339px"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-6" style="padding-top: 15px;">
                 <asp:Button ID="btnCreateSession" CssClass="btn btn-default" runat="server" Text="Opret" OnClick="btnCreateSession_Click" />
             </div>

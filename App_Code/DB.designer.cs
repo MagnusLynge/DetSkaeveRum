@@ -1995,6 +1995,8 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private bool _Active;
 	
+	private string _SesName;
+	
 	private EntityRef<AspNetUser> _AspNetUser;
 	
     #region Extensibility Method Definitions
@@ -2007,6 +2009,8 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnTeacherIdChanged();
     partial void OnActiveChanging(bool value);
     partial void OnActiveChanged();
+    partial void OnSesNameChanging(string value);
+    partial void OnSesNameChanged();
     #endregion
 	
 	public Session()
@@ -2075,6 +2079,26 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 				this._Active = value;
 				this.SendPropertyChanged("Active");
 				this.OnActiveChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SesName", DbType="NVarChar(40)")]
+	public string SesName
+	{
+		get
+		{
+			return this._SesName;
+		}
+		set
+		{
+			if ((this._SesName != value))
+			{
+				this.OnSesNameChanging(value);
+				this.SendPropertyChanging();
+				this._SesName = value;
+				this.SendPropertyChanged("SesName");
+				this.OnSesNameChanged();
 			}
 		}
 	}

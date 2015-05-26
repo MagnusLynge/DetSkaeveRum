@@ -40,9 +40,15 @@ public class CreateSes
         return query.ToList();
     }
 
-    public void CreateNewSession(string teacherId, bool active)
+    public int GetNewestSession(string id)
     {
-        var query = new Session {TeacherId = teacherId, Active = active};
+        var query = _db.Sessions.Where(i => i.TeacherId == id).Select(i => i.id).Max();
+        return query;
+    }
+
+    public void CreateNewSession(string teacherId, bool active, string sesName)
+    {
+        var query = new Session {TeacherId = teacherId, Active = active, SesName = sesName};
 
         _db.Sessions.InsertOnSubmit(query);
         _db.SubmitChanges();
@@ -72,6 +78,7 @@ public class CreateSes
     public int Id { get; set; }
     public int TeacherID { get; set; }
     public bool Active { get; set; }
+    public string SessionName { get; set; }
     #endregion
 
 }

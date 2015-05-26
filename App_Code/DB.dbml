@@ -133,6 +133,7 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TeacherId" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
       <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SesName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
       <Association Name="Session_MtoMAudio" Member="MtoMAudios" ThisKey="id" OtherKey="SessionId" Type="MtoMAudio" />
       <Association Name="Session_MtoMImg" Member="MtoMImgs" ThisKey="id" OtherKey="SessionId" Type="MtoMImg" />
       <Association Name="Session_MtoMRole" Member="MtoMRoles" ThisKey="id" OtherKey="SessionId" Type="MtoMRole" />
