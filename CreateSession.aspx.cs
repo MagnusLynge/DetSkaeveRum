@@ -21,10 +21,7 @@ public partial class CreateSession : System.Web.UI.Page
 
         repRolesOnSes.DataSource = rol.GetAllRoles();
         repRolesOnSes.DataBind();
-
     }
-
-
 
 
 
