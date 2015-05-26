@@ -21,7 +21,7 @@
         </div>
         <div class="row">
             <div class="col-md-6" style="padding-top: 15px;">
-                <asp:Label ID="lblCreateSessionInfo" runat="server" Font-Bold="True" Text="Vælg hvilke ord, roller og billeder du ønsker på, sessionen herunder."></asp:Label>
+                <asp:Label ID="lblCreateSessionInfo" runat="server" Font-Bold="True" Text="Vælg hvilke ord, roller og billeder. Som du ønsker på sessionen, herunder."></asp:Label>
             </div>
         </div>
         <div class="row">
@@ -38,10 +38,11 @@
                     </div>
                 </div>
                 <div class="well-lg" style="-webkit-box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75); -moz-box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75); box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75);">
-                    <asp:Repeater ID="repImagesOnSes" runat="server">
+                    <asp:Repeater ID="repImagesOnSes" runat="server" >
                         <ItemTemplate>
                             <div class="row">
                                 <div class="col-md-10 col-sm-10 col-xs-10">
+                                    <%--<asp:HiddenField ID="filePath" runat="server" Value="<%# Eval("id") %>" />--%>
                                     <asp:Image ID="imgForSession" CssClass="img-responsive" runat="server" ImageUrl='<%# string.Format("~/Images/{0}", Eval("FileName")) %>' Height="150px" />
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2" style="padding-top: 65px;">
