@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="./MasterPage.master" AutoEventWireup="true" CodeFile="CreateSession.aspx.cs" Inherits="CreateSession" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="CreateSession.aspx.cs" Inherits="CreateSession" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -10,13 +10,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3" style="padding-top: 15px;">
-                <asp:TextBox ID="txtSessionName" CssClass="input-sm" Width="339px" Placeholder="Indtast Sessions Navn" runat="server"></asp:TextBox>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-md-6" style="padding-top: 15px;">
-                <asp:Button ID="btnCreateSession" CssClass="btn btn-default" runat="server" Text="Opret" />
+                <asp:Button ID="btnCreateSession" CssClass="btn btn-default" runat="server" Text="Opret" OnClick="btnCreateSession_Click" />
             </div>
         </div>
         <div class="row">

@@ -35,6 +35,7 @@
                         <li id="navaboutlink" runat="server"><a href="About.aspx">Session</a></li>
                         <li id="navcontactlink" runat="server"><a href="LoginPage.aspx">Login</a></li>
                     </ul>
+                    <asp:LinkButton ID="btnLogout" runat="server" Text="Log ud" OnClick="LogOut" Visible="True"/>
                 </div>
                 <!-- /.nav-collapse -->
             </div>
