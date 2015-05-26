@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
-    <link href="signin.css" rel="stylesheet"/>
+    <link href="signin.css" rel="stylesheet" />
     <title>Det Skæve Rum</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -33,18 +33,26 @@
                     <ul class="nav navbar-nav">
                         <li id="navhomelink" runat="server"><a href="HomePage.aspx">Hjem</a></li>
                         <li id="navaboutlink" runat="server"><a href="About.aspx">Session</a></li>
-                        <li id="navcontactlink" runat="server"><a href="LoginPage.aspx">Login</a></li>
+                        <li id="LoginLink" runat="server"><a href="Login.aspx">Login</a></li>
+                        <asp:LoginView ID="LoginView1" runat="server">
+                            <LoggedInTemplate>
+                                <li><asp:LinkButton ID="btnLogout" runat="server" Text="Log ud" OnClick="LogOut" Visible="True" /></li>
+                            </LoggedInTemplate>
+                            <AnonymousTemplate>
+                                <li id="LoginLink" runat="server"><a href="Login.aspx">Login</a></li>
+                            </AnonymousTemplate>
+                        </asp:LoginView>
                     </ul>
-                    <asp:LinkButton ID="btnLogout" runat="server" Text="Log ud" OnClick="LogOut" Visible="True"/>
+                    <asp:LinkButton ID="btnLogout" runat="server" Text="Log ud" OnClick="LogOut" Visible="True" />
                 </div>
                 <!-- /.nav-collapse -->
             </div>
             <!-- /.container -->
         </nav>
         <!-- /.navbar -->
-    
-    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-    </asp:ContentPlaceHolder>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
     </form>
 
 

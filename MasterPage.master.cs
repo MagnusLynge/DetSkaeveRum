@@ -13,17 +13,17 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
-            if (HttpContext.Current.User.Identity == null)
-            {
-                btnLogout.Visible = false;
-            }
-            else
-            {
-                //LoginForm.Visible = true;
-            }
-        }
+        //if (!IsPostBack)
+        //{
+        //    if (HttpContext.Current.User.Identity == null)
+        //    {
+        //        btnLogout.Visible = false;
+        //    }
+        //    else
+        //    {
+        //        //LoginForm.Visible = true;
+        //    }
+        //}
     }
 
     protected void LogOut(object sender, EventArgs e)

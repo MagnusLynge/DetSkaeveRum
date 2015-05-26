@@ -1,0 +1,28 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Kodehullet.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+
+<body>
+
+    <form id="form1" runat="server">
+        <div>
+            <asp:LoginStatus runat="server"></asp:LoginStatus>
+            <asp:LoginView ID="LoginView1" runat="server">
+                <LoggedInTemplate>
+                    <li>
+                        <asp:LinkButton ID="btnLogout" runat="server" Text="Log ud" OnClick="LogOut" Visible="True" /></li>
+                </LoggedInTemplate>
+                <AnonymousTemplate>
+                    <li id="LoginLink" runat="server"><a href="Login.aspx">Login</a></li>
+                </AnonymousTemplate>
+            </asp:LoginView>
+
+        </div>
+    </form>
+</body>
+</html>
