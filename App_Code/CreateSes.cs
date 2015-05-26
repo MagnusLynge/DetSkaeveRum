@@ -34,7 +34,7 @@ public class CreateSes
         return query.ToList();
     }
 
-    public List<Session> GetSessionOnTeacherId(int id)
+    public List<Session> GetSessionOnTeacherId(string id)
     {
         var query = _db.Sessions.Where(i => i.TeacherId == id).Select(i => i);
         return query.ToList();

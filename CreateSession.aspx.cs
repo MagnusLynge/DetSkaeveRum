@@ -29,8 +29,7 @@ public partial class CreateSession : System.Web.UI.Page
     protected void btnCreateSession_Click(object sender, EventArgs e)
     {
         var userID = User.Identity.GetUserId();
-        newSes.CreateNewSession(Convert.ToInt32(userID), true);
-
+        newSes.CreateNewSession(userID, true);
 
         
     }

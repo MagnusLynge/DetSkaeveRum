@@ -29,12 +29,12 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 	
   #region Extensibility Method Definitions
   partial void OnCreated();
-  partial void Insert__MigrationHistory(__MigrationHistory instance);
-  partial void Update__MigrationHistory(__MigrationHistory instance);
-  partial void Delete__MigrationHistory(__MigrationHistory instance);
   partial void InsertWord(Word instance);
   partial void UpdateWord(Word instance);
   partial void DeleteWord(Word instance);
+  partial void Insert__MigrationHistory(__MigrationHistory instance);
+  partial void Update__MigrationHistory(__MigrationHistory instance);
+  partial void Delete__MigrationHistory(__MigrationHistory instance);
   partial void InsertAspNetRole(AspNetRole instance);
   partial void UpdateAspNetRole(AspNetRole instance);
   partial void DeleteAspNetRole(AspNetRole instance);
@@ -65,9 +65,6 @@ public partial class DBDataContext : System.Data.Linq.DataContext
   partial void InsertStudent(Student instance);
   partial void UpdateStudent(Student instance);
   partial void DeleteStudent(Student instance);
-  partial void InsertTeacher(Teacher instance);
-  partial void UpdateTeacher(Teacher instance);
-  partial void DeleteTeacher(Teacher instance);
   #endregion
 	
 	public DBDataContext() : 
@@ -100,19 +97,19 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
-	public System.Data.Linq.Table<@__MigrationHistory> @__MigrationHistories
-	{
-		get
-		{
-			return this.GetTable<@__MigrationHistory>();
-		}
-	}
-	
 	public System.Data.Linq.Table<Word> Words
 	{
 		get
 		{
 			return this.GetTable<Word>();
+		}
+	}
+	
+	public System.Data.Linq.Table<@__MigrationHistory> @__MigrationHistories
+	{
+		get
+		{
+			return this.GetTable<@__MigrationHistory>();
 		}
 	}
 	
@@ -235,12 +232,90 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 			return this.GetTable<Student>();
 		}
 	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Words")]
+public partial class Word : INotifyPropertyChanging, INotifyPropertyChanged
+{
 	
-	public System.Data.Linq.Table<Teacher> Teachers
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _id;
+	
+	private string _Word1;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnWord1Changing(string value);
+    partial void OnWord1Changed();
+    #endregion
+	
+	public Word()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int id
 	{
 		get
 		{
-			return this.GetTable<Teacher>();
+			return this._id;
+		}
+		set
+		{
+			if ((this._id != value))
+			{
+				this.OnidChanging(value);
+				this.SendPropertyChanging();
+				this._id = value;
+				this.SendPropertyChanged("id");
+				this.OnidChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Word", Storage="_Word1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string Word1
+	{
+		get
+		{
+			return this._Word1;
+		}
+		set
+		{
+			if ((this._Word1 != value))
+			{
+				this.OnWord1Changing(value);
+				this.SendPropertyChanging();
+				this._Word1 = value;
+				this.SendPropertyChanged("Word1");
+				this.OnWord1Changed();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
@@ -354,92 +429,6 @@ public partial class @__MigrationHistory : INotifyPropertyChanging, INotifyPrope
 				this._ProductVersion = value;
 				this.SendPropertyChanged("ProductVersion");
 				this.OnProductVersionChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Words")]
-public partial class Word : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _id;
-	
-	private string _Word1;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnWord1Changing(string value);
-    partial void OnWord1Changed();
-    #endregion
-	
-	public Word()
-	{
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int id
-	{
-		get
-		{
-			return this._id;
-		}
-		set
-		{
-			if ((this._id != value))
-			{
-				this.OnidChanging(value);
-				this.SendPropertyChanging();
-				this._id = value;
-				this.SendPropertyChanged("id");
-				this.OnidChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Word", Storage="_Word1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string Word1
-	{
-		get
-		{
-			return this._Word1;
-		}
-		set
-		{
-			if ((this._Word1 != value))
-			{
-				this.OnWord1Changing(value);
-				this.SendPropertyChanging();
-				this._Word1 = value;
-				this.SendPropertyChanged("Word1");
-				this.OnWord1Changed();
 			}
 		}
 	}
@@ -1109,6 +1098,8 @@ public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChange
 	
 	private EntitySet<AspNetUserRole> _AspNetUserRoles;
 	
+	private EntitySet<Session> _Sessions;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1144,6 +1135,7 @@ public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChange
 		this._AspNetUserClaims = new EntitySet<AspNetUserClaim>(new Action<AspNetUserClaim>(this.attach_AspNetUserClaims), new Action<AspNetUserClaim>(this.detach_AspNetUserClaims));
 		this._AspNetUserLogins = new EntitySet<AspNetUserLogin>(new Action<AspNetUserLogin>(this.attach_AspNetUserLogins), new Action<AspNetUserLogin>(this.detach_AspNetUserLogins));
 		this._AspNetUserRoles = new EntitySet<AspNetUserRole>(new Action<AspNetUserRole>(this.attach_AspNetUserRoles), new Action<AspNetUserRole>(this.detach_AspNetUserRoles));
+		this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
 		OnCreated();
 	}
 	
@@ -1426,6 +1418,19 @@ public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChange
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Session", Storage="_Sessions", ThisKey="Id", OtherKey="TeacherId")]
+	public EntitySet<Session> Sessions
+	{
+		get
+		{
+			return this._Sessions;
+		}
+		set
+		{
+			this._Sessions.Assign(value);
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -1477,6 +1482,18 @@ public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChange
 	}
 	
 	private void detach_AspNetUserRoles(AspNetUserRole entity)
+	{
+		this.SendPropertyChanging();
+		entity.AspNetUser = null;
+	}
+	
+	private void attach_Sessions(Session entity)
+	{
+		this.SendPropertyChanging();
+		entity.AspNetUser = this;
+	}
+	
+	private void detach_Sessions(Session entity)
 	{
 		this.SendPropertyChanging();
 		entity.AspNetUser = null;
@@ -1974,11 +1991,11 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _id;
 	
-	private int _TeacherId;
+	private string _TeacherId;
 	
 	private bool _Active;
 	
-	private EntityRef<Teacher> _Teacher;
+	private EntityRef<AspNetUser> _AspNetUser;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1986,7 +2003,7 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnCreated();
     partial void OnidChanging(int value);
     partial void OnidChanged();
-    partial void OnTeacherIdChanging(int value);
+    partial void OnTeacherIdChanging(string value);
     partial void OnTeacherIdChanged();
     partial void OnActiveChanging(bool value);
     partial void OnActiveChanged();
@@ -1994,7 +2011,7 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public Session()
 	{
-		this._Teacher = default(EntityRef<Teacher>);
+		this._AspNetUser = default(EntityRef<AspNetUser>);
 		OnCreated();
 	}
 	
@@ -2018,8 +2035,8 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeacherId", DbType="Int NOT NULL")]
-	public int TeacherId
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeacherId", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+	public string TeacherId
 	{
 		get
 		{
@@ -2029,7 +2046,7 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			if ((this._TeacherId != value))
 			{
-				if (this._Teacher.HasLoadedOrAssignedValue)
+				if (this._AspNetUser.HasLoadedOrAssignedValue)
 				{
 					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 				}
@@ -2062,36 +2079,36 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Teacher_Session", Storage="_Teacher", ThisKey="TeacherId", OtherKey="id", IsForeignKey=true)]
-	public Teacher Teacher
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Session", Storage="_AspNetUser", ThisKey="TeacherId", OtherKey="Id", IsForeignKey=true)]
+	public AspNetUser AspNetUser
 	{
 		get
 		{
-			return this._Teacher.Entity;
+			return this._AspNetUser.Entity;
 		}
 		set
 		{
-			Teacher previousValue = this._Teacher.Entity;
+			AspNetUser previousValue = this._AspNetUser.Entity;
 			if (((previousValue != value) 
-						|| (this._Teacher.HasLoadedOrAssignedValue == false)))
+						|| (this._AspNetUser.HasLoadedOrAssignedValue == false)))
 			{
 				this.SendPropertyChanging();
 				if ((previousValue != null))
 				{
-					this._Teacher.Entity = null;
+					this._AspNetUser.Entity = null;
 					previousValue.Sessions.Remove(this);
 				}
-				this._Teacher.Entity = value;
+				this._AspNetUser.Entity = value;
 				if ((value != null))
 				{
 					value.Sessions.Add(this);
-					this._TeacherId = value.id;
+					this._TeacherId = value.Id;
 				}
 				else
 				{
-					this._TeacherId = default(int);
+					this._TeacherId = default(string);
 				}
-				this.SendPropertyChanged("Teacher");
+				this.SendPropertyChanged("AspNetUser");
 			}
 		}
 	}
@@ -2224,144 +2241,6 @@ public partial class Student : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Teachers")]
-public partial class Teacher : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _id;
-	
-	private string _Email;
-	
-	private string _Password;
-	
-	private EntitySet<Session> _Sessions;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    #endregion
-	
-	public Teacher()
-	{
-		this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int id
-	{
-		get
-		{
-			return this._id;
-		}
-		set
-		{
-			if ((this._id != value))
-			{
-				this.OnidChanging(value);
-				this.SendPropertyChanging();
-				this._id = value;
-				this.SendPropertyChanged("id");
-				this.OnidChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string Email
-	{
-		get
-		{
-			return this._Email;
-		}
-		set
-		{
-			if ((this._Email != value))
-			{
-				this.OnEmailChanging(value);
-				this.SendPropertyChanging();
-				this._Email = value;
-				this.SendPropertyChanged("Email");
-				this.OnEmailChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string Password
-	{
-		get
-		{
-			return this._Password;
-		}
-		set
-		{
-			if ((this._Password != value))
-			{
-				this.OnPasswordChanging(value);
-				this.SendPropertyChanging();
-				this._Password = value;
-				this.SendPropertyChanged("Password");
-				this.OnPasswordChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Teacher_Session", Storage="_Sessions", ThisKey="id", OtherKey="TeacherId")]
-	public EntitySet<Session> Sessions
-	{
-		get
-		{
-			return this._Sessions;
-		}
-		set
-		{
-			this._Sessions.Assign(value);
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_Sessions(Session entity)
-	{
-		this.SendPropertyChanging();
-		entity.Teacher = this;
-	}
-	
-	private void detach_Sessions(Session entity)
-	{
-		this.SendPropertyChanging();
-		entity.Teacher = null;
 	}
 }
 #pragma warning restore 1591
