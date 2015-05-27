@@ -16,7 +16,7 @@
                     <ItemTemplate>
                         <li class="list-group-item">
                             <asp:Label ID="lblListItemName" Text='<%# Eval("AudioName") %>' runat="server" />
-                            <asp:Button ID="btnDeleteListItem" Text="Remove" CommandArgument='<%# Eval("id") %>' OnClick="btnDeleteListItem_Click" CssClass="pull-right" runat="server" />
+                            <asp:LinkButton ID="btnDeleteListItem" Text="Remove" CommandArgument='<%# Eval("id") %>' OnClick= "btnDeleteListItem_Click" CssClass="pull-right" runat="server" />
                         </li>
                     </ItemTemplate>
                 </asp:Repeater>

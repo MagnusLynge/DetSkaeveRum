@@ -40,11 +40,13 @@ public partial class AudioPage : System.Web.UI.Page
     }
     protected void btnDeleteListItem_Click(object sender, EventArgs e)
     {
-        Button thisBtn = (Button)sender;
+        LinkButton thisBtn = (LinkButton)sender;
         int deleteId = Convert.ToInt32(thisBtn.CommandArgument);
         aus.DeleteAudioFile(deleteId);
         //TODO: delete from folder also
+        
         Response.Redirect(Request.RawUrl);
+        
     }
 
     protected void CreateList()
