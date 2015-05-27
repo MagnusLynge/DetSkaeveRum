@@ -29,12 +29,12 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 	
   #region Extensibility Method Definitions
   partial void OnCreated();
-  partial void InsertWord(Word instance);
-  partial void UpdateWord(Word instance);
-  partial void DeleteWord(Word instance);
   partial void Insert__MigrationHistory(__MigrationHistory instance);
   partial void Update__MigrationHistory(__MigrationHistory instance);
   partial void Delete__MigrationHistory(__MigrationHistory instance);
+  partial void InsertWord(Word instance);
+  partial void UpdateWord(Word instance);
+  partial void DeleteWord(Word instance);
   partial void InsertAspNetRole(AspNetRole instance);
   partial void UpdateAspNetRole(AspNetRole instance);
   partial void DeleteAspNetRole(AspNetRole instance);
@@ -56,6 +56,9 @@ public partial class DBDataContext : System.Data.Linq.DataContext
   partial void InsertImage(Image instance);
   partial void UpdateImage(Image instance);
   partial void DeleteImage(Image instance);
+  partial void InsertMtoMImg(MtoMImg instance);
+  partial void UpdateMtoMImg(MtoMImg instance);
+  partial void DeleteMtoMImg(MtoMImg instance);
   partial void InsertRole(Role instance);
   partial void UpdateRole(Role instance);
   partial void DeleteRole(Role instance);
@@ -97,19 +100,19 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
-	public System.Data.Linq.Table<Word> Words
-	{
-		get
-		{
-			return this.GetTable<Word>();
-		}
-	}
-	
 	public System.Data.Linq.Table<@__MigrationHistory> @__MigrationHistories
 	{
 		get
 		{
 			return this.GetTable<@__MigrationHistory>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Word> Words
+	{
+		get
+		{
+			return this.GetTable<Word>();
 		}
 	}
 	
@@ -234,92 +237,6 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Words")]
-public partial class Word : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _id;
-	
-	private string _Word1;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnWord1Changing(string value);
-    partial void OnWord1Changed();
-    #endregion
-	
-	public Word()
-	{
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int id
-	{
-		get
-		{
-			return this._id;
-		}
-		set
-		{
-			if ((this._id != value))
-			{
-				this.OnidChanging(value);
-				this.SendPropertyChanging();
-				this._id = value;
-				this.SendPropertyChanged("id");
-				this.OnidChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Word", Storage="_Word1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string Word1
-	{
-		get
-		{
-			return this._Word1;
-		}
-		set
-		{
-			if ((this._Word1 != value))
-			{
-				this.OnWord1Changing(value);
-				this.SendPropertyChanging();
-				this._Word1 = value;
-				this.SendPropertyChanged("Word1");
-				this.OnWord1Changed();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[__MigrationHistory]")]
 public partial class @__MigrationHistory : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -429,6 +346,92 @@ public partial class @__MigrationHistory : INotifyPropertyChanging, INotifyPrope
 				this._ProductVersion = value;
 				this.SendPropertyChanged("ProductVersion");
 				this.OnProductVersionChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Words")]
+public partial class Word : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _id;
+	
+	private string _Word1;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnWord1Changing(string value);
+    partial void OnWord1Changed();
+    #endregion
+	
+	public Word()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int id
+	{
+		get
+		{
+			return this._id;
+		}
+		set
+		{
+			if ((this._id != value))
+			{
+				this.OnidChanging(value);
+				this.SendPropertyChanging();
+				this._id = value;
+				this.SendPropertyChanged("id");
+				this.OnidChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Word", Storage="_Word1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string Word1
+	{
+		get
+		{
+			return this._Word1;
+		}
+		set
+		{
+			if ((this._Word1 != value))
+			{
+				this.OnWord1Changing(value);
+				this.SendPropertyChanging();
+				this._Word1 = value;
+				this.SendPropertyChanged("Word1");
+				this.OnWord1Changed();
 			}
 		}
 	}
@@ -1596,6 +1599,8 @@ public partial class Image : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _FileName;
 	
+	private EntitySet<MtoMImg> _MtoMImgs;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1608,6 +1613,7 @@ public partial class Image : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public Image()
 	{
+		this._MtoMImgs = new EntitySet<MtoMImg>(new Action<MtoMImg>(this.attach_MtoMImgs), new Action<MtoMImg>(this.detach_MtoMImgs));
 		OnCreated();
 	}
 	
@@ -1651,6 +1657,19 @@ public partial class Image : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Image_MtoMImg", Storage="_MtoMImgs", ThisKey="id", OtherKey="ImgId")]
+	public EntitySet<MtoMImg> MtoMImgs
+	{
+		get
+		{
+			return this._MtoMImgs;
+		}
+		set
+		{
+			this._MtoMImgs.Assign(value);
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -1669,6 +1688,18 @@ public partial class Image : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
+	}
+	
+	private void attach_MtoMImgs(MtoMImg entity)
+	{
+		this.SendPropertyChanging();
+		entity.Image = this;
+	}
+	
+	private void detach_MtoMImgs(MtoMImg entity)
+	{
+		this.SendPropertyChanging();
+		entity.Image = null;
 	}
 }
 
@@ -1718,18 +1749,37 @@ public partial class MtoMAudio
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MtoMImg")]
-public partial class MtoMImg
+public partial class MtoMImg : INotifyPropertyChanging, INotifyPropertyChanged
 {
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
 	private int _SessionId;
 	
 	private int _ImgId;
 	
+	private EntityRef<Image> _Image;
+	
+	private EntityRef<Session> _Session;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSessionIdChanging(int value);
+    partial void OnSessionIdChanged();
+    partial void OnImgIdChanging(int value);
+    partial void OnImgIdChanged();
+    #endregion
+	
 	public MtoMImg()
 	{
+		this._Image = default(EntityRef<Image>);
+		this._Session = default(EntityRef<Session>);
+		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="Int NOT NULL")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int SessionId
 	{
 		get
@@ -1740,12 +1790,20 @@ public partial class MtoMImg
 		{
 			if ((this._SessionId != value))
 			{
+				if (this._Session.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnSessionIdChanging(value);
+				this.SendPropertyChanging();
 				this._SessionId = value;
+				this.SendPropertyChanged("SessionId");
+				this.OnSessionIdChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImgId", DbType="Int NOT NULL")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImgId", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int ImgId
 	{
 		get
@@ -1756,8 +1814,104 @@ public partial class MtoMImg
 		{
 			if ((this._ImgId != value))
 			{
+				if (this._Image.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnImgIdChanging(value);
+				this.SendPropertyChanging();
 				this._ImgId = value;
+				this.SendPropertyChanged("ImgId");
+				this.OnImgIdChanged();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Image_MtoMImg", Storage="_Image", ThisKey="ImgId", OtherKey="id", IsForeignKey=true)]
+	public Image Image
+	{
+		get
+		{
+			return this._Image.Entity;
+		}
+		set
+		{
+			Image previousValue = this._Image.Entity;
+			if (((previousValue != value) 
+						|| (this._Image.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Image.Entity = null;
+					previousValue.MtoMImgs.Remove(this);
+				}
+				this._Image.Entity = value;
+				if ((value != null))
+				{
+					value.MtoMImgs.Add(this);
+					this._ImgId = value.id;
+				}
+				else
+				{
+					this._ImgId = default(int);
+				}
+				this.SendPropertyChanged("Image");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMImg", Storage="_Session", ThisKey="SessionId", OtherKey="id", IsForeignKey=true)]
+	public Session Session
+	{
+		get
+		{
+			return this._Session.Entity;
+		}
+		set
+		{
+			Session previousValue = this._Session.Entity;
+			if (((previousValue != value) 
+						|| (this._Session.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Session.Entity = null;
+					previousValue.MtoMImgs.Remove(this);
+				}
+				this._Session.Entity = value;
+				if ((value != null))
+				{
+					value.MtoMImgs.Add(this);
+					this._SessionId = value.id;
+				}
+				else
+				{
+					this._SessionId = default(int);
+				}
+				this.SendPropertyChanged("Session");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
@@ -1997,6 +2151,8 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _SesName;
 	
+	private EntitySet<MtoMImg> _MtoMImgs;
+	
 	private EntityRef<AspNetUser> _AspNetUser;
 	
     #region Extensibility Method Definitions
@@ -2015,6 +2171,7 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public Session()
 	{
+		this._MtoMImgs = new EntitySet<MtoMImg>(new Action<MtoMImg>(this.attach_MtoMImgs), new Action<MtoMImg>(this.detach_MtoMImgs));
 		this._AspNetUser = default(EntityRef<AspNetUser>);
 		OnCreated();
 	}
@@ -2103,6 +2260,19 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMImg", Storage="_MtoMImgs", ThisKey="id", OtherKey="SessionId")]
+	public EntitySet<MtoMImg> MtoMImgs
+	{
+		get
+		{
+			return this._MtoMImgs;
+		}
+		set
+		{
+			this._MtoMImgs.Assign(value);
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Session", Storage="_AspNetUser", ThisKey="TeacherId", OtherKey="Id", IsForeignKey=true)]
 	public AspNetUser AspNetUser
 	{
@@ -2155,6 +2325,18 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
+	}
+	
+	private void attach_MtoMImgs(MtoMImg entity)
+	{
+		this.SendPropertyChanging();
+		entity.Session = this;
+	}
+	
+	private void detach_MtoMImgs(MtoMImg entity)
+	{
+		this.SendPropertyChanging();
+		entity.Session = null;
 	}
 }
 

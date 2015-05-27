@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dmaa0913_4Sem_Group4" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=kraka.ucn.dk;Initial Catalog=dmaa0913_4Sem_Group4;Persist Security Info=True;User ID=dmaa0913_4Sem_Group4" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="dmaa0913_4Sem_Group4ConnectionString1" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Words" Member="Words">
-    <Type Name="Word">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Word" Member="Word1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Word_MtoMWord" Member="MtoMWords" ThisKey="id" OtherKey="WordId" Type="MtoMWord" />
-    </Type>
-  </Table>
   <Table Name="dbo.[__MigrationHistory]" Member="__MigrationHistories">
     <Type Name="__MigrationHistory">
       <Column Name="MigrationId" Type="System.String" DbType="NVarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ContextKey" Type="System.String" DbType="NVarChar(300) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Model" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="ProductVersion" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Words" Member="Words">
+    <Type Name="Word">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Word" Member="Word1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Word_MtoMWord" Member="MtoMWords" ThisKey="id" OtherKey="WordId" Type="MtoMWord" />
     </Type>
   </Table>
   <Table Name="dbo.AspNetRoles" Member="AspNetRoles">
@@ -91,8 +91,8 @@
   </Table>
   <Table Name="dbo.MtoMImg" Member="MtoMImgs">
     <Type Name="MtoMImg">
-      <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ImgId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ImgId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="Image_MtoMImg" Member="Image" ThisKey="ImgId" OtherKey="id" Type="Image" IsForeignKey="true" />
       <Association Name="Session_MtoMImg" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
     </Type>

@@ -18,14 +18,17 @@ public partial class CreateSession : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        repImagesOnSes.DataSource = img.GetAllImages();
-        repImagesOnSes.DataBind();
+        if (!IsPostBack)
+        {
+            repImagesOnSes.DataSource = img.GetAllImages();
+            repImagesOnSes.DataBind();
 
-        repWordsOnSes.DataSource = wrd.GetAllWords();
-        repWordsOnSes.DataBind();
+            repWordsOnSes.DataSource = wrd.GetAllWords();
+            repWordsOnSes.DataBind();
 
-        repRolesOnSes.DataSource = rol.GetAllRoles();
-        repRolesOnSes.DataBind();
+            repRolesOnSes.DataSource = rol.GetAllRoles();
+            repRolesOnSes.DataBind();
+        }
     }
 
     protected void btnCreateSession_Click(object sender, EventArgs e)
@@ -33,20 +36,18 @@ public partial class CreateSession : System.Web.UI.Page
         var userID = User.Identity.GetUserId();
         newSes.CreateNewSession(userID, true, txtSesName.Text);
 
-        var checkBox = repImagesOnSes.FindControl("imgCheckBox") as CheckBox;
-
-        var imgControl = (System.Web.UI.WebControls.Image)repImagesOnSes.FindControl("imgForSession");
-        var imgID = imgControl.ID;
-
-        var hidID = repImagesOnSes.FindControl("filePath");
-
-        //var check = img.GetImageId(hidID);
-
-        Console.WriteLine(imgID);
-
-        if (checkBox.Checked)
+        foreach (RepeaterItem i in repImagesOnSes.Items)
         {
-            //mToM.AddImagesToSession(newSes.GetNewestSession(userID), check);
+            CheckBox chk = i.FindControl("imgCheckBox") as CheckBox;
+
+            if (chk.Checked)
+            {
+                var image = (System.Web.UI.WebControls.Image)i.FindControl("imgForSession");
+                var imgUrl = image.ImageUrl;
+                var imgID = img.GetImageId(imgUrl.Remove(0, 9));
+
+                mToM.AddImagesToSession(newSes.GetNewestSession(userID), imgID);
+            }
         }
 
     }
