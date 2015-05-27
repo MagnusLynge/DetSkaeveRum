@@ -7,15 +7,6 @@ public class RolesForSession
 {
     private DBDataContext _db = DBCon.GetDB();
 
-    public int Id;
-    public string Role;
-
-    public RolesForSession(int id, string role)
-    {
-        Id = id;
-        Role = role;
-    }
-
     public RolesForSession()
     {
 

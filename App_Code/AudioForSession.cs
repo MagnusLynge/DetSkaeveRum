@@ -7,12 +7,6 @@ public class AudioForSession
 {
     private DBDataContext _db = DBCon.GetDB();
 
-    public int Id;
-    public string AudioN;
-
-
-    //TODO: tilføj audiofile til mappen Audio
-
 	public AudioForSession()
 	{
 	}
@@ -27,13 +21,21 @@ public class AudioForSession
         _db.SubmitChanges();
     }
 
+    public void DeleteAudioFile(int itemId)
+    {
+        var query = _db.Audios.Where(x => x.id == itemId).Select(x => x);
+        var delObj = query.ToList()[0];
+
+        _db.Audios.DeleteOnSubmit(delObj);
+    }
+
     public void CreateAudioFile(string name)
     {
         var query = new Audio { AudioName = name };
-        var check = GetAudioFile(name);
+        //var check = GetAudioFile(name);
 
-        if (check.Count > 0 && name.Equals(check[0].AudioName))
-            return;
+        //if (check != null && name.Equals(check[0].AudioName))
+        //    return;
 
         _db.Audios.InsertOnSubmit(query);
         _db.SubmitChanges();

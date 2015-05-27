@@ -3,19 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-
     <div class="container" style="padding-top: 60px;">
-
-
         <div class="row">
             <div class="col-md-12">
                 <asp:Label ID="lblRoleHeaderTxt" runat="server" Font-Bold="True" Font-Size="24" Text="Label">Rolle Oversigt</asp:Label>
             </div>
         </div>
+
         <div class="row">
-
-
             <div class="col-md-3">
                 <div class="container">
                     <div class="row">
@@ -39,27 +34,13 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
-
-
         <div class="row" style="padding-top: 15px">
             <div class="col-md-6">
                 <asp:Label ID="lblAmountOfRoles" runat="server" Font-Bold="True" Text="Antal roller:  "></asp:Label><asp:Label ID="lblAmountRolesCount" runat="server" Font-Bold="True" Text=""></asp:Label>
             </div>
         </div>
 
-
-
-
-
         <div class="row" style="padding-top: 15px;">
-
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
@@ -78,7 +59,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </asp:Content>
 
