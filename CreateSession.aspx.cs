@@ -47,7 +47,6 @@ public partial class CreateSession : System.Web.UI.Page
                 mToM.AddImagesToSession(newSes.GetNewestSession(userID), imgID);
             }
         }
-
         foreach (RepeaterItem i in repWordsOnSes.Items)
         {
             CheckBox chk = i.FindControl("checkWord") as CheckBox;
@@ -70,8 +69,8 @@ public partial class CreateSession : System.Web.UI.Page
             }
         }
 
+        Response.Redirect("AllMySessions.aspx");
     }
-
     protected void checkAllImgs_CheckedChanged(object sender, EventArgs e)
     {
         if (checkAllImgs.Checked)
@@ -101,7 +100,7 @@ public partial class CreateSession : System.Web.UI.Page
                 chk.Checked = true;
             }
         }
-        else if (!checkAllImgs.Checked)
+        else if (!checkAllWrds.Checked)
         {
             foreach (RepeaterItem i in repWordsOnSes.Items)
             {
@@ -110,7 +109,6 @@ public partial class CreateSession : System.Web.UI.Page
             }
         }
     }
-
     protected void checkAllRols_CheckedChanged(object sender, EventArgs e)
     {
         if (checkAllRols.Checked)
@@ -130,4 +128,5 @@ public partial class CreateSession : System.Web.UI.Page
             }
         }
     }
+
 }
