@@ -16,7 +16,7 @@ public partial class Login : System.Web.UI.Page
         {
             if (User.Identity.IsAuthenticated)
             {
-                Response.Redirect("~/Homepage.aspx");
+                Response.Redirect("~/Default.aspx");
             }
         }
     }
@@ -33,7 +33,7 @@ public partial class Login : System.Web.UI.Page
             var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
 
             authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
-            Response.Redirect("~/Homepage.aspx");
+            Response.Redirect("~/Default.aspx");
         }
         else
         {

@@ -27,6 +27,28 @@ public class ManyToMany
         return null;
     }
 
+    public void AddWordsToSession(int sesID, int wrdID)
+    {
+        MtoMWord newMtoM = new MtoMWord { SessionId = sesID, WordId = wrdID };
+        _db.MtoMWords.InsertOnSubmit(newMtoM);
+        _db.SubmitChanges();
+    }
 
+    public List<MtoMWord> GetWordsOnSession()
+    {
+        return null;
+    }
+
+    public void AddRolesToSession(int sesID, int rolID)
+    {
+        MtoMRole newMtoM = new MtoMRole { SessionId = sesID, RoleId = rolID };
+        _db.MtoMRoles.InsertOnSubmit(newMtoM);
+        _db.SubmitChanges();
+    }
+
+    public List<MtoMRole> GetRolesOnSession()
+    {
+        return null;
+    }
 
 }

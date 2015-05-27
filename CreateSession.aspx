@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="CreateSession.aspx.cs" Inherits="CreateSession" %>
+<%@ Import Namespace="System.Diagnostics" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -71,7 +72,7 @@
                         <ItemTemplate>
                             <div class="row">
                                 <div class="col-md-10 col-sm-10 col-xs-10" style="text-align: center">
-                                    <asp:Label ID="lblWordSes" Font-Bold="True" runat="server" Text=""><%#Eval("Word1") %></asp:Label>
+                                    <asp:Label ID="lblWordSes" Font-Bold="True" EnableViewState="True" ViewStateMode="Enabled" runat="server" Text='<%# string.Format(Eval("Word1").ToString()) %>'></asp:Label>
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2" style="">
                                     <asp:CheckBox ID="checkWord" runat="server" />
@@ -100,7 +101,7 @@
                         <ItemTemplate>
                             <div class="row">
                                 <div class="col-md-10 col-sm-10 col-xs-10" style="text-align: center">
-                                    <asp:Label ID="lblRoleSes" Font-Bold="True" runat="server" Text=""><%#Eval("Role1") %></asp:Label>
+                                    <asp:Label ID="lblRoleSes" Font-Bold="True" runat="server" Text='<%# string.Format(Eval("Role1").ToString()) %>'></asp:Label>
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2" style="">
                                     <asp:CheckBox ID="checkRole" runat="server" />

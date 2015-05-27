@@ -99,8 +99,8 @@
   </Table>
   <Table Name="dbo.MtoMRole" Member="MtoMRoles">
     <Type Name="MtoMRole">
-      <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="Role_MtoMRole" Member="Role" ThisKey="RoleId" OtherKey="id" Type="Role" IsForeignKey="true" />
       <Association Name="Session_MtoMRole" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
     </Type>
@@ -115,8 +115,8 @@
   </Table>
   <Table Name="dbo.MtoMWord" Member="MtoMWords">
     <Type Name="MtoMWord">
-      <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="WordId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="WordId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="Word_MtoMWord" Member="Word" ThisKey="WordId" OtherKey="id" Type="Word" IsForeignKey="true" />
       <Association Name="Session_MtoMWord" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
     </Type>

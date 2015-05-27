@@ -36,6 +36,7 @@ public partial class CreateSession : System.Web.UI.Page
         var userID = User.Identity.GetUserId();
         newSes.CreateNewSession(userID, true, txtSesName.Text);
 
+
         foreach (RepeaterItem i in repImagesOnSes.Items)
         {
             CheckBox chk = i.FindControl("imgCheckBox") as CheckBox;
@@ -47,6 +48,34 @@ public partial class CreateSession : System.Web.UI.Page
                 var imgID = img.GetImageId(imgUrl.Remove(0, 9));
 
                 mToM.AddImagesToSession(newSes.GetNewestSession(userID), imgID);
+            }
+        }
+
+        foreach (RepeaterItem i in repWordsOnSes.Items)
+        {
+            CheckBox chk = i.FindControl("checkWord") as CheckBox;
+
+            if (chk.Checked)
+            {
+                var word = i.FindControl("lblWordSes") as Label;
+                var wrdID = wrd.GetWordId(word.Text);
+
+                mToM.AddWordsToSession(newSes.GetNewestSession(userID), Convert.ToInt32(wrdID));
+
+            }
+
+        }
+
+        foreach (RepeaterItem i in repRolesOnSes.Items)
+        {
+            CheckBox chk = i.FindControl("checkRole") as CheckBox;
+
+            if (chk.Checked)
+            {
+                var role = i.FindControl("lblRoleSes") as Label;
+                var rolID = rol.GetRoleId(role.Text);
+
+                mToM.AddRolesToSession(newSes.GetNewestSession(userID), Convert.ToInt32(rolID));
             }
         }
 

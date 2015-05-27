@@ -30,6 +30,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
         authenticationManager.SignOut();
-        Response.Redirect("~/Homepage.aspx");
+        Response.Redirect("~/Default.aspx");
     }
 }
