@@ -8,13 +8,6 @@
       <Column Name="ProductVersion" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.Words" Member="Words">
-    <Type Name="Word">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Word" Member="Word1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Word_MtoMWord" Member="MtoMWords" ThisKey="id" OtherKey="WordId" Type="MtoMWord" />
-    </Type>
-  </Table>
   <Table Name="dbo.AspNetRoles" Member="AspNetRoles">
     <Type Name="AspNetRole">
       <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -31,20 +24,20 @@
       <Association Name="AspNetUser_AspNetUserClaim" Member="AspNetUser" ThisKey="UserId" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.AspNetUserLogins" Member="AspNetUserLogins">
-    <Type Name="AspNetUserLogin">
-      <Column Name="LoginProvider" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ProviderKey" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="UserId" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="AspNetUser_AspNetUserLogin" Member="AspNetUser" ThisKey="UserId" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.AspNetUserRoles" Member="AspNetUserRoles">
     <Type Name="AspNetUserRole">
       <Column Name="UserId" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="RoleId" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="AspNetRole_AspNetUserRole" Member="AspNetRole" ThisKey="RoleId" OtherKey="Id" Type="AspNetRole" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="AspNetUser_AspNetUserRole" Member="AspNetUser" ThisKey="UserId" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AspNetUserLogins" Member="AspNetUserLogins">
+    <Type Name="AspNetUserLogin">
+      <Column Name="LoginProvider" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProviderKey" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="AspNetUser_AspNetUserLogin" Member="AspNetUser" ThisKey="UserId" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.AspNetUsers" Member="AspNetUsers">
@@ -62,15 +55,15 @@
       <Column Name="AccessFailedCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Association Name="AspNetUser_AspNetUserClaim" Member="AspNetUserClaims" ThisKey="Id" OtherKey="UserId" Type="AspNetUserClaim" />
-      <Association Name="AspNetUser_AspNetUserLogin" Member="AspNetUserLogins" ThisKey="Id" OtherKey="UserId" Type="AspNetUserLogin" />
       <Association Name="AspNetUser_AspNetUserRole" Member="AspNetUserRoles" ThisKey="Id" OtherKey="UserId" Type="AspNetUserRole" />
+      <Association Name="AspNetUser_AspNetUserLogin" Member="AspNetUserLogins" ThisKey="Id" OtherKey="UserId" Type="AspNetUserLogin" />
       <Association Name="AspNetUser_Session" Member="Sessions" ThisKey="Id" OtherKey="TeacherId" Type="Session" />
     </Type>
   </Table>
   <Table Name="dbo.Audio" Member="Audios">
     <Type Name="Audio">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="AudioName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AudioName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Association Name="Audio_MtoMAudio" Member="MtoMAudios" ThisKey="id" OtherKey="AudioId" Type="MtoMAudio" />
     </Type>
   </Table>
@@ -97,12 +90,12 @@
       <Association Name="Session_MtoMImg" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.MtoMRole" Member="MtoMRoles">
-    <Type Name="MtoMRole">
+  <Table Name="dbo.MtoMWord" Member="MtoMWords">
+    <Type Name="MtoMWord">
       <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Role_MtoMRole" Member="Role" ThisKey="RoleId" OtherKey="id" Type="Role" IsForeignKey="true" />
-      <Association Name="Session_MtoMRole" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
+      <Column Name="WordId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Session_MtoMWord" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
+      <Association Name="Word_MtoMWord" Member="Word" ThisKey="WordId" OtherKey="id" Type="Word" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MtoMSession" Member="MtoMSessions">
@@ -113,12 +106,12 @@
       <Association Name="Student_MtoMSession" Member="Student" ThisKey="StudentId" OtherKey="id" Type="Student" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.MtoMWord" Member="MtoMWords">
-    <Type Name="MtoMWord">
+  <Table Name="dbo.MtoMRole" Member="MtoMRoles">
+    <Type Name="MtoMRole">
       <Column Name="SessionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="WordId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Word_MtoMWord" Member="Word" ThisKey="WordId" OtherKey="id" Type="Word" IsForeignKey="true" />
-      <Association Name="Session_MtoMWord" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Role_MtoMRole" Member="Role" ThisKey="RoleId" OtherKey="id" Type="Role" IsForeignKey="true" />
+      <Association Name="Session_MtoMRole" Member="Session" ThisKey="SessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Roles" Member="Roles">
@@ -136,9 +129,9 @@
       <Column Name="SesName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
       <Association Name="Session_MtoMAudio" Member="MtoMAudios" ThisKey="id" OtherKey="SessionId" Type="MtoMAudio" />
       <Association Name="Session_MtoMImg" Member="MtoMImgs" ThisKey="id" OtherKey="SessionId" Type="MtoMImg" />
-      <Association Name="Session_MtoMRole" Member="MtoMRoles" ThisKey="id" OtherKey="SessionId" Type="MtoMRole" />
-      <Association Name="Session_MtoMSession" Member="MtoMSessions" ThisKey="id" OtherKey="SessionId" Type="MtoMSession" />
       <Association Name="Session_MtoMWord" Member="MtoMWords" ThisKey="id" OtherKey="SessionId" Type="MtoMWord" />
+      <Association Name="Session_MtoMSession" Member="MtoMSessions" ThisKey="id" OtherKey="SessionId" Type="MtoMSession" />
+      <Association Name="Session_MtoMRole" Member="MtoMRoles" ThisKey="id" OtherKey="SessionId" Type="MtoMRole" />
       <Association Name="AspNetUser_Session" Member="AspNetUser" ThisKey="TeacherId" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" />
     </Type>
   </Table>
@@ -148,6 +141,13 @@
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Words" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Student_MtoMSession" Member="MtoMSessions" ThisKey="id" OtherKey="StudentId" Type="MtoMSession" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Words" Member="Words">
+    <Type Name="Word">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Word" Member="Word1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Word_MtoMWord" Member="MtoMWords" ThisKey="id" OtherKey="WordId" Type="MtoMWord" />
     </Type>
   </Table>
 </Database>

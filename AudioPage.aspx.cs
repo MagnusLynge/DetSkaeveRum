@@ -16,25 +16,26 @@ public partial class AudioPage : System.Web.UI.Page
 
     protected void btnUpload_Click(object sender, EventArgs e)
     {
-        if (fileUploader.HasFiles)
+        try
         {
-            foreach (var item in fileUploader.PostedFiles)
+            if (fileUploader.HasFiles)
             {
-                try
+                foreach (var item in fileUploader.PostedFiles)
                 {
                     aus.CreateAudioFile(item.FileName);
                     item.SaveAs(Server.MapPath("~/Audio/" + item.FileName));
-                    lblErrorText.Text = "";
                 }
-                catch (System.Data.SqlTypes.SqlTruncateException)
-                {
-                    lblErrorText.Text = "Filename Too Long";
-                }
-                catch (System.IO.PathTooLongException)
-                {
-                    lblErrorText.Text = "Filename Too Long";
-                }
+                lblErrorText.Text = "";
             }
+            CreateList();
+        }
+        catch (System.Data.SqlTypes.SqlTruncateException)
+        {
+            lblErrorText.Text = "Filename Too Long";
+        }
+        catch (System.IO.PathTooLongException)
+        {
+            lblErrorText.Text = "Filename Too Long";
         }
     }
     protected void btnDeleteListItem_Click(object sender, EventArgs e)
@@ -43,7 +44,7 @@ public partial class AudioPage : System.Web.UI.Page
         int deleteId = Convert.ToInt32(thisBtn.CommandArgument);
         aus.DeleteAudioFile(deleteId);
         //TODO: delete from folder also
-        CreateList();
+        Response.Redirect(Request.RawUrl);
     }
 
     protected void CreateList()
