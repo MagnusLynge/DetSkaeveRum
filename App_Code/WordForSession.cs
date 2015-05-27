@@ -82,6 +82,12 @@ public class WordForSession
         return result;
     }
 
+    public int GetWordId(string wrd)
+    {
+        var query = _db.Words.Where(i => i.Word1 == wrd).Select(i => i).First();
+        return query.id;
+    }
+
     public List<Word> GetAllWords()
     {
         var query = _db.Words.OrderBy(i => i.Word1).Select(i => i);

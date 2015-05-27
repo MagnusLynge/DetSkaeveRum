@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="CreateSession.aspx.cs" Inherits="CreateSession" %>
+<%@ Import Namespace="System.Diagnostics" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -31,7 +32,7 @@
                 <div style="padding-left: 10px; padding-top: 6px; background-color: #000000; min-height: 30px; max-width: 100%; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px;">
                     <asp:Label ID="lblSesImgInfo" runat="server" Font-Bold="True" ForeColor="White" Text="Label">Vælg Billeder</asp:Label>
                     <div style="float: right; padding-right: 37px;">
-                        <asp:CheckBox ID="checkAllImgs" runat="server" />
+                        <asp:CheckBox ID="checkAllImgs" runat="server" AutoPostBack="True" OnCheckedChanged="checkAllImgs_CheckedChanged" />
                     </div>
                     <div style="float: right; padding-right: 15px;">
                         <asp:Label ID="lblAllImgs" Font-Bold="True" ForeColor="White" runat="server" Text="Alle  "></asp:Label>
@@ -60,7 +61,7 @@
                 <div style="padding-left: 10px; padding-top: 6px; background-color: #000000; min-height: 30px; max-width: 100%; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px;">
                     <asp:Label ID="lblSesWrdInfo" runat="server" Font-Bold="True" ForeColor="White" Text="Label">Vælg Ord</asp:Label>
                     <div style="float: right; padding-right: 37px;">
-                        <asp:CheckBox ID="checkAllWrds" runat="server" />
+                        <asp:CheckBox ID="checkAllWrds" runat="server" AutoPostBack="True" OnCheckedChanged="checkAllWrds_CheckedChanged" />
                     </div>
                     <div style="float: right; padding-right: 15px;">
                         <asp:Label ID="lblAllWrds" Font-Bold="True" ForeColor="White" runat="server" Text="Alle  "></asp:Label>
@@ -71,7 +72,7 @@
                         <ItemTemplate>
                             <div class="row">
                                 <div class="col-md-10 col-sm-10 col-xs-10" style="text-align: center">
-                                    <asp:Label ID="lblWordSes" Font-Bold="True" runat="server" Text=""><%#Eval("Word1") %></asp:Label>
+                                    <asp:Label ID="lblWordSes" Font-Bold="True" EnableViewState="True" ViewStateMode="Enabled" runat="server" Text='<%# string.Format(Eval("Word1").ToString()) %>'></asp:Label>
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2" style="">
                                     <asp:CheckBox ID="checkWord" runat="server" />
@@ -89,7 +90,7 @@
                 <div style="padding-left: 10px; padding-top: 6px; background-color: #000000; min-height: 30px; max-width: 100%; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px;">
                     <asp:Label ID="lblSesRolInfo" runat="server" Font-Bold="True" ForeColor="White" Text="Label">Vælg Roller</asp:Label>
                     <div style="float: right; padding-right: 37px;">
-                        <asp:CheckBox ID="checkAllRols" runat="server" />
+                        <asp:CheckBox ID="checkAllRols" runat="server" AutoPostBack="True" OnCheckedChanged="checkAllRols_CheckedChanged" />
                     </div>
                     <div style="float: right; padding-right: 15px;">
                         <asp:Label ID="lblAllRols" Font-Bold="True" ForeColor="White" runat="server" Text="Alle  "></asp:Label>
@@ -100,7 +101,7 @@
                         <ItemTemplate>
                             <div class="row">
                                 <div class="col-md-10 col-sm-10 col-xs-10" style="text-align: center">
-                                    <asp:Label ID="lblRoleSes" Font-Bold="True" runat="server" Text=""><%#Eval("Role1") %></asp:Label>
+                                    <asp:Label ID="lblRoleSes" Font-Bold="True" runat="server" Text='<%# string.Format(Eval("Role1").ToString()) %>'></asp:Label>
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2" style="">
                                     <asp:CheckBox ID="checkRole" runat="server" />

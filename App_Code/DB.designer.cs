@@ -59,6 +59,12 @@ public partial class DBDataContext : System.Data.Linq.DataContext
   partial void InsertMtoMImg(MtoMImg instance);
   partial void UpdateMtoMImg(MtoMImg instance);
   partial void DeleteMtoMImg(MtoMImg instance);
+  partial void InsertMtoMRole(MtoMRole instance);
+  partial void UpdateMtoMRole(MtoMRole instance);
+  partial void DeleteMtoMRole(MtoMRole instance);
+  partial void InsertMtoMWord(MtoMWord instance);
+  partial void UpdateMtoMWord(MtoMWord instance);
+  partial void DeleteMtoMWord(MtoMWord instance);
   partial void InsertRole(Role instance);
   partial void UpdateRole(Role instance);
   partial void DeleteRole(Role instance);
@@ -381,6 +387,8 @@ public partial class Word : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _Word1;
 	
+	private EntitySet<MtoMWord> _MtoMWords;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -393,6 +401,7 @@ public partial class Word : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public Word()
 	{
+		this._MtoMWords = new EntitySet<MtoMWord>(new Action<MtoMWord>(this.attach_MtoMWords), new Action<MtoMWord>(this.detach_MtoMWords));
 		OnCreated();
 	}
 	
@@ -436,6 +445,19 @@ public partial class Word : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Word_MtoMWord", Storage="_MtoMWords", ThisKey="id", OtherKey="WordId")]
+	public EntitySet<MtoMWord> MtoMWords
+	{
+		get
+		{
+			return this._MtoMWords;
+		}
+		set
+		{
+			this._MtoMWords.Assign(value);
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -454,6 +476,18 @@ public partial class Word : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
+	}
+	
+	private void attach_MtoMWords(MtoMWord entity)
+	{
+		this.SendPropertyChanging();
+		entity.Word = this;
+	}
+	
+	private void detach_MtoMWords(MtoMWord entity)
+	{
+		this.SendPropertyChanging();
+		entity.Word = null;
 	}
 }
 
@@ -1917,18 +1951,37 @@ public partial class MtoMImg : INotifyPropertyChanging, INotifyPropertyChanged
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MtoMRole")]
-public partial class MtoMRole
+public partial class MtoMRole : INotifyPropertyChanging, INotifyPropertyChanged
 {
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
 	private int _SessionId;
 	
 	private int _RoleId;
 	
+	private EntityRef<Role> _Role;
+	
+	private EntityRef<Session> _Session;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSessionIdChanging(int value);
+    partial void OnSessionIdChanged();
+    partial void OnRoleIdChanging(int value);
+    partial void OnRoleIdChanged();
+    #endregion
+	
 	public MtoMRole()
 	{
+		this._Role = default(EntityRef<Role>);
+		this._Session = default(EntityRef<Session>);
+		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="Int NOT NULL")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int SessionId
 	{
 		get
@@ -1939,12 +1992,20 @@ public partial class MtoMRole
 		{
 			if ((this._SessionId != value))
 			{
+				if (this._Session.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnSessionIdChanging(value);
+				this.SendPropertyChanging();
 				this._SessionId = value;
+				this.SendPropertyChanged("SessionId");
+				this.OnSessionIdChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="Int NOT NULL")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int RoleId
 	{
 		get
@@ -1955,8 +2016,104 @@ public partial class MtoMRole
 		{
 			if ((this._RoleId != value))
 			{
+				if (this._Role.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnRoleIdChanging(value);
+				this.SendPropertyChanging();
 				this._RoleId = value;
+				this.SendPropertyChanged("RoleId");
+				this.OnRoleIdChanged();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_MtoMRole", Storage="_Role", ThisKey="RoleId", OtherKey="id", IsForeignKey=true)]
+	public Role Role
+	{
+		get
+		{
+			return this._Role.Entity;
+		}
+		set
+		{
+			Role previousValue = this._Role.Entity;
+			if (((previousValue != value) 
+						|| (this._Role.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Role.Entity = null;
+					previousValue.MtoMRoles.Remove(this);
+				}
+				this._Role.Entity = value;
+				if ((value != null))
+				{
+					value.MtoMRoles.Add(this);
+					this._RoleId = value.id;
+				}
+				else
+				{
+					this._RoleId = default(int);
+				}
+				this.SendPropertyChanged("Role");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMRole", Storage="_Session", ThisKey="SessionId", OtherKey="id", IsForeignKey=true)]
+	public Session Session
+	{
+		get
+		{
+			return this._Session.Entity;
+		}
+		set
+		{
+			Session previousValue = this._Session.Entity;
+			if (((previousValue != value) 
+						|| (this._Session.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Session.Entity = null;
+					previousValue.MtoMRoles.Remove(this);
+				}
+				this._Session.Entity = value;
+				if ((value != null))
+				{
+					value.MtoMRoles.Add(this);
+					this._SessionId = value.id;
+				}
+				else
+				{
+					this._SessionId = default(int);
+				}
+				this.SendPropertyChanged("Session");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
@@ -2007,18 +2164,37 @@ public partial class MtoMSession
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MtoMWord")]
-public partial class MtoMWord
+public partial class MtoMWord : INotifyPropertyChanging, INotifyPropertyChanged
 {
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
 	private int _SessionId;
 	
 	private int _WordId;
 	
+	private EntityRef<Word> _Word;
+	
+	private EntityRef<Session> _Session;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSessionIdChanging(int value);
+    partial void OnSessionIdChanged();
+    partial void OnWordIdChanging(int value);
+    partial void OnWordIdChanged();
+    #endregion
+	
 	public MtoMWord()
 	{
+		this._Word = default(EntityRef<Word>);
+		this._Session = default(EntityRef<Session>);
+		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="Int NOT NULL")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int SessionId
 	{
 		get
@@ -2029,12 +2205,20 @@ public partial class MtoMWord
 		{
 			if ((this._SessionId != value))
 			{
+				if (this._Session.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnSessionIdChanging(value);
+				this.SendPropertyChanging();
 				this._SessionId = value;
+				this.SendPropertyChanged("SessionId");
+				this.OnSessionIdChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WordId", DbType="Int NOT NULL")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WordId", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int WordId
 	{
 		get
@@ -2045,8 +2229,104 @@ public partial class MtoMWord
 		{
 			if ((this._WordId != value))
 			{
+				if (this._Word.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnWordIdChanging(value);
+				this.SendPropertyChanging();
 				this._WordId = value;
+				this.SendPropertyChanged("WordId");
+				this.OnWordIdChanged();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Word_MtoMWord", Storage="_Word", ThisKey="WordId", OtherKey="id", IsForeignKey=true)]
+	public Word Word
+	{
+		get
+		{
+			return this._Word.Entity;
+		}
+		set
+		{
+			Word previousValue = this._Word.Entity;
+			if (((previousValue != value) 
+						|| (this._Word.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Word.Entity = null;
+					previousValue.MtoMWords.Remove(this);
+				}
+				this._Word.Entity = value;
+				if ((value != null))
+				{
+					value.MtoMWords.Add(this);
+					this._WordId = value.id;
+				}
+				else
+				{
+					this._WordId = default(int);
+				}
+				this.SendPropertyChanged("Word");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMWord", Storage="_Session", ThisKey="SessionId", OtherKey="id", IsForeignKey=true)]
+	public Session Session
+	{
+		get
+		{
+			return this._Session.Entity;
+		}
+		set
+		{
+			Session previousValue = this._Session.Entity;
+			if (((previousValue != value) 
+						|| (this._Session.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Session.Entity = null;
+					previousValue.MtoMWords.Remove(this);
+				}
+				this._Session.Entity = value;
+				if ((value != null))
+				{
+					value.MtoMWords.Add(this);
+					this._SessionId = value.id;
+				}
+				else
+				{
+					this._SessionId = default(int);
+				}
+				this.SendPropertyChanged("Session");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
@@ -2061,6 +2341,8 @@ public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _Role1;
 	
+	private EntitySet<MtoMRole> _MtoMRoles;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2073,6 +2355,7 @@ public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public Role()
 	{
+		this._MtoMRoles = new EntitySet<MtoMRole>(new Action<MtoMRole>(this.attach_MtoMRoles), new Action<MtoMRole>(this.detach_MtoMRoles));
 		OnCreated();
 	}
 	
@@ -2116,6 +2399,19 @@ public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_MtoMRole", Storage="_MtoMRoles", ThisKey="id", OtherKey="RoleId")]
+	public EntitySet<MtoMRole> MtoMRoles
+	{
+		get
+		{
+			return this._MtoMRoles;
+		}
+		set
+		{
+			this._MtoMRoles.Assign(value);
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -2135,6 +2431,18 @@ public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
+	
+	private void attach_MtoMRoles(MtoMRole entity)
+	{
+		this.SendPropertyChanging();
+		entity.Role = this;
+	}
+	
+	private void detach_MtoMRoles(MtoMRole entity)
+	{
+		this.SendPropertyChanging();
+		entity.Role = null;
+	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Session")]
@@ -2152,6 +2460,10 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 	private string _SesName;
 	
 	private EntitySet<MtoMImg> _MtoMImgs;
+	
+	private EntitySet<MtoMRole> _MtoMRoles;
+	
+	private EntitySet<MtoMWord> _MtoMWords;
 	
 	private EntityRef<AspNetUser> _AspNetUser;
 	
@@ -2172,6 +2484,8 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 	public Session()
 	{
 		this._MtoMImgs = new EntitySet<MtoMImg>(new Action<MtoMImg>(this.attach_MtoMImgs), new Action<MtoMImg>(this.detach_MtoMImgs));
+		this._MtoMRoles = new EntitySet<MtoMRole>(new Action<MtoMRole>(this.attach_MtoMRoles), new Action<MtoMRole>(this.detach_MtoMRoles));
+		this._MtoMWords = new EntitySet<MtoMWord>(new Action<MtoMWord>(this.attach_MtoMWords), new Action<MtoMWord>(this.detach_MtoMWords));
 		this._AspNetUser = default(EntityRef<AspNetUser>);
 		OnCreated();
 	}
@@ -2273,6 +2587,32 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMRole", Storage="_MtoMRoles", ThisKey="id", OtherKey="SessionId")]
+	public EntitySet<MtoMRole> MtoMRoles
+	{
+		get
+		{
+			return this._MtoMRoles;
+		}
+		set
+		{
+			this._MtoMRoles.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMWord", Storage="_MtoMWords", ThisKey="id", OtherKey="SessionId")]
+	public EntitySet<MtoMWord> MtoMWords
+	{
+		get
+		{
+			return this._MtoMWords;
+		}
+		set
+		{
+			this._MtoMWords.Assign(value);
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Session", Storage="_AspNetUser", ThisKey="TeacherId", OtherKey="Id", IsForeignKey=true)]
 	public AspNetUser AspNetUser
 	{
@@ -2334,6 +2674,30 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 	
 	private void detach_MtoMImgs(MtoMImg entity)
+	{
+		this.SendPropertyChanging();
+		entity.Session = null;
+	}
+	
+	private void attach_MtoMRoles(MtoMRole entity)
+	{
+		this.SendPropertyChanging();
+		entity.Session = this;
+	}
+	
+	private void detach_MtoMRoles(MtoMRole entity)
+	{
+		this.SendPropertyChanging();
+		entity.Session = null;
+	}
+	
+	private void attach_MtoMWords(MtoMWord entity)
+	{
+		this.SendPropertyChanging();
+		entity.Session = this;
+	}
+	
+	private void detach_MtoMWords(MtoMWord entity)
 	{
 		this.SendPropertyChanging();
 		entity.Session = null;

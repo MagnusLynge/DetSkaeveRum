@@ -57,6 +57,12 @@ public class RolesForSession
         return query.ToList();
     }
 
+    public int GetRoleId(string rol)
+    {
+        var query = _db.Roles.Where(i => i.Role1 == rol).Select(i => i).First();
+        return query.id;
+    }
+
     public List<Role> GetRole(string role)
     {
         var query = _db.Roles.Where(i => i.Role1 == role).Select(i => i);
