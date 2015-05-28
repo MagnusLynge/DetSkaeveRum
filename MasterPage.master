@@ -27,7 +27,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="Default.aspx">Det Skæve Rum</a>
+                    <a class="navbar-brand" href="~/Default.aspx" runat="server">Det Skæve Rum</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -41,6 +41,8 @@
                                 <li id="navwordslink" runat="server"><a href="~/Admin/WordPage.aspx" runat="server">Ord</a></li>
                                 <li id="navroleslink" runat="server"><a href="~/Admin/RolesPage.aspx" runat="server">Roller</a></li>
                                 <li id="navreglink" runat="server"><a href="~/Admin/Register.aspx" runat="server">Ny bruger</a></li>
+                                <li id="createseslink" runat="server"><a href="~/Admin/CreateSession.aspx" runat="server">Lav Session</a></li>
+                                <li id="seslink" runat="server"><a href="Admin/AllMySessions.aspx" runat="server">Sessioner</a></li>
                                 <li>
                                     <asp:LinkButton ID="btnLogout" runat="server" Text="Log ud" OnClick="LogOut" Visible="True" /></li>
                             </LoggedInTemplate>
