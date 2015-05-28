@@ -22,9 +22,10 @@ public class ManyToMany
         _db.SubmitChanges();
     }
 
-    public List<MtoMImg> GetImagesOnSession()
+    public List<MtoMImg> GetImagesOnSession(int sesID)
     {
-        return null;
+        var query = _db.MtoMImgs.Where(i => i.SessionId == sesID).Select(i => i);
+        return query.ToList();
     }
 
     public void AddWordsToSession(int sesID, int wrdID)

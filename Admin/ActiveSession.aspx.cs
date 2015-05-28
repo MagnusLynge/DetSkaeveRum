@@ -14,8 +14,11 @@ public partial class ActiveSession : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        repImgs.DataSource = ImagesForSession();
-        repImgs.DataBind();
+        if (!IsPostBack)
+        {
+            repImgs.DataSource = ImagesForSession();
+            repImgs.DataBind();
+        }
     }
 
     public List<Image> ImagesForSession()
@@ -23,7 +26,13 @@ public partial class ActiveSession : System.Web.UI.Page
         var userID = User.Identity.GetUserId();
         var newestSes = newSes.GetNewestSession(userID);
 
-        return mtm.GetImagesOnSession(newestSes).Select(i => imgSes.GetImageOnId(i.ImgId).ToList()).FirstOrDefault();
-    }
 
+        //var imgs = mtm.GetImagesOnSession(newestSes).Select(i => imgSes.GetImageOnId(i.ImgId).ToList()).Select(i => i);
+
+        //var imgsOnSes = mtm.GetImagesOnSession(newestSes).Select(i => i.ImgId);
+
+        var imgs = imgSes.GetImageOnId(newestSes).Select(x => x);
+
+        return imgs.ToList();
+    }
 }

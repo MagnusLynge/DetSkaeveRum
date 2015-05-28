@@ -36,6 +36,18 @@ public class ImagesForSession
         return query.id;
     }
 
+    public List<Image> GetImageOnId(int sesID)
+    {
+        //var query = _db.Images.Where(i => i.id == ID).Select(i => i);
+        //return query.ToList();
+        return (
+            from sessionImage in _db.MtoMImgs
+            join image in _db.Images on sessionImage.ImgId equals image.id
+            where sessionImage.SessionId == sesID
+            select image
+            ).ToList();
+    }
+
     public List<Image> GetAllImages()
     {
         var query = _db.Images.OrderByDescending(i => i.id).Select(i => i);

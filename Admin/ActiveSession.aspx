@@ -4,9 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-
-
-
     <div class="container" style="width: 100%">
         <div class="row" style="background-color: black">
             <div class="col-md-12" style="align-content: center">
@@ -22,9 +19,6 @@
             </div>
         </div>
     </div>
-
-
-
 
 </asp:Content>
 
