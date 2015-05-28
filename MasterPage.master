@@ -15,6 +15,8 @@
     <title>Det Skæve Rum</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <meta name="description" content="Det skæve rum på Mellervangskolen - hvor idéer kommer til" />
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -43,8 +45,10 @@
                                 <li id="navreglink" runat="server"><a href="~/Admin/Register.aspx" runat="server">Ny bruger</a></li>
                                 <li id="createseslink" runat="server"><a href="~/Admin/CreateSession.aspx" runat="server">Lav Session</a></li>
                                 <li id="seslink" runat="server"><a href="Admin/AllMySessions.aspx" runat="server">Sessioner</a></li>
+
                                 <li>
                                     <asp:LinkButton ID="btnLogout" runat="server" Text="Log ud" OnClick="LogOut" Visible="True" /></li>
+                                <li id="filler" runat="server"></li>
                             </LoggedInTemplate>
                             <AnonymousTemplate>
                                 <li id="LoginLink" runat="server"><a href="~/Login.aspx" runat="server">Login</a></li>
