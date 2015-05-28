@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Web;
 
 public class AudioForSession
@@ -23,19 +24,26 @@ public class AudioForSession
 
     public void DeleteAudioFile(int itemId)
     {
-        var query = _db.Audios.Where(x => x.id == itemId).Select(x => x);
-        var delObj = query.ToList()[0];
+        var query = _db.Audios.Where(x => x.id == itemId).Select(x => x).First();
 
-        _db.Audios.DeleteOnSubmit(delObj);
+        Audio delAudio = _db.Audios.Where(x => x.id == itemId).Select(x => x).FirstOrDefault();
+
+        _db.Audios.DeleteOnSubmit(delAudio);
+
+        _db.SubmitChanges();
+
+
+
+        File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/Audio/") + query.AudioName);
     }
 
     public void CreateAudioFile(string name)
     {
         var query = new Audio { AudioName = name };
-        //var check = GetAudioFile(name);
+        var check = GetAudioFile(name);
 
-        //if (check != null && name.Equals(check[0].AudioName))
-        //    return;
+        if (check != null && name.Equals(check[0].AudioName))
+            return;
 
         _db.Audios.InsertOnSubmit(query);
         _db.SubmitChanges();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -38,12 +39,14 @@ public partial class AudioPage : System.Web.UI.Page
             lblErrorText.Text = "Filename Too Long";
         }
     }
+
+
     protected void btnDeleteListItem_Click(object sender, EventArgs e)
     {
         LinkButton thisBtn = (LinkButton)sender;
         int deleteId = Convert.ToInt32(thisBtn.CommandArgument);
         aus.DeleteAudioFile(deleteId);
-        //TODO: delete from folder also
+
         
         Response.Redirect(Request.RawUrl);
         

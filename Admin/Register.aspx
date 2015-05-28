@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
     <%-- Copied from asp.net --%>
 
     <div class="container" style="padding-top: 200px;">
@@ -22,9 +23,9 @@
                     <div style="margin-top: 5px;">
                         <asp:TextBox runat="server" ID="Password" CssClass="input-lg" Placeholder="Password" TextMode="Password" />
                     </div>
-                    <div style="margin-top: 5px;">
+                   <%-- <div style="margin-top: 5px;">
                         <asp:TextBox runat="server" ID="ConfirmPassword" CssClass="input-lg" Placeholder="Bekræft Password" TextMode="Password" />
-                    </div>
+                    </div>--%>
                     <div style="margin-top: 5px;">
                         <asp:Label ID="lblRegisterSuccess" runat="server" ForeColor="Green" Visible="False" Text=""></asp:Label>
                         <asp:Label ID="lblRegisterError" runat="server" ForeColor="Red" Visible="False" Text=""></asp:Label>
