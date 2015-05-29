@@ -46,9 +46,14 @@ public class RolesForSession
         }
         _db.Roles.InsertOnSubmit(query);
         _db.SubmitChanges();
+    }
 
-
-
+    public List<Role> GetRoleOnId(int sesID)
+    {
+        return (from sessionRole in _db.MtoMRoles
+            join role in _db.Roles on sessionRole.RoleId equals role.id
+            where sessionRole.SessionId == sesID
+            select role).ToList();
     }
 
     public List<Role> GetAllRoles()
