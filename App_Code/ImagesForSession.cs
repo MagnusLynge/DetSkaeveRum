@@ -38,6 +38,8 @@ public class ImagesForSession
 
     public List<Image> GetImageOnId(int sesID)
     {
+        //var query = _db.Images.Where(i => i.id == ID).Select(i => i);
+        //return query.ToList();
         return (
             from sessionImage in _db.MtoMImgs
             join image in _db.Images on sessionImage.ImgId equals image.id

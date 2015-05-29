@@ -88,14 +88,6 @@ public class WordForSession
         return query.id;
     }
 
-    public List<Word> GetWordOnId(int sesID)
-    {
-        return (from sessionWord in _db.MtoMWords
-            join word in _db.Words on sessionWord.WordId equals word.id
-            where sessionWord.SessionId == sesID
-            select word).ToList();
-    }
-
     public List<Word> GetAllWords()
     {
         var query = _db.Words.OrderBy(i => i.Word1).Select(i => i);
