@@ -19,5 +19,12 @@ public class Sessions
         var query = _db.Sessions.Where(i => i.TeacherId == teaID).Select(i => i);
         return query.ToList();
     }
+    public int getSessionIDByName(string sesName)
+    {
+        var query = _db.Sessions.Where(i => i.SesName == sesName).Select(i => i).First();
+
+        if (query.id == null) { return 0; }
+        else { return query.id; }
+    }
 
 }
