@@ -46,6 +46,14 @@ public class WordForSession
         _db.SubmitChanges();
     }
 
+    public List<Word> GetWordOnId(int sesID)
+    {
+        return (from sessionWord in _db.MtoMWords
+                join word in _db.Words on sessionWord.WordId equals word.id
+                where sessionWord.SessionId == sesID
+                select word).ToList();
+    }
+
     public bool CheckIfWordExists(string word)
     {
         var check = _db.Words.Where(i => i.Word1 == word).Select(i => i).Count();

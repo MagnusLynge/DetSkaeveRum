@@ -46,6 +46,12 @@ public class CreateSes
         return query;
     }
 
+    public List<Session> GetSessionOnID(int ID)
+    {
+        var query = _db.Sessions.Where(i => i.id == ID).Select(i => i);
+        return query.ToList();
+    }
+
     public void CreateNewSession(string teacherId, bool active, string sesName)
     {
         var query = new Session {TeacherId = teacherId, Active = active, SesName = sesName};

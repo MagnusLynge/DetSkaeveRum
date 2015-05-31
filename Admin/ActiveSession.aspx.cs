@@ -11,6 +11,8 @@ public partial class ActiveSession : System.Web.UI.Page
     ManyToMany mtm = new ManyToMany();
     CreateSes newSes = new CreateSes();
     ImagesForSession imgSes = new ImagesForSession();
+    RolesForSession rolSes = new RolesForSession();
+    WordForSession wrdSes = new WordForSession();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -18,21 +20,43 @@ public partial class ActiveSession : System.Web.UI.Page
         {
             repImgs.DataSource = ImagesForSession();
             repImgs.DataBind();
+
+            repRol.DataSource = RolesForSession();
+            repRol.DataBind();
+
+            repWrd.DataSource = WordsForSession();
+            repWrd.DataBind();
         }
     }
 
     public List<Image> ImagesForSession()
     {
-        var userID = User.Identity.GetUserId();
-        var newestSes = newSes.GetNewestSession(userID);
+        var sesID = 0;
+        int.TryParse(Request.QueryString["id"], out sesID);
 
-
-        //var imgs = mtm.GetImagesOnSession(newestSes).Select(i => imgSes.GetImageOnId(i.ImgId).ToList()).Select(i => i);
-
-        //var imgsOnSes = mtm.GetImagesOnSession(newestSes).Select(i => i.ImgId);
-
-        var imgs = imgSes.GetImageOnId(newestSes).Select(x => x);
-
+        var newestSes = newSes.GetSessionOnID(sesID);
+        var imgs = imgSes.GetImageOnId(sesID).Select(x => x);
         return imgs.ToList();
     }
+
+    public List<Role> RolesForSession()
+    {
+        var sesID = 0;
+        int.TryParse(Request.QueryString["id"], out sesID);
+
+        var newestSes = newSes.GetSessionOnID(sesID);
+        var rols = rolSes.GetRoleOnId(sesID).Select(x => x);
+        return rols.ToList();
+    }
+
+    public List<Word> WordsForSession()
+    {
+        var sesID = 0;
+        int.TryParse(Request.QueryString["id"], out sesID);
+
+        var newestSes = newSes.GetSessionOnID(sesID);
+        var wrds = wrdSes.GetWordOnId(sesID).Select(x => x);
+        return wrds.ToList();
+    }
+
 }

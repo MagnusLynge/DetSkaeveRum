@@ -23,6 +23,14 @@ public class RolesForSession
 
     }
 
+    public List<Role> GetRoleOnId(int sesID)
+    {
+        return (from sessionRole in _db.MtoMRoles
+                join role in _db.Roles on sessionRole.RoleId equals role.id
+                where sessionRole.SessionId == sesID
+                select role).ToList();
+    }
+
     public void UpdateRole(string role, string roleUpd)
     {
         var updateObj = GetRole(role);
