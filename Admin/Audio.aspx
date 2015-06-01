@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Audio.aspx.cs" Inherits="Admin_Audio" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="container" style="padding-top: 60px">
         <div class="panel">
             <asp:FileUpload ID="fileUploader" runat="server" AllowMultiple="true" />
@@ -16,7 +16,12 @@
                     <ItemTemplate>
                         <li class="list-group-item">
                             <asp:Label ID="lblListItemName" Text='<%# Eval("AudioName") %>' runat="server" />
-                            <asp:LinkButton ID="btnDeleteListItem" Text="Remove" CommandArgument='<%# Eval("id") %>' OnClick= "btnDeleteListItem_Click" CssClass="pull-right" runat="server" />
+                            <asp:LinkButton ID="btnDeleteListItem" Text="Remove" CommandArgument='<%# Eval("id") %>' OnClick="btnDeleteListItem_Click" CssClass="pull-right" runat="server" />
+                            <div style="padding-top: 8px">
+                                <audio controls="controls" runat="server">
+                                    <source src='<%# string.Format("/Audio/{0}", Eval("AudioName")) %>' type="audio/mp3" />
+                                </audio>
+                            </div>
                         </li>
                     </ItemTemplate>
                 </asp:Repeater>
