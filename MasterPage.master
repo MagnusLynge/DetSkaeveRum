@@ -41,6 +41,7 @@
                             <LoggedInTemplate>
 
                                 <li id="navImgLink" runat="server"><a href="~/Admin/Images.aspx" runat="server">Billeder</a></li>
+                                <li id="navAudioLink" runat="server"><a href="~/Admin/Audio.aspx" runat="server">Lyd</a></li>
                                 <li id="navwordslink" runat="server"><a href="~/Admin/WordPage.aspx" runat="server">Ord</a></li>
                                 <li id="navroleslink" runat="server"><a href="~/Admin/RolesPage.aspx" runat="server">Roller</a></li>
                                 <li id="navreglink" runat="server"><a href="~/Admin/Register.aspx" runat="server">Ny bruger</a></li>
