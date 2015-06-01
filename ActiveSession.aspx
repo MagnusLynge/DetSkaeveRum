@@ -11,7 +11,7 @@
         <div class="row" style="background-color: black">
             <div class="col-md-12" style="align-content: center">
                 <div class="container">
-                    <div class="fotorama" data-arrows="false" data-nav="false" data-autoplay="true" data-autoplay="1000" data-click="false" data-swipe="false" data-stopautoplayontouch="false">
+                    <div class="fotorama" data-arrows="false" data-nav="false" data-autoplay="1000" data-click="false" data-swipe="false" data-stopautoplayontouch="false">
                         <asp:Repeater ID="repImgs" runat="server">
                             <ItemTemplate>
                                 <asp:Image ID="imgs" ImageUrl='<%# string.Format("~/Images/{0}", Eval("FileName")) %>' runat="server" />
