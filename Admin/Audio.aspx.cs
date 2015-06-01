@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class AudioPage : System.Web.UI.Page
+public partial class Admin_Audio : System.Web.UI.Page
 {
     AudioForSession aus = new AudioForSession();
 
@@ -47,9 +46,9 @@ public partial class AudioPage : System.Web.UI.Page
         int deleteId = Convert.ToInt32(thisBtn.CommandArgument);
         aus.DeleteAudioFile(deleteId);
 
-        
+
         Response.Redirect(Request.RawUrl);
-        
+
     }
 
     protected void CreateList()
