@@ -8,7 +8,11 @@
         <div class="row" style="padding-top: 15px;">
             <div class="col-lg-12">
                 <div class="container">
+<<<<<<< HEAD
+                    <div class="fotorama" data-arrows="false" data-nav="false" data-autoplay="1000" data-click="false" data-swipe="false" data-stopautoplayontouch="false">
+=======
                     <div class="fotorama" data-arrows="false" data-maxheight="641" data-nav="false" data-autoplay="1000" data-click="false" data-swipe="false" data-stopautoplayontouch="false" data-transition="crossfade" data-shuffle="false" data-fit="contain">
+>>>>>>> origin/master
                         <asp:Repeater ID="repImgs" runat="server">
                             <ItemTemplate>
                                 <asp:Image ID="imgs" ImageUrl='<%# string.Format("~/Images/{0}", Eval("FileName")) %>' runat="server" />
