@@ -31,7 +31,9 @@
                                     <asp:Label ID="lblSesOnTeacher" runat="server" Font-Bold="True" Text='<%#Eval("SesName")%>'></asp:Label>
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-4">
-                                    <a class="btn btn-default" style="width: 100px;" href="ActiveSession.aspx?id=<%# Eval("id") %>" role="button">Se Session</a>
+
+                                    <asp:HyperLink ID="hlSes" runat="server" CssClass="btn btn-default" Width="100px" NavigateUrl='<%#Eval("id", "~/ActiveSession.aspx?id={0}") %>'>Se Session</asp:HyperLink>
+                                    <%--<a class="btn btn-default" style="width: 100px;" href="ActiveSession.aspx?id=<%# Eval("id") %>" role="button">Se Session</a>--%>
                                 </div>
                             </div>
                             <hr />
