@@ -35,8 +35,7 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li id="navhomelink" runat="server"><a href="~/Default.aspx" runat="server">Hjem</a></li>
-                        <li id="navsessionlink" runat="server"><a href="~/FindSession.aspx" runat="server">Session</a></li>
-                        <%--                        <li id="LoginLink" runat="server"><a href="Login.aspx">Login</a></li>--%>
+                        <li id="navsessionlink" runat="server"><a href="~/FindSession.aspx" runat="server">Session</a></li>                    
                         <asp:LoginView ID="LoginView1" runat="server">
                             <LoggedInTemplate>
 
