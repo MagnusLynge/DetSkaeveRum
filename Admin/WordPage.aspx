@@ -28,8 +28,7 @@
                         <div class="col-md-6" style="padding-top: 15px;">
                             <asp:Button ID="btnSubmit" CssClass="btn btn-default" runat="server" Text="Indsæt" OnClick="btnSubmit_Click" />
                             <asp:Button ID="btnDel" CssClass="btn btn-default" runat="server" Text="Slet" OnClick="btnDel_Click" />
-                            <asp:Label ID="lblWordAddedSuccess" runat="server" Visible="False" ForeColor="Green" Font-Bold="True" Text=""></asp:Label>
-                            <asp:Label ID="lblWordAllreadyExists" runat="server" Visible="False" ForeColor="Red" Font-Bold="True" Text=""></asp:Label>
+                            <asp:Label ID="lblStatus" runat="server" Visible="False" ForeColor="Red" Font-Bold="True" Text=""></asp:Label>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 15px">

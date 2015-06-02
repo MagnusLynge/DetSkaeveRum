@@ -16,24 +16,36 @@ namespace Admin
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             var wordForSubmit = txtWord.Text.ToUpper();
-
-            if (word.CheckIfWordExists(txtWord.Text.ToUpper()) == false)
+            if (txtWord.Text != "")
             {
-                lblWordAddedSuccess.Text= txtWord.Text.ToUpper() + " blev tilføjet!";
-            
-                lblWordAddedSuccess.Visible = true;
-                lblWordAllreadyExists.Visible = false;
+                if (word.CheckIfWordExists(txtWord.Text.ToUpper()) == false)
+                {
 
-                word.CreateWord(wordForSubmit);
+                    lblStatus.Text = txtWord.Text.ToUpper() + " blev tilføjet!";
+
+                    lblStatus.ForeColor = System.Drawing.Color.Green;
+
+
+
+                    lblStatus.Visible = true;
+
+
+                    word.CreateWord(wordForSubmit);
+                }
+                else
+                {
+                    lblStatus.Text = txtWord.Text.ToUpper() + " eksistere allerede!";
+                    lblStatus.ForeColor = System.Drawing.Color.Red;
+                    lblStatus.Visible = true;
+
+                }
             }
             else
             {
-                lblWordAllreadyExists.Text = txtWord.Text.ToUpper() + " eksistere allerede!";
-            
-                lblWordAllreadyExists.Visible = true;
-                lblWordAddedSuccess.Visible = false;
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                lblStatus.Text = "Tekst boksen er tom";
+                lblStatus.Visible = true;
             }
-
 
             RepeaterWord.DataSource = word.GetAllWords();
             RepeaterWord.DataBind();
@@ -51,6 +63,10 @@ namespace Admin
             word.DeleteWord(wordForDel);
             RepeaterWord.DataSource = word.GetAllWords();
             RepeaterWord.DataBind();
+            lblStatus.Text = txtWord.Text.ToUpper() + " er slettet!";
+            lblStatus.ForeColor = System.Drawing.Color.Red;
+            lblStatus.Visible = true;
+
             txtWord.Text = String.Empty;
             lblAmountWordsCount.Text = word.CountAllWords().ToString();
 
