@@ -14,7 +14,7 @@ public partial class FindSession : System.Web.UI.Page
     }
     protected void btnSes_Click(object sender, EventArgs e)
     {
-        String sesName = txtSession.Text;
+        String sesName = txtSession.Text.ToUpper();
         int sesID = ses.getSessionIDByName(sesName);
         if (sesID != 0)
         {

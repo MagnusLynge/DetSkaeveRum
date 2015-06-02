@@ -30,7 +30,7 @@ namespace Admin
         protected void btnCreateSession_Click(object sender, EventArgs e)
         {
             var userID = User.Identity.GetUserId();
-            newSes.CreateNewSession(userID, true, txtSesName.Text);
+            newSes.CreateNewSession(userID, true, txtSesName.Text.ToUpper());
 
             foreach (RepeaterItem i in repImagesOnSes.Items)
             {

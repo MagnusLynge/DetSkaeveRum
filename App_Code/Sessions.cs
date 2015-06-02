@@ -21,10 +21,16 @@ public class Sessions
     }
     public int getSessionIDByName(string sesName)
     {
-        var query = _db.Sessions.Where(i => i.SesName == sesName).Select(i => i).First();
+        if(_db.Sessions.Any(s => s.SesName == sesName))
+        {
+            var query = _db.Sessions.Where(i => i.SesName == sesName).Select(i => i).First();
+            return query.id;
+        }
+        else
+        {
+            return 0;
+        }
 
-        if (query.id == null) { return 0; }
-        else { return query.id; }
     }
 
 }
