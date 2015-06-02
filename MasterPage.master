@@ -44,7 +44,6 @@
                                 <li id="navAudioLink" runat="server"><a href="~/Admin/Audio.aspx" runat="server">Lyd</a></li>
                                 <li id="navwordslink" runat="server"><a href="~/Admin/WordPage.aspx" runat="server">Ord</a></li>
                                 <li id="navroleslink" runat="server"><a href="~/Admin/RolesPage.aspx" runat="server">Roller</a></li>
-                                <li id="navaudiolink" runat="server"><a href="~/Admin/Audio.aspx" runat="server">Lyd</a></li>
                                 <li id="navreglink" runat="server"><a href="~/Admin/Register.aspx" runat="server">Ny bruger</a></li>
                                 <li id="createseslink" runat="server"><a href="~/Admin/CreateSession.aspx" runat="server">Lav Session</a></li>
                                 <li id="seslink" runat="server"><a href="Admin/AllMySessions.aspx" runat="server">Mine Sessioner</a></li>

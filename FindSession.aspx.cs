@@ -20,5 +20,9 @@ public partial class FindSession : System.Web.UI.Page
         {
             Response.Redirect("~/ActiveSession.aspx?id=" + sesID);
         }
+        else
+        {
+            lblStatus.Visible = true;
+        }
     }
 }

@@ -22,7 +22,7 @@
                     </div>
 
 
-                <asp:Label ID="lblStatus" runat="server" Text="Login forkert" ForeColor="red" Visible="False"></asp:Label>
+                <asp:Label ID="lblStatus" runat="server" Text="Session findes ikke" ForeColor="red" Visible="False"></asp:Label>
             </div>
             </div>
         </div>
