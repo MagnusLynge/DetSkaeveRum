@@ -18,14 +18,24 @@ public partial class Admin_Audio : System.Web.UI.Page
     {
         try
         {
+            lblErrorText.Text = "";
+            string namesForErrorMessage = "";
+
             if (fileUploader.HasFiles)
             {
                 foreach (var item in fileUploader.PostedFiles)
                 {
-                    aus.CreateAudioFile(item.FileName);
-                    item.SaveAs(Server.MapPath("~/Audio/" + item.FileName));
+                    if (!item.FileName.EndsWith(".mp3", System.StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        namesForErrorMessage += "'" + item.FileName + "', ";
+                        lblErrorText.Text = namesForErrorMessage + "could not be uploadet. The only supported extensions are .mp3";
+                    }
+                    else
+                    {
+                        aus.CreateAudioFile(item.FileName);
+                        item.SaveAs(Server.MapPath("~/Audio/" + item.FileName));
+                    }
                 }
-                lblErrorText.Text = "";
             }
             CreateList();
         }
@@ -45,10 +55,7 @@ public partial class Admin_Audio : System.Web.UI.Page
         LinkButton thisBtn = (LinkButton)sender;
         int deleteId = Convert.ToInt32(thisBtn.CommandArgument);
         aus.DeleteAudioFile(deleteId);
-
-
         Response.Redirect(Request.RawUrl);
-
     }
 
     protected void CreateList()
