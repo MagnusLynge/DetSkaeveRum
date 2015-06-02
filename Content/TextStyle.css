@@ -1,0 +1,12 @@
+﻿body {
+}
+
+.rolPah{
+        font-size: 30px;
+    }
+
+@media (max-width: 767px) {
+    .rolPah{
+        font-size: 18px;
+    }
+}

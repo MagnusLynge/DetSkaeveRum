@@ -14,7 +14,7 @@
     <link href="signin.css" rel="stylesheet" />
     <link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet" />
     <!-- 3 KB -->
-
+    <link href="Content/TextStyle.css" rel="stylesheet" />
     <title>Det Skæve Rum</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
