@@ -35,7 +35,7 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li id="navhomelink" runat="server"><a href="~/Default.aspx" runat="server">Hjem</a></li>
-                        <li id="navsessionlink" runat="server"><a href="~/FindSession.aspx" runat="server">Session</a></li>                    
+                        <li id="navsessionlink" runat="server"><a href="~/FindSession.aspx" runat="server">Session</a></li>
                         <asp:LoginView ID="LoginView1" runat="server">
                             <LoggedInTemplate>
 
@@ -81,6 +81,8 @@
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
     <!-- 16 KB -->
+
+    <script src="Content/LazyLoad.js"></script>
 
 </body>
 </html>

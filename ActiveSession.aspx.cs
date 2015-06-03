@@ -18,14 +18,70 @@ public partial class ActiveSession : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            repImgs.DataSource = ImagesForSession();
-            repImgs.DataBind();
-
-            repRol.DataSource = RolesForSession();
-            repRol.DataBind();
-
-            repWrd.DataSource = WordsForSession();
-            repWrd.DataBind();
+            if (ImagesForSession().Count > 0 && RolesForSession().Count > 0 && WordsForSession().Count > 0)
+            {
+                repImgs.DataSource = ImagesForSession();
+                repImgs.DataBind();
+                repRol.DataSource = RolesForSession();
+                repRol.DataBind();
+                repWrd.DataSource = WordsForSession();
+                repWrd.DataBind();
+            }
+            else if (ImagesForSession().Count > 0 && RolesForSession().Count > 0 && WordsForSession().Count <= 0)
+            {
+                repWrd.Visible = false;
+                repImgs.DataSource = ImagesForSession();
+                repImgs.DataBind();
+                repRol.DataSource = RolesForSession();
+                repRol.DataBind();
+            }
+            else if (ImagesForSession().Count > 0 && WordsForSession().Count > 0 && RolesForSession().Count <= 0)
+            {
+                repRol.Visible = false;
+                repImgs.DataSource = ImagesForSession();
+                repImgs.DataBind();
+                repWrd.DataSource = WordsForSession();
+                repWrd.DataBind();
+            }
+            else if (RolesForSession().Count > 0 && WordsForSession().Count > 0 && ImagesForSession().Count <= 0)
+            {
+                repImgs.Visible = false;
+                imgBack.Visible = false;
+                wordDiv.Attributes["style"] = "padding-top: 200px";
+                repRol.DataSource = RolesForSession();
+                repRol.DataBind();
+                repWrd.DataSource = WordsForSession();
+                repWrd.DataBind();
+            }
+            else if (ImagesForSession().Count > 0 && RolesForSession().Count <= 0 && WordsForSession().Count <= 0)
+            {
+                repRol.Visible = false;
+                repWrd.Visible = false;
+                wordDiv.Visible = false;
+                roleDiv.Visible = false;
+                repImgs.DataSource = ImagesForSession();
+                repImgs.DataBind();
+            }
+            else if (ImagesForSession().Count <= 0 && WordsForSession().Count > 0 && RolesForSession().Count <= 0)
+            {
+                repImgs.Visible = false;
+                repRol.Visible = false;
+                imgBack.Visible = false;
+                wordDiv.Visible = false;
+                wordDiv.Attributes["style"] = "padding-top: 200px";
+                repWrd.DataSource = WordsForSession();
+                repWrd.DataBind();
+            }
+            else if (RolesForSession().Count > 0 && WordsForSession().Count <= 0 && ImagesForSession().Count <= 0)
+            {
+                repImgs.Visible = false;
+                repWrd.Visible = false;
+                imgBack.Visible = false;
+                roleDiv.Visible = false;
+                roleDiv.Attributes["style"] = "padding-top: 200px";
+                repRol.DataSource = RolesForSession();
+                repRol.DataBind();
+            }
         }
     }
 

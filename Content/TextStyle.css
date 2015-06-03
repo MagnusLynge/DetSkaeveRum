@@ -2,7 +2,11 @@
 }
 
 .rolPah{
-        font-size: 30px;
+        font-size: 30px !important;
+    }
+
+.rolPah-lg{
+        font-size: 100px !important;
     }
 
 @media (max-width: 767px) {

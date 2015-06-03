@@ -43,7 +43,7 @@
                         <ItemTemplate>
                             <div class="row">
                                 <div class="col-md-10 col-sm-10 col-xs-10">
-                                    <asp:Image ID="imgForSession" CssClass="img-responsive" runat="server" ImageUrl='<%# string.Format("~/Images/{0}", Eval("FileName")) %>' Height="150px" />                                                                    
+                                    <asp:Image ID="imgForSession" CssClass="img-responsive lazy" runat="server" ImageUrl='<%# string.Format("~/Images/{0}", Eval("FileName")) %>' Height="150px" />                                                                    
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2" style="padding-top: 65px;">
                                     <asp:CheckBox ID="imgCheckBox" runat="server" />
