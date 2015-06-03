@@ -30,13 +30,6 @@ public class WordForSession
 	}
     #endregion
 
-    public void DeleteWord(string word)
-    {
-        Word delWrd = _db.Words.Where(i => i.Word1 == word).Select(i => i).FirstOrDefault();
-        if (delWrd == null) return;
-        _db.Words.DeleteOnSubmit(delWrd);
-        _db.SubmitChanges();
-    }
 
     public void UpdateWord(string word)
     {
@@ -106,6 +99,39 @@ public class WordForSession
     {
         var query = _db.Words.Where(i => i.Word1 == word).OrderBy(i => i.Word1).Select(i => i);
         return query.ToList();
+    }
+
+    public void DeleteWord(string word)
+    {
+        int wordId = GetWordId(word);
+        if (checkMtm(wordId) == true) ;
+        {
+            List<MtoMWord> list = GetMtoMSpecific(wordId);
+            _db.MtoMWords.DeleteAllOnSubmit(list);
+        }
+
+        Word delWrd = _db.Words.Where(i => i.Word1 == word).Select(i => i).FirstOrDefault();
+        if (delWrd == null) return;
+        _db.Words.DeleteOnSubmit(delWrd);
+        _db.SubmitChanges();
+    }
+
+    public List<MtoMWord> GetMtoMSpecific(int wordid)
+    {
+        var query = _db.MtoMWords.Where(i => i.WordId == wordid).Select(i => i);
+        return query.ToList();
+    }
+
+    public bool checkMtm(int wordId)
+    {
+        if (_db.MtoMWords.Any(i => i.WordId == wordId))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     #region propeties

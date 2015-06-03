@@ -12,17 +12,6 @@ public class RolesForSession
 
     }
 
-    public void DeleteRole(string role)
-    {
-        var deleteObj = GetRole(role);
-
-        if (deleteObj == null) return;
-        
-        _db.Roles.DeleteOnSubmit(deleteObj[0]);
-        _db.SubmitChanges();
-
-    }
-
     public List<Role> GetRoleOnId(int sesID)
     {
         return (from sessionRole in _db.MtoMRoles
@@ -109,4 +98,40 @@ public class RolesForSession
         return true;
     }
 
+    public void DeleteRole(string role)
+    {
+        int roleId = GetRoleId(role);
+        if(checkMtm(roleId) == true)
+        {
+            List<MtoMRole> list = GetMtoMSpecific(roleId);
+            _db.MtoMRoles.DeleteAllOnSubmit(list);
+        }
+
+        var deleteObj = GetRole(role);
+
+        if (deleteObj == null) return;
+
+        _db.Roles.DeleteOnSubmit(deleteObj[0]);
+        _db.SubmitChanges();
+
+    }
+
+   
+    public List<MtoMRole> GetMtoMSpecific(int roleId)
+    {
+        var query = _db.MtoMRoles.Where(i => i.RoleId == roleId).Select(i => i);
+        return query.ToList();
+    }
+
+    public bool checkMtm(int roleId)
+    {
+        if (_db.MtoMRoles.Any(i => i.RoleId == roleId))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
