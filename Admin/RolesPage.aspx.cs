@@ -43,7 +43,7 @@ namespace Admin
             if (rpg.CheckIfRoleExists(roleToCheck))
             {
                 lblRoleInputConfirm.Text = "Ordet " + roleToCheck + " blev slettet!";
-                lblRoleInputConfirm.ForeColor = System.Drawing.Color.Green;
+                lblRoleInputConfirm.ForeColor = System.Drawing.Color.Red;
 
                 rpg.DeleteRole(roleToCheck);
                 CreateGrid();
