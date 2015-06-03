@@ -8,18 +8,45 @@ public class AudioForSession
 {
     private DBDataContext _db = DBCon.GetDB();
 
-	public AudioForSession()
-	{
-	}
+    public AudioForSession()
+    {
+    }
 
     public void DeleteAudioFile(string name)
     {
+        int id = GetAudioId(name);
+        if (checkMtm(id) == true)
+        {
+            List<MtoMAudio> list = GetMtoMSpecific(id);
+            _db.MtoMAudios.DeleteAllOnSubmit(list);
+        }
+
         var deleteObj = GetAudioFile(name);
 
         if (deleteObj.Count == 0)
             return;
         _db.Audios.DeleteOnSubmit(deleteObj[0]);
         _db.SubmitChanges();
+    }
+
+
+
+    public List<MtoMAudio> GetMtoMSpecific(int audioid)
+    {
+        var query = _db.MtoMAudios.Where(i => i.AudioId == audioid).Select(i => i);
+        return query.ToList();
+    }
+
+    public bool checkMtm(int audioId)
+    {
+        if (_db.MtoMAudios.Any(i => i.AudioId == audioId))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void DeleteAudioFile(int itemId)
@@ -65,5 +92,11 @@ public class AudioForSession
     {
         var query = _db.Audios.OrderBy(x => x.AudioName).Select(x => x);
         return query.ToList();
+    }
+
+    public int GetAudioId(string name)
+    {
+        var query = _db.Audios.Where(x => x.AudioName == name).Select(x => x).First();
+        return query.id;
     }
 }
