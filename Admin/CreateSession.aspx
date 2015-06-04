@@ -134,7 +134,7 @@
                                     <asp:Label ID="lblAudioSes" Font-Bold="True" runat="server" Text='<%# string.Format(Eval("AudioName").ToString()) %>'></asp:Label>
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2" style="">
-                                    <asp:CheckBox ID="checkAudio" runat="server" />
+                                    <asp:CheckBox ID="checkAudio" runat="server" OnCheckedChanged="checkAudio_CheckedChanged"/>
                                 </div>
                             </div>
                             <hr />

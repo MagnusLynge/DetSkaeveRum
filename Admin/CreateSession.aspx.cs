@@ -81,7 +81,7 @@ namespace Admin
                     chk.Checked = true;
                 }
             }
-            else if(!checkAllImgs.Checked)
+            else if (!checkAllImgs.Checked)
             {
                 foreach (RepeaterItem i in repImagesOnSes.Items)
                 {
@@ -149,5 +149,17 @@ namespace Admin
             }
         }
 
+        protected void checkAudio_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (RepeaterItem i in repAudiosOnSes.Items)
+            {
+                var checkbox = (CheckBox)i.FindControl("checkAudio");
+
+                if(!checkbox.Equals((CheckBox)sender))
+                {
+                    checkbox.Checked = false;
+                }
+            }
+        }
     }
 }
