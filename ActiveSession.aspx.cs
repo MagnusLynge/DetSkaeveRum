@@ -13,6 +13,7 @@ public partial class ActiveSession : System.Web.UI.Page
     ImagesForSession imgSes = new ImagesForSession();
     RolesForSession rolSes = new RolesForSession();
     WordForSession wrdSes = new WordForSession();
+    AudioForSession audSes = new AudioForSession();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -82,6 +83,12 @@ public partial class ActiveSession : System.Web.UI.Page
                 repRol.DataSource = RolesForSession();
                 repRol.DataBind();
             }
+
+            if (AudioForSession().Count > 0)
+            {
+                repAudio.DataSource = AudioForSession();
+                repAudio.DataBind();
+            }
         }
     }
 
@@ -115,4 +122,13 @@ public partial class ActiveSession : System.Web.UI.Page
         return wrds.ToList();
     }
 
+    public List<Audio> AudioForSession()
+    {
+        var sesID = 0;
+        int.TryParse(Request.QueryString["id"], out sesID);
+
+        var newestSes = newSes.GetSessionOnID(sesID);
+        var audio = audSes.GetAudioOnId(sesID);
+        return audio.ToList();
+    }
 }
