@@ -92,6 +92,17 @@ public partial class ActiveSession : System.Web.UI.Page
         }
     }
 
+    protected void repImgs_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            if (e.Item.ItemIndex == repImgs.Items.Count - 1)
+            {
+                Response.Redirect("FinishedSession.aspx");
+            }
+        }
+    }
+
     public List<Image> ImagesForSession()
     {
         var sesID = 0;

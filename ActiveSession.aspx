@@ -39,7 +39,7 @@
             <div class="col-lg-12">
                 <div class="container">
                     <div class="fotorama" data-arrows="false" data-maxheight="750" data-allowfullscreen="native" data-loop="false" data-ratio="1024/750" data-nav="false" data-autoplay="5000" data-click="false" data-swipe="false" data-stopautoplayontouch="false" data-transition="crossfade" data-shuffle="true" data-fit="contain">
-                        <asp:Repeater ID="repImgs" runat="server">
+                        <asp:Repeater ID="repImgs" runat="server" OnItemDataBound="repImgs_ItemDataBound">
                             <ItemTemplate>
                                 <asp:Image ID="imgs" ImageUrl='<%# string.Format("~/Images/{0}", Eval("FileName")) %>' runat="server" />
                             </ItemTemplate>
