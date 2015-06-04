@@ -52,7 +52,7 @@
         <div id="audioDiv" runat="server">
             <asp:Repeater ID="repAudio" runat="server">
                 <ItemTemplate>
-                    <audio id="audioPlayer" runat="server" loop="loop">
+                    <audio id="audioPlayer" runat="server" loop="loop" autoplay="autoplay">
                         <source src='<%# string.Format("/Audio/{0}", Eval("AudioName")) %>' type="audio/mp3" />
                     </audio>
                 </ItemTemplate>
