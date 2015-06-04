@@ -10,7 +10,5 @@ public partial class Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        var pageBtn = (HtmlGenericControl)Master.FindControl("navhomelink");
-        pageBtn.Attributes.Add("class", "active");
     }
 }

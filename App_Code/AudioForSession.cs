@@ -99,4 +99,12 @@ public class AudioForSession
         var query = _db.Audios.Where(x => x.AudioName == name).Select(x => x).First();
         return query.id;
     }
+
+    public List<Audio> GetAudioOnId(int sesID)
+    {
+        return (from sessionAudio in _db.MtoMAudios
+                    join audio in _db.Audios on sessionAudio.AudioId equals audio.id
+                    where sessionAudio.SessionId == sesID
+                    select audio).ToList();
+    }
 }
