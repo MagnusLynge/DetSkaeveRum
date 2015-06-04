@@ -52,4 +52,10 @@ public class ManyToMany
         return null;
     }
 
+    public void AddAudioToSession(int sesID, int audioID)
+    {
+        MtoMAudio mtau = new MtoMAudio { SessionId = sesID, AudioId = audioID };
+        _db.MtoMAudios.InsertOnSubmit(mtau);
+        _db.SubmitChanges();
+    }
 }

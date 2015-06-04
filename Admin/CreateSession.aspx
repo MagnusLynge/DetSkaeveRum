@@ -120,10 +120,7 @@
                 <div style="padding-left: 10px; padding-top: 6px; background-color: #000000; min-height: 30px; max-width: 100%; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px;">
                     <asp:Label ID="lblSesAudInfo" runat="server" Font-Bold="True" ForeColor="White" Text="Label">Vælg Lyd</asp:Label>
                     <div style="float: right; padding-right: 37px;">
-                        <asp:CheckBox ID="checkAllAuds" runat="server" AutoPostBack="True" OnCheckedChanged="checkAllAuds_CheckedChanged" />
-                    </div>
-                    <div style="float: right; padding-right: 15px;">
-                        <asp:Label ID="lblAllAuds" Font-Bold="True" ForeColor="White" runat="server" Text="Alle  "></asp:Label>
+                        <asp:LinkButton Text="Ingen Lyd" runat="server" ForeColor="#0099ff" Font-Bold="true" OnClick="checkAllAuds_CheckedChanged"></asp:LinkButton>
                     </div>
                 </div>
                 <div class="well-lg" style="-webkit-box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75); -moz-box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75); box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75);">
@@ -134,7 +131,7 @@
                                     <asp:Label ID="lblAudioSes" Font-Bold="True" runat="server" Text='<%# string.Format(Eval("AudioName").ToString()) %>'></asp:Label>
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2" style="">
-                                    <asp:CheckBox ID="checkAudio" runat="server" OnCheckedChanged="checkAudio_CheckedChanged"/>
+                                    <asp:CheckBox ID="checkAudio" runat="server" AutoPostBack="true" OnCheckedChanged="checkAudio_CheckedChanged"/>
                                 </div>
                             </div>
                             <hr />

@@ -69,6 +69,17 @@ namespace Admin
                 }
             }
 
+            foreach (RepeaterItem i in repAudiosOnSes.Items)
+            {
+                CheckBox chk = i.FindControl("checkAudio") as CheckBox;
+                if (chk.Checked)
+                {
+                    var audio = i.FindControl("lblAudioSes") as Label;
+                    var audID = aud.GetAudioId(audio.Text);
+                    mToM.AddAudioToSession(newSes.GetNewestSession(userID), Convert.ToInt32(audID));
+                }
+            }
+
             Response.Redirect("AllMySessions.aspx");
         }
         protected void checkAllImgs_CheckedChanged(object sender, EventArgs e)
@@ -131,21 +142,27 @@ namespace Admin
 
         protected void checkAllAuds_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkAllAuds.Checked)
+            //if (checkAllAuds.Checked)
+            //{
+            //    foreach (RepeaterItem i in repAudiosOnSes.Items)
+            //    {
+            //        CheckBox chk = i.FindControl("checkAudio") as CheckBox;
+            //        chk.Checked = true;
+            //    }
+            //}
+            //else if (!checkAllAuds.Checked)
+            //{
+            //    foreach (RepeaterItem i in repAudiosOnSes.Items)
+            //    {
+            //        CheckBox chk = i.FindControl("checkAudio") as CheckBox;
+            //        chk.Checked = false;
+            //    }
+            //}
+
+            foreach (RepeaterItem item in repAudiosOnSes.Items)
             {
-                foreach (RepeaterItem i in repAudiosOnSes.Items)
-                {
-                    CheckBox chk = i.FindControl("checkAudio") as CheckBox;
-                    chk.Checked = true;
-                }
-            }
-            else if (!checkAllAuds.Checked)
-            {
-                foreach (RepeaterItem i in repAudiosOnSes.Items)
-                {
-                    CheckBox chk = i.FindControl("checkAudio") as CheckBox;
-                    chk.Checked = false;
-                }
+                CheckBox chk = (CheckBox)item.FindControl("checkAudio");
+                chk.Checked = false;
             }
         }
 
@@ -155,7 +172,7 @@ namespace Admin
             {
                 var checkbox = (CheckBox)i.FindControl("checkAudio");
 
-                if(!checkbox.Equals((CheckBox)sender))
+                if (!checkbox.Equals((CheckBox)sender))
                 {
                     checkbox.Checked = false;
                 }
