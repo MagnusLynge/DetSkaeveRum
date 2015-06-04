@@ -29,21 +29,21 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 	
   #region Extensibility Method Definitions
   partial void OnCreated();
-  partial void Insert__MigrationHistory(__MigrationHistory instance);
-  partial void Update__MigrationHistory(__MigrationHistory instance);
-  partial void Delete__MigrationHistory(__MigrationHistory instance);
   partial void InsertAspNetRole(AspNetRole instance);
   partial void UpdateAspNetRole(AspNetRole instance);
   partial void DeleteAspNetRole(AspNetRole instance);
   partial void InsertAspNetUserClaim(AspNetUserClaim instance);
   partial void UpdateAspNetUserClaim(AspNetUserClaim instance);
   partial void DeleteAspNetUserClaim(AspNetUserClaim instance);
-  partial void InsertAspNetUserRole(AspNetUserRole instance);
-  partial void UpdateAspNetUserRole(AspNetUserRole instance);
-  partial void DeleteAspNetUserRole(AspNetUserRole instance);
   partial void InsertAspNetUserLogin(AspNetUserLogin instance);
   partial void UpdateAspNetUserLogin(AspNetUserLogin instance);
   partial void DeleteAspNetUserLogin(AspNetUserLogin instance);
+  partial void InsertAspNetUserRole(AspNetUserRole instance);
+  partial void UpdateAspNetUserRole(AspNetUserRole instance);
+  partial void DeleteAspNetUserRole(AspNetUserRole instance);
+  partial void Insert__MigrationHistory(__MigrationHistory instance);
+  partial void Update__MigrationHistory(__MigrationHistory instance);
+  partial void Delete__MigrationHistory(__MigrationHistory instance);
   partial void InsertAspNetUser(AspNetUser instance);
   partial void UpdateAspNetUser(AspNetUser instance);
   partial void DeleteAspNetUser(AspNetUser instance);
@@ -56,24 +56,27 @@ public partial class DBDataContext : System.Data.Linq.DataContext
   partial void InsertMtoMImg(MtoMImg instance);
   partial void UpdateMtoMImg(MtoMImg instance);
   partial void DeleteMtoMImg(MtoMImg instance);
-  partial void InsertMtoMWord(MtoMWord instance);
-  partial void UpdateMtoMWord(MtoMWord instance);
-  partial void DeleteMtoMWord(MtoMWord instance);
+  partial void InsertMtoMAudio(MtoMAudio instance);
+  partial void UpdateMtoMAudio(MtoMAudio instance);
+  partial void DeleteMtoMAudio(MtoMAudio instance);
   partial void InsertMtoMRole(MtoMRole instance);
   partial void UpdateMtoMRole(MtoMRole instance);
   partial void DeleteMtoMRole(MtoMRole instance);
+  partial void InsertMtoMWord(MtoMWord instance);
+  partial void UpdateMtoMWord(MtoMWord instance);
+  partial void DeleteMtoMWord(MtoMWord instance);
   partial void InsertRole(Role instance);
   partial void UpdateRole(Role instance);
   partial void DeleteRole(Role instance);
   partial void InsertSession(Session instance);
   partial void UpdateSession(Session instance);
   partial void DeleteSession(Session instance);
-  partial void InsertStudent(Student instance);
-  partial void UpdateStudent(Student instance);
-  partial void DeleteStudent(Student instance);
   partial void InsertWord(Word instance);
   partial void UpdateWord(Word instance);
   partial void DeleteWord(Word instance);
+  partial void InsertStudent(Student instance);
+  partial void UpdateStudent(Student instance);
+  partial void DeleteStudent(Student instance);
   #endregion
 	
 	public DBDataContext() : 
@@ -106,14 +109,6 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
-	public System.Data.Linq.Table<@__MigrationHistory> @__MigrationHistories
-	{
-		get
-		{
-			return this.GetTable<@__MigrationHistory>();
-		}
-	}
-	
 	public System.Data.Linq.Table<AspNetRole> AspNetRoles
 	{
 		get
@@ -130,6 +125,14 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
+	public System.Data.Linq.Table<AspNetUserLogin> AspNetUserLogins
+	{
+		get
+		{
+			return this.GetTable<AspNetUserLogin>();
+		}
+	}
+	
 	public System.Data.Linq.Table<AspNetUserRole> AspNetUserRoles
 	{
 		get
@@ -138,11 +141,11 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<AspNetUserLogin> AspNetUserLogins
+	public System.Data.Linq.Table<@__MigrationHistory> @__MigrationHistories
 	{
 		get
 		{
-			return this.GetTable<AspNetUserLogin>();
+			return this.GetTable<@__MigrationHistory>();
 		}
 	}
 	
@@ -170,14 +173,6 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<MtoMAudio> MtoMAudios
-	{
-		get
-		{
-			return this.GetTable<MtoMAudio>();
-		}
-	}
-	
 	public System.Data.Linq.Table<MtoMImg> MtoMImgs
 	{
 		get
@@ -186,11 +181,19 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<MtoMWord> MtoMWords
+	public System.Data.Linq.Table<MtoMAudio> MtoMAudios
 	{
 		get
 		{
-			return this.GetTable<MtoMWord>();
+			return this.GetTable<MtoMAudio>();
+		}
+	}
+	
+	public System.Data.Linq.Table<MtoMRole> MtoMRoles
+	{
+		get
+		{
+			return this.GetTable<MtoMRole>();
 		}
 	}
 	
@@ -202,11 +205,11 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<MtoMRole> MtoMRoles
+	public System.Data.Linq.Table<MtoMWord> MtoMWords
 	{
 		get
 		{
-			return this.GetTable<MtoMRole>();
+			return this.GetTable<MtoMWord>();
 		}
 	}
 	
@@ -226,14 +229,6 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<Student> Students
-	{
-		get
-		{
-			return this.GetTable<Student>();
-		}
-	}
-	
 	public System.Data.Linq.Table<Word> Words
 	{
 		get
@@ -241,138 +236,12 @@ public partial class DBDataContext : System.Data.Linq.DataContext
 			return this.GetTable<Word>();
 		}
 	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[__MigrationHistory]")]
-public partial class @__MigrationHistory : INotifyPropertyChanging, INotifyPropertyChanged
-{
 	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private string _MigrationId;
-	
-	private string _ContextKey;
-	
-	private System.Data.Linq.Binary _Model;
-	
-	private string _ProductVersion;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMigrationIdChanging(string value);
-    partial void OnMigrationIdChanged();
-    partial void OnContextKeyChanging(string value);
-    partial void OnContextKeyChanged();
-    partial void OnModelChanging(System.Data.Linq.Binary value);
-    partial void OnModelChanged();
-    partial void OnProductVersionChanging(string value);
-    partial void OnProductVersionChanged();
-    #endregion
-	
-	public @__MigrationHistory()
-	{
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MigrationId", DbType="NVarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string MigrationId
+	public System.Data.Linq.Table<Student> Students
 	{
 		get
 		{
-			return this._MigrationId;
-		}
-		set
-		{
-			if ((this._MigrationId != value))
-			{
-				this.OnMigrationIdChanging(value);
-				this.SendPropertyChanging();
-				this._MigrationId = value;
-				this.SendPropertyChanged("MigrationId");
-				this.OnMigrationIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContextKey", DbType="NVarChar(300) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string ContextKey
-	{
-		get
-		{
-			return this._ContextKey;
-		}
-		set
-		{
-			if ((this._ContextKey != value))
-			{
-				this.OnContextKeyChanging(value);
-				this.SendPropertyChanging();
-				this._ContextKey = value;
-				this.SendPropertyChanged("ContextKey");
-				this.OnContextKeyChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Model", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-	public System.Data.Linq.Binary Model
-	{
-		get
-		{
-			return this._Model;
-		}
-		set
-		{
-			if ((this._Model != value))
-			{
-				this.OnModelChanging(value);
-				this.SendPropertyChanging();
-				this._Model = value;
-				this.SendPropertyChanged("Model");
-				this.OnModelChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductVersion", DbType="NVarChar(32) NOT NULL", CanBeNull=false)]
-	public string ProductVersion
-	{
-		get
-		{
-			return this._ProductVersion;
-		}
-		set
-		{
-			if ((this._ProductVersion != value))
-			{
-				this.OnProductVersionChanging(value);
-				this.SendPropertyChanging();
-				this._ProductVersion = value;
-				this.SendPropertyChanged("ProductVersion");
-				this.OnProductVersionChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			return this.GetTable<Student>();
 		}
 	}
 }
@@ -666,6 +535,157 @@ public partial class AspNetUserClaim : INotifyPropertyChanging, INotifyPropertyC
 	}
 }
 
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUserLogins")]
+public partial class AspNetUserLogin : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private string _LoginProvider;
+	
+	private string _ProviderKey;
+	
+	private string _UserId;
+	
+	private EntityRef<AspNetUser> _AspNetUser;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLoginProviderChanging(string value);
+    partial void OnLoginProviderChanged();
+    partial void OnProviderKeyChanging(string value);
+    partial void OnProviderKeyChanged();
+    partial void OnUserIdChanging(string value);
+    partial void OnUserIdChanged();
+    #endregion
+	
+	public AspNetUserLogin()
+	{
+		this._AspNetUser = default(EntityRef<AspNetUser>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginProvider", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string LoginProvider
+	{
+		get
+		{
+			return this._LoginProvider;
+		}
+		set
+		{
+			if ((this._LoginProvider != value))
+			{
+				this.OnLoginProviderChanging(value);
+				this.SendPropertyChanging();
+				this._LoginProvider = value;
+				this.SendPropertyChanged("LoginProvider");
+				this.OnLoginProviderChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProviderKey", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string ProviderKey
+	{
+		get
+		{
+			return this._ProviderKey;
+		}
+		set
+		{
+			if ((this._ProviderKey != value))
+			{
+				this.OnProviderKeyChanging(value);
+				this.SendPropertyChanging();
+				this._ProviderKey = value;
+				this.SendPropertyChanged("ProviderKey");
+				this.OnProviderKeyChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string UserId
+	{
+		get
+		{
+			return this._UserId;
+		}
+		set
+		{
+			if ((this._UserId != value))
+			{
+				if (this._AspNetUser.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnUserIdChanging(value);
+				this.SendPropertyChanging();
+				this._UserId = value;
+				this.SendPropertyChanged("UserId");
+				this.OnUserIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserLogin", Storage="_AspNetUser", ThisKey="UserId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+	public AspNetUser AspNetUser
+	{
+		get
+		{
+			return this._AspNetUser.Entity;
+		}
+		set
+		{
+			AspNetUser previousValue = this._AspNetUser.Entity;
+			if (((previousValue != value) 
+						|| (this._AspNetUser.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._AspNetUser.Entity = null;
+					previousValue.AspNetUserLogins.Remove(this);
+				}
+				this._AspNetUser.Entity = value;
+				if ((value != null))
+				{
+					value.AspNetUserLogins.Add(this);
+					this._UserId = value.Id;
+				}
+				else
+				{
+					this._UserId = default(string);
+				}
+				this.SendPropertyChanged("AspNetUser");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUserRoles")]
 public partial class AspNetUserRole : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -834,132 +854,115 @@ public partial class AspNetUserRole : INotifyPropertyChanging, INotifyPropertyCh
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUserLogins")]
-public partial class AspNetUserLogin : INotifyPropertyChanging, INotifyPropertyChanged
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[__MigrationHistory]")]
+public partial class @__MigrationHistory : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
-	private string _LoginProvider;
+	private string _MigrationId;
 	
-	private string _ProviderKey;
+	private string _ContextKey;
 	
-	private string _UserId;
+	private System.Data.Linq.Binary _Model;
 	
-	private EntityRef<AspNetUser> _AspNetUser;
+	private string _ProductVersion;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnLoginProviderChanging(string value);
-    partial void OnLoginProviderChanged();
-    partial void OnProviderKeyChanging(string value);
-    partial void OnProviderKeyChanged();
-    partial void OnUserIdChanging(string value);
-    partial void OnUserIdChanged();
+    partial void OnMigrationIdChanging(string value);
+    partial void OnMigrationIdChanged();
+    partial void OnContextKeyChanging(string value);
+    partial void OnContextKeyChanged();
+    partial void OnModelChanging(System.Data.Linq.Binary value);
+    partial void OnModelChanged();
+    partial void OnProductVersionChanging(string value);
+    partial void OnProductVersionChanged();
     #endregion
 	
-	public AspNetUserLogin()
+	public @__MigrationHistory()
 	{
-		this._AspNetUser = default(EntityRef<AspNetUser>);
 		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginProvider", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string LoginProvider
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MigrationId", DbType="NVarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string MigrationId
 	{
 		get
 		{
-			return this._LoginProvider;
+			return this._MigrationId;
 		}
 		set
 		{
-			if ((this._LoginProvider != value))
+			if ((this._MigrationId != value))
 			{
-				this.OnLoginProviderChanging(value);
+				this.OnMigrationIdChanging(value);
 				this.SendPropertyChanging();
-				this._LoginProvider = value;
-				this.SendPropertyChanged("LoginProvider");
-				this.OnLoginProviderChanged();
+				this._MigrationId = value;
+				this.SendPropertyChanged("MigrationId");
+				this.OnMigrationIdChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProviderKey", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string ProviderKey
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContextKey", DbType="NVarChar(300) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string ContextKey
 	{
 		get
 		{
-			return this._ProviderKey;
+			return this._ContextKey;
 		}
 		set
 		{
-			if ((this._ProviderKey != value))
+			if ((this._ContextKey != value))
 			{
-				this.OnProviderKeyChanging(value);
+				this.OnContextKeyChanging(value);
 				this.SendPropertyChanging();
-				this._ProviderKey = value;
-				this.SendPropertyChanged("ProviderKey");
-				this.OnProviderKeyChanged();
+				this._ContextKey = value;
+				this.SendPropertyChanged("ContextKey");
+				this.OnContextKeyChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string UserId
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Model", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+	public System.Data.Linq.Binary Model
 	{
 		get
 		{
-			return this._UserId;
+			return this._Model;
 		}
 		set
 		{
-			if ((this._UserId != value))
+			if ((this._Model != value))
 			{
-				if (this._AspNetUser.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnUserIdChanging(value);
+				this.OnModelChanging(value);
 				this.SendPropertyChanging();
-				this._UserId = value;
-				this.SendPropertyChanged("UserId");
-				this.OnUserIdChanged();
+				this._Model = value;
+				this.SendPropertyChanged("Model");
+				this.OnModelChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserLogin", Storage="_AspNetUser", ThisKey="UserId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-	public AspNetUser AspNetUser
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductVersion", DbType="NVarChar(32) NOT NULL", CanBeNull=false)]
+	public string ProductVersion
 	{
 		get
 		{
-			return this._AspNetUser.Entity;
+			return this._ProductVersion;
 		}
 		set
 		{
-			AspNetUser previousValue = this._AspNetUser.Entity;
-			if (((previousValue != value) 
-						|| (this._AspNetUser.HasLoadedOrAssignedValue == false)))
+			if ((this._ProductVersion != value))
 			{
+				this.OnProductVersionChanging(value);
 				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._AspNetUser.Entity = null;
-					previousValue.AspNetUserLogins.Remove(this);
-				}
-				this._AspNetUser.Entity = value;
-				if ((value != null))
-				{
-					value.AspNetUserLogins.Add(this);
-					this._UserId = value.Id;
-				}
-				else
-				{
-					this._UserId = default(string);
-				}
-				this.SendPropertyChanged("AspNetUser");
+				this._ProductVersion = value;
+				this.SendPropertyChanged("ProductVersion");
+				this.OnProductVersionChanged();
 			}
 		}
 	}
@@ -1017,9 +1020,9 @@ public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChange
 	
 	private EntitySet<AspNetUserClaim> _AspNetUserClaims;
 	
-	private EntitySet<AspNetUserRole> _AspNetUserRoles;
-	
 	private EntitySet<AspNetUserLogin> _AspNetUserLogins;
+	
+	private EntitySet<AspNetUserRole> _AspNetUserRoles;
 	
 	private EntitySet<Session> _Sessions;
 	
@@ -1056,8 +1059,8 @@ public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChange
 	public AspNetUser()
 	{
 		this._AspNetUserClaims = new EntitySet<AspNetUserClaim>(new Action<AspNetUserClaim>(this.attach_AspNetUserClaims), new Action<AspNetUserClaim>(this.detach_AspNetUserClaims));
-		this._AspNetUserRoles = new EntitySet<AspNetUserRole>(new Action<AspNetUserRole>(this.attach_AspNetUserRoles), new Action<AspNetUserRole>(this.detach_AspNetUserRoles));
 		this._AspNetUserLogins = new EntitySet<AspNetUserLogin>(new Action<AspNetUserLogin>(this.attach_AspNetUserLogins), new Action<AspNetUserLogin>(this.detach_AspNetUserLogins));
+		this._AspNetUserRoles = new EntitySet<AspNetUserRole>(new Action<AspNetUserRole>(this.attach_AspNetUserRoles), new Action<AspNetUserRole>(this.detach_AspNetUserRoles));
 		this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
 		OnCreated();
 	}
@@ -1315,19 +1318,6 @@ public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChange
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserRole", Storage="_AspNetUserRoles", ThisKey="Id", OtherKey="UserId")]
-	public EntitySet<AspNetUserRole> AspNetUserRoles
-	{
-		get
-		{
-			return this._AspNetUserRoles;
-		}
-		set
-		{
-			this._AspNetUserRoles.Assign(value);
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserLogin", Storage="_AspNetUserLogins", ThisKey="Id", OtherKey="UserId")]
 	public EntitySet<AspNetUserLogin> AspNetUserLogins
 	{
@@ -1338,6 +1328,19 @@ public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChange
 		set
 		{
 			this._AspNetUserLogins.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserRole", Storage="_AspNetUserRoles", ThisKey="Id", OtherKey="UserId")]
+	public EntitySet<AspNetUserRole> AspNetUserRoles
+	{
+		get
+		{
+			return this._AspNetUserRoles;
+		}
+		set
+		{
+			this._AspNetUserRoles.Assign(value);
 		}
 	}
 	
@@ -1386,18 +1389,6 @@ public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChange
 		entity.AspNetUser = null;
 	}
 	
-	private void attach_AspNetUserRoles(AspNetUserRole entity)
-	{
-		this.SendPropertyChanging();
-		entity.AspNetUser = this;
-	}
-	
-	private void detach_AspNetUserRoles(AspNetUserRole entity)
-	{
-		this.SendPropertyChanging();
-		entity.AspNetUser = null;
-	}
-	
 	private void attach_AspNetUserLogins(AspNetUserLogin entity)
 	{
 		this.SendPropertyChanging();
@@ -1405,6 +1396,18 @@ public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChange
 	}
 	
 	private void detach_AspNetUserLogins(AspNetUserLogin entity)
+	{
+		this.SendPropertyChanging();
+		entity.AspNetUser = null;
+	}
+	
+	private void attach_AspNetUserRoles(AspNetUserRole entity)
+	{
+		this.SendPropertyChanging();
+		entity.AspNetUser = this;
+	}
+	
+	private void detach_AspNetUserRoles(AspNetUserRole entity)
 	{
 		this.SendPropertyChanging();
 		entity.AspNetUser = null;
@@ -1433,6 +1436,8 @@ public partial class Audio : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _AudioName;
 	
+	private EntitySet<MtoMAudio> _MtoMAudios;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1445,6 +1450,7 @@ public partial class Audio : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public Audio()
 	{
+		this._MtoMAudios = new EntitySet<MtoMAudio>(new Action<MtoMAudio>(this.attach_MtoMAudios), new Action<MtoMAudio>(this.detach_MtoMAudios));
 		OnCreated();
 	}
 	
@@ -1488,6 +1494,19 @@ public partial class Audio : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audio_MtoMAudio", Storage="_MtoMAudios", ThisKey="id", OtherKey="AudioId")]
+	public EntitySet<MtoMAudio> MtoMAudios
+	{
+		get
+		{
+			return this._MtoMAudios;
+		}
+		set
+		{
+			this._MtoMAudios.Assign(value);
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -1506,6 +1525,18 @@ public partial class Audio : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
+	}
+	
+	private void attach_MtoMAudios(MtoMAudio entity)
+	{
+		this.SendPropertyChanging();
+		entity.Audio = this;
+	}
+	
+	private void detach_MtoMAudios(MtoMAudio entity)
+	{
+		this.SendPropertyChanging();
+		entity.Audio = null;
 	}
 }
 
@@ -1620,51 +1651,6 @@ public partial class Image : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this.SendPropertyChanging();
 		entity.Image = null;
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MtoMAudio")]
-public partial class MtoMAudio
-{
-	
-	private int _SessionId;
-	
-	private int _AudioId;
-	
-	public MtoMAudio()
-	{
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="Int NOT NULL")]
-	public int SessionId
-	{
-		get
-		{
-			return this._SessionId;
-		}
-		set
-		{
-			if ((this._SessionId != value))
-			{
-				this._SessionId = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AudioId", DbType="Int NOT NULL")]
-	public int AudioId
-	{
-		get
-		{
-			return this._AudioId;
-		}
-		set
-		{
-			if ((this._AudioId != value))
-			{
-				this._AudioId = value;
-			}
-		}
 	}
 }
 
@@ -1836,19 +1822,19 @@ public partial class MtoMImg : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MtoMWord")]
-public partial class MtoMWord : INotifyPropertyChanging, INotifyPropertyChanged
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MtoMAudio")]
+public partial class MtoMAudio : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
 	private int _SessionId;
 	
-	private int _WordId;
+	private int _AudioId;
+	
+	private EntityRef<Audio> _Audio;
 	
 	private EntityRef<Session> _Session;
-	
-	private EntityRef<Word> _Word;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1856,14 +1842,14 @@ public partial class MtoMWord : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnCreated();
     partial void OnSessionIdChanging(int value);
     partial void OnSessionIdChanged();
-    partial void OnWordIdChanging(int value);
-    partial void OnWordIdChanged();
+    partial void OnAudioIdChanging(int value);
+    partial void OnAudioIdChanged();
     #endregion
 	
-	public MtoMWord()
+	public MtoMAudio()
 	{
+		this._Audio = default(EntityRef<Audio>);
 		this._Session = default(EntityRef<Session>);
-		this._Word = default(EntityRef<Word>);
 		OnCreated();
 	}
 	
@@ -1891,31 +1877,65 @@ public partial class MtoMWord : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WordId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-	public int WordId
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AudioId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	public int AudioId
 	{
 		get
 		{
-			return this._WordId;
+			return this._AudioId;
 		}
 		set
 		{
-			if ((this._WordId != value))
+			if ((this._AudioId != value))
 			{
-				if (this._Word.HasLoadedOrAssignedValue)
+				if (this._Audio.HasLoadedOrAssignedValue)
 				{
 					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 				}
-				this.OnWordIdChanging(value);
+				this.OnAudioIdChanging(value);
 				this.SendPropertyChanging();
-				this._WordId = value;
-				this.SendPropertyChanged("WordId");
-				this.OnWordIdChanged();
+				this._AudioId = value;
+				this.SendPropertyChanged("AudioId");
+				this.OnAudioIdChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMWord", Storage="_Session", ThisKey="SessionId", OtherKey="id", IsForeignKey=true)]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audio_MtoMAudio", Storage="_Audio", ThisKey="AudioId", OtherKey="id", IsForeignKey=true)]
+	public Audio Audio
+	{
+		get
+		{
+			return this._Audio.Entity;
+		}
+		set
+		{
+			Audio previousValue = this._Audio.Entity;
+			if (((previousValue != value) 
+						|| (this._Audio.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Audio.Entity = null;
+					previousValue.MtoMAudios.Remove(this);
+				}
+				this._Audio.Entity = value;
+				if ((value != null))
+				{
+					value.MtoMAudios.Add(this);
+					this._AudioId = value.id;
+				}
+				else
+				{
+					this._AudioId = default(int);
+				}
+				this.SendPropertyChanged("Audio");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMAudio", Storage="_Session", ThisKey="SessionId", OtherKey="id", IsForeignKey=true)]
 	public Session Session
 	{
 		get
@@ -1932,12 +1952,12 @@ public partial class MtoMWord : INotifyPropertyChanging, INotifyPropertyChanged
 				if ((previousValue != null))
 				{
 					this._Session.Entity = null;
-					previousValue.MtoMWords.Remove(this);
+					previousValue.MtoMAudios.Remove(this);
 				}
 				this._Session.Entity = value;
 				if ((value != null))
 				{
-					value.MtoMWords.Add(this);
+					value.MtoMAudios.Add(this);
 					this._SessionId = value.id;
 				}
 				else
@@ -1945,40 +1965,6 @@ public partial class MtoMWord : INotifyPropertyChanging, INotifyPropertyChanged
 					this._SessionId = default(int);
 				}
 				this.SendPropertyChanged("Session");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Word_MtoMWord", Storage="_Word", ThisKey="WordId", OtherKey="id", IsForeignKey=true)]
-	public Word Word
-	{
-		get
-		{
-			return this._Word.Entity;
-		}
-		set
-		{
-			Word previousValue = this._Word.Entity;
-			if (((previousValue != value) 
-						|| (this._Word.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Word.Entity = null;
-					previousValue.MtoMWords.Remove(this);
-				}
-				this._Word.Entity = value;
-				if ((value != null))
-				{
-					value.MtoMWords.Add(this);
-					this._WordId = value.id;
-				}
-				else
-				{
-					this._WordId = default(int);
-				}
-				this.SendPropertyChanged("Word");
 			}
 		}
 	}
@@ -2000,51 +1986,6 @@ public partial class MtoMWord : INotifyPropertyChanging, INotifyPropertyChanged
 		if ((this.PropertyChanged != null))
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MtoMSession")]
-public partial class MtoMSession
-{
-	
-	private int _SessionId;
-	
-	private int _StudentId;
-	
-	public MtoMSession()
-	{
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="Int NOT NULL")]
-	public int SessionId
-	{
-		get
-		{
-			return this._SessionId;
-		}
-		set
-		{
-			if ((this._SessionId != value))
-			{
-				this._SessionId = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentId", DbType="Int NOT NULL")]
-	public int StudentId
-	{
-		get
-		{
-			return this._StudentId;
-		}
-		set
-		{
-			if ((this._StudentId != value))
-			{
-				this._StudentId = value;
-			}
 		}
 	}
 }
@@ -2217,6 +2158,219 @@ public partial class MtoMRole : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MtoMSession")]
+public partial class MtoMSession
+{
+	
+	private int _SessionId;
+	
+	private int _StudentId;
+	
+	public MtoMSession()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="Int NOT NULL")]
+	public int SessionId
+	{
+		get
+		{
+			return this._SessionId;
+		}
+		set
+		{
+			if ((this._SessionId != value))
+			{
+				this._SessionId = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentId", DbType="Int NOT NULL")]
+	public int StudentId
+	{
+		get
+		{
+			return this._StudentId;
+		}
+		set
+		{
+			if ((this._StudentId != value))
+			{
+				this._StudentId = value;
+			}
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MtoMWord")]
+public partial class MtoMWord : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _SessionId;
+	
+	private int _WordId;
+	
+	private EntityRef<Session> _Session;
+	
+	private EntityRef<Word> _Word;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSessionIdChanging(int value);
+    partial void OnSessionIdChanged();
+    partial void OnWordIdChanging(int value);
+    partial void OnWordIdChanged();
+    #endregion
+	
+	public MtoMWord()
+	{
+		this._Session = default(EntityRef<Session>);
+		this._Word = default(EntityRef<Word>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	public int SessionId
+	{
+		get
+		{
+			return this._SessionId;
+		}
+		set
+		{
+			if ((this._SessionId != value))
+			{
+				if (this._Session.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnSessionIdChanging(value);
+				this.SendPropertyChanging();
+				this._SessionId = value;
+				this.SendPropertyChanged("SessionId");
+				this.OnSessionIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WordId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	public int WordId
+	{
+		get
+		{
+			return this._WordId;
+		}
+		set
+		{
+			if ((this._WordId != value))
+			{
+				if (this._Word.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnWordIdChanging(value);
+				this.SendPropertyChanging();
+				this._WordId = value;
+				this.SendPropertyChanged("WordId");
+				this.OnWordIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMWord", Storage="_Session", ThisKey="SessionId", OtherKey="id", IsForeignKey=true)]
+	public Session Session
+	{
+		get
+		{
+			return this._Session.Entity;
+		}
+		set
+		{
+			Session previousValue = this._Session.Entity;
+			if (((previousValue != value) 
+						|| (this._Session.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Session.Entity = null;
+					previousValue.MtoMWords.Remove(this);
+				}
+				this._Session.Entity = value;
+				if ((value != null))
+				{
+					value.MtoMWords.Add(this);
+					this._SessionId = value.id;
+				}
+				else
+				{
+					this._SessionId = default(int);
+				}
+				this.SendPropertyChanged("Session");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Word_MtoMWord", Storage="_Word", ThisKey="WordId", OtherKey="id", IsForeignKey=true)]
+	public Word Word
+	{
+		get
+		{
+			return this._Word.Entity;
+		}
+		set
+		{
+			Word previousValue = this._Word.Entity;
+			if (((previousValue != value) 
+						|| (this._Word.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Word.Entity = null;
+					previousValue.MtoMWords.Remove(this);
+				}
+				this._Word.Entity = value;
+				if ((value != null))
+				{
+					value.MtoMWords.Add(this);
+					this._WordId = value.id;
+				}
+				else
+				{
+					this._WordId = default(int);
+				}
+				this.SendPropertyChanged("Word");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Roles")]
 public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -2347,9 +2501,11 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private EntitySet<MtoMImg> _MtoMImgs;
 	
-	private EntitySet<MtoMWord> _MtoMWords;
+	private EntitySet<MtoMAudio> _MtoMAudios;
 	
 	private EntitySet<MtoMRole> _MtoMRoles;
+	
+	private EntitySet<MtoMWord> _MtoMWords;
 	
 	private EntityRef<AspNetUser> _AspNetUser;
 	
@@ -2370,8 +2526,9 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 	public Session()
 	{
 		this._MtoMImgs = new EntitySet<MtoMImg>(new Action<MtoMImg>(this.attach_MtoMImgs), new Action<MtoMImg>(this.detach_MtoMImgs));
-		this._MtoMWords = new EntitySet<MtoMWord>(new Action<MtoMWord>(this.attach_MtoMWords), new Action<MtoMWord>(this.detach_MtoMWords));
+		this._MtoMAudios = new EntitySet<MtoMAudio>(new Action<MtoMAudio>(this.attach_MtoMAudios), new Action<MtoMAudio>(this.detach_MtoMAudios));
 		this._MtoMRoles = new EntitySet<MtoMRole>(new Action<MtoMRole>(this.attach_MtoMRoles), new Action<MtoMRole>(this.detach_MtoMRoles));
+		this._MtoMWords = new EntitySet<MtoMWord>(new Action<MtoMWord>(this.attach_MtoMWords), new Action<MtoMWord>(this.detach_MtoMWords));
 		this._AspNetUser = default(EntityRef<AspNetUser>);
 		OnCreated();
 	}
@@ -2473,16 +2630,16 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMWord", Storage="_MtoMWords", ThisKey="id", OtherKey="SessionId")]
-	public EntitySet<MtoMWord> MtoMWords
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMAudio", Storage="_MtoMAudios", ThisKey="id", OtherKey="SessionId")]
+	public EntitySet<MtoMAudio> MtoMAudios
 	{
 		get
 		{
-			return this._MtoMWords;
+			return this._MtoMAudios;
 		}
 		set
 		{
-			this._MtoMWords.Assign(value);
+			this._MtoMAudios.Assign(value);
 		}
 	}
 	
@@ -2496,6 +2653,19 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 		set
 		{
 			this._MtoMRoles.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_MtoMWord", Storage="_MtoMWords", ThisKey="id", OtherKey="SessionId")]
+	public EntitySet<MtoMWord> MtoMWords
+	{
+		get
+		{
+			return this._MtoMWords;
+		}
+		set
+		{
+			this._MtoMWords.Assign(value);
 		}
 	}
 	
@@ -2565,13 +2735,13 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 		entity.Session = null;
 	}
 	
-	private void attach_MtoMWords(MtoMWord entity)
+	private void attach_MtoMAudios(MtoMAudio entity)
 	{
 		this.SendPropertyChanging();
 		entity.Session = this;
 	}
 	
-	private void detach_MtoMWords(MtoMWord entity)
+	private void detach_MtoMAudios(MtoMAudio entity)
 	{
 		this.SendPropertyChanging();
 		entity.Session = null;
@@ -2588,115 +2758,17 @@ public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
 		this.SendPropertyChanging();
 		entity.Session = null;
 	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Student")]
-public partial class Student : INotifyPropertyChanging, INotifyPropertyChanged
-{
 	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _id;
-	
-	private string _Name;
-	
-	private string _Words;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnWordsChanging(string value);
-    partial void OnWordsChanged();
-    #endregion
-	
-	public Student()
+	private void attach_MtoMWords(MtoMWord entity)
 	{
-		OnCreated();
+		this.SendPropertyChanging();
+		entity.Session = this;
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int id
+	private void detach_MtoMWords(MtoMWord entity)
 	{
-		get
-		{
-			return this._id;
-		}
-		set
-		{
-			if ((this._id != value))
-			{
-				this.OnidChanging(value);
-				this.SendPropertyChanging();
-				this._id = value;
-				this.SendPropertyChanged("id");
-				this.OnidChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string Name
-	{
-		get
-		{
-			return this._Name;
-		}
-		set
-		{
-			if ((this._Name != value))
-			{
-				this.OnNameChanging(value);
-				this.SendPropertyChanging();
-				this._Name = value;
-				this.SendPropertyChanged("Name");
-				this.OnNameChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Words", DbType="VarChar(50)")]
-	public string Words
-	{
-		get
-		{
-			return this._Words;
-		}
-		set
-		{
-			if ((this._Words != value))
-			{
-				this.OnWordsChanging(value);
-				this.SendPropertyChanging();
-				this._Words = value;
-				this.SendPropertyChanged("Words");
-				this.OnWordsChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
+		this.SendPropertyChanging();
+		entity.Session = null;
 	}
 }
 
@@ -2811,6 +2883,116 @@ public partial class Word : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this.SendPropertyChanging();
 		entity.Word = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Student")]
+public partial class Student : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _id;
+	
+	private string _Name;
+	
+	private string _Words;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnWordsChanging(string value);
+    partial void OnWordsChanged();
+    #endregion
+	
+	public Student()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int id
+	{
+		get
+		{
+			return this._id;
+		}
+		set
+		{
+			if ((this._id != value))
+			{
+				this.OnidChanging(value);
+				this.SendPropertyChanging();
+				this._id = value;
+				this.SendPropertyChanged("id");
+				this.OnidChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string Name
+	{
+		get
+		{
+			return this._Name;
+		}
+		set
+		{
+			if ((this._Name != value))
+			{
+				this.OnNameChanging(value);
+				this.SendPropertyChanging();
+				this._Name = value;
+				this.SendPropertyChanged("Name");
+				this.OnNameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Words", DbType="VarChar(50)")]
+	public string Words
+	{
+		get
+		{
+			return this._Words;
+		}
+		set
+		{
+			if ((this._Words != value))
+			{
+				this.OnWordsChanging(value);
+				this.SendPropertyChanging();
+				this._Words = value;
+				this.SendPropertyChanged("Words");
+				this.OnWordsChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
 	}
 }
 #pragma warning restore 1591
