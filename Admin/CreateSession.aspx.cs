@@ -9,6 +9,7 @@ namespace Admin
         ImagesForSession img = new ImagesForSession();
         WordForSession wrd = new WordForSession();
         RolesForSession rol = new RolesForSession();
+        AudioForSession aud = new AudioForSession();
         CreateSes newSes = new CreateSes();
         ManyToMany mToM = new ManyToMany();
 
@@ -24,6 +25,9 @@ namespace Admin
 
                 repRolesOnSes.DataSource = rol.GetAllRoles();
                 repRolesOnSes.DataBind();
+
+                repAudiosOnSes.DataSource = aud.GetAllAudioFiles();
+                repAudiosOnSes.DataBind();
             }
         }
 
@@ -77,7 +81,7 @@ namespace Admin
                     chk.Checked = true;
                 }
             }
-            else if(!checkAllImgs.Checked)
+            else if (!checkAllImgs.Checked)
             {
                 foreach (RepeaterItem i in repImagesOnSes.Items)
                 {
@@ -125,5 +129,37 @@ namespace Admin
             }
         }
 
+        protected void checkAllAuds_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkAllAuds.Checked)
+            {
+                foreach (RepeaterItem i in repAudiosOnSes.Items)
+                {
+                    CheckBox chk = i.FindControl("checkAudio") as CheckBox;
+                    chk.Checked = true;
+                }
+            }
+            else if (!checkAllAuds.Checked)
+            {
+                foreach (RepeaterItem i in repAudiosOnSes.Items)
+                {
+                    CheckBox chk = i.FindControl("checkAudio") as CheckBox;
+                    chk.Checked = false;
+                }
+            }
+        }
+
+        protected void checkAudio_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (RepeaterItem i in repAudiosOnSes.Items)
+            {
+                var checkbox = (CheckBox)i.FindControl("checkAudio");
+
+                if(!checkbox.Equals((CheckBox)sender))
+                {
+                    checkbox.Checked = false;
+                }
+            }
+        }
     }
 }

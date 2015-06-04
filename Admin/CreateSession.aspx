@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CreateSession.aspx.cs" Inherits="Admin.CreateSession" %>
+
 <%@ Import Namespace="System.Diagnostics" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -28,7 +29,7 @@
         <div class="row">
 
             <!-- Images container start-->
-            <div class="col-md-4 col-sm-4 col-xs-12" style="padding-top: 15px;">
+            <div class="col-md-3 col-sm-4 col-xs-12" style="padding-top: 15px;">
                 <div style="padding-left: 10px; padding-top: 6px; background-color: #000000; min-height: 30px; max-width: 100%; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px;">
                     <asp:Label ID="lblSesImgInfo" runat="server" Font-Bold="True" ForeColor="White" Text="Label">Vælg Billeder</asp:Label>
                     <div style="float: right; padding-right: 37px;">
@@ -43,7 +44,7 @@
                         <ItemTemplate>
                             <div class="row">
                                 <div class="col-md-10 col-sm-10 col-xs-10">
-                                    <asp:Image ID="imgForSession" CssClass="img-responsive lazy" runat="server" ImageUrl='<%# string.Format("~/Images/{0}", Eval("FileName")) %>' Height="150px" />                                                                    
+                                    <asp:Image ID="imgForSession" CssClass="img-responsive lazy" runat="server" ImageUrl='<%# string.Format("~/Images/{0}", Eval("FileName")) %>' Height="150px" />
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2" style="padding-top: 65px;">
                                     <asp:CheckBox ID="imgCheckBox" runat="server" />
@@ -57,7 +58,7 @@
             <!-- Images container end-->
 
             <!-- Words container start-->
-            <div class="col-md-4 col-sm-4 col-xs-12" style="padding-top: 15px;">
+            <div class="col-md-3 col-sm-4 col-xs-12" style="padding-top: 15px;">
                 <div style="padding-left: 10px; padding-top: 6px; background-color: #000000; min-height: 30px; max-width: 100%; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px;">
                     <asp:Label ID="lblSesWrdInfo" runat="server" Font-Bold="True" ForeColor="White" Text="Label">Vælg Ord</asp:Label>
                     <div style="float: right; padding-right: 37px;">
@@ -86,7 +87,7 @@
             <!-- Words container end-->
 
             <!-- Roles container start-->
-            <div class="col-md-4 col-sm-4 col-xs-12" style="padding-top: 15px;">
+            <div class="col-md-3 col-sm-4 col-xs-12" style="padding-top: 15px;">
                 <div style="padding-left: 10px; padding-top: 6px; background-color: #000000; min-height: 30px; max-width: 100%; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px;">
                     <asp:Label ID="lblSesRolInfo" runat="server" Font-Bold="True" ForeColor="White" Text="Label">Vælg Roller</asp:Label>
                     <div style="float: right; padding-right: 37px;">
@@ -113,6 +114,35 @@
                 </div>
             </div>
             <!-- Roles container end-->
+
+            <!-- Audio container start-->
+            <div class="col-md-3 col-sm-4 col-xs-12" style="padding-top: 15px;">
+                <div style="padding-left: 10px; padding-top: 6px; background-color: #000000; min-height: 30px; max-width: 100%; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px;">
+                    <asp:Label ID="lblSesAudInfo" runat="server" Font-Bold="True" ForeColor="White" Text="Label">Vælg Lyd</asp:Label>
+                    <div style="float: right; padding-right: 37px;">
+                        <asp:CheckBox ID="checkAllAuds" runat="server" AutoPostBack="True" OnCheckedChanged="checkAllAuds_CheckedChanged" />
+                    </div>
+                    <div style="float: right; padding-right: 15px;">
+                        <asp:Label ID="lblAllAuds" Font-Bold="True" ForeColor="White" runat="server" Text="Alle  "></asp:Label>
+                    </div>
+                </div>
+                <div class="well-lg" style="-webkit-box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75); -moz-box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75); box-shadow: 0px 8px 12px 0px rgba(50, 50, 50, 0.75);">
+                    <asp:Repeater ID="repAudiosOnSes" runat="server">
+                        <ItemTemplate>
+                            <div class="row">
+                                <div class="col-md-10 col-sm-10 col-xs-10" style="text-align: center">
+                                    <asp:Label ID="lblAudioSes" Font-Bold="True" runat="server" Text='<%# string.Format(Eval("AudioName").ToString()) %>'></asp:Label>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2" style="">
+                                    <asp:CheckBox ID="checkAudio" runat="server" OnCheckedChanged="checkAudio_CheckedChanged"/>
+                                </div>
+                            </div>
+                            <hr />
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+            </div>
+            <!-- Audio container end-->
         </div>
 
     </div>
