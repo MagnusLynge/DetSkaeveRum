@@ -9,6 +9,7 @@ namespace Admin
         ImagesForSession img = new ImagesForSession();
         WordForSession wrd = new WordForSession();
         RolesForSession rol = new RolesForSession();
+        AudioForSession aud = new AudioForSession();
         CreateSes newSes = new CreateSes();
         ManyToMany mToM = new ManyToMany();
 
@@ -24,6 +25,9 @@ namespace Admin
 
                 repRolesOnSes.DataSource = rol.GetAllRoles();
                 repRolesOnSes.DataBind();
+
+                repAudiosOnSes.DataSource = aud.GetAllAudioFiles();
+                repAudiosOnSes.DataBind();
             }
         }
 
@@ -120,6 +124,26 @@ namespace Admin
                 foreach (RepeaterItem i in repRolesOnSes.Items)
                 {
                     CheckBox chk = i.FindControl("checkRole") as CheckBox;
+                    chk.Checked = false;
+                }
+            }
+        }
+
+        protected void checkAllAuds_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkAllAuds.Checked)
+            {
+                foreach (RepeaterItem i in repAudiosOnSes.Items)
+                {
+                    CheckBox chk = i.FindControl("checkAudio") as CheckBox;
+                    chk.Checked = true;
+                }
+            }
+            else if (!checkAllAuds.Checked)
+            {
+                foreach (RepeaterItem i in repAudiosOnSes.Items)
+                {
+                    CheckBox chk = i.FindControl("checkAudio") as CheckBox;
                     chk.Checked = false;
                 }
             }
