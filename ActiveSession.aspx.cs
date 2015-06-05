@@ -99,12 +99,19 @@ public partial class ActiveSession : System.Web.UI.Page
 
     protected void repImgs_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
+        var nr = 0;
+        var res = repImgs.Items.Count;
+
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
-            if (e.Item.ItemIndex == repImgs.Items.Count - 1)
+            
+            if (e.Item.ItemIndex < nr)
             {
-                Response.Redirect("FinishedSession.aspx");
+                //Response.Redirect("FinishedSession.aspx");
             }
+
+            nr = e.Item.ItemIndex;
+
         }
     }
 
