@@ -89,6 +89,11 @@ public partial class ActiveSession : System.Web.UI.Page
                 repAudio.DataSource = AudioForSession();
                 repAudio.DataBind();
             }
+            else
+            {
+                repAudio.Visible = false;
+                audioDiv.Visible = false;
+            }
         }
     }
 
